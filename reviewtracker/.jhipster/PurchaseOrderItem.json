@@ -1,0 +1,117 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "product",
+            "otherEntityName": "product",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "purchaseOrder",
+            "otherEntityName": "purchaseOrder",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "asin",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "sellerSKU",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "orderItemId",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "title",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "quantityOrdered",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "quantityShipped",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "itemPrice",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "shippingPrice",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "giftWrapPrice",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "itemTax",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "shippingTax",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "giftWrapTax",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "shippingDiscount",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "promotionDiscount",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "codFee",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "codFeeDiscount",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "giftMessageText",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "giftWrapLevel",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "conditionNote",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "conditionId",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "conditionSubtypeId",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "scheduledDeliveryStartLocalDate",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "scheduledDeliveryEndLocalDate",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170103120710",
+    "entityTableName": "purchase_order_item",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "angularJSSuffix": "mySuffix"
+}

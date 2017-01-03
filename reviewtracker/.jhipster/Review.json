@@ -1,0 +1,75 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "product",
+            "otherEntityName": "product",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "itemID",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "reviewID",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "customerName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "customerID",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "title",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "rating",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "fullRating",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "helpfulVotes",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "totalVotes",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "verifiedPurchase",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "realName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "reviewLocalDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "content",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "specificNote",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170103120707",
+    "entityTableName": "review",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "angularJSSuffix": "mySuffix"
+}

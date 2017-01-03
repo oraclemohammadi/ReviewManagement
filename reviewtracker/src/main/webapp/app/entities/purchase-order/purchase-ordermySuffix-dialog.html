@@ -1,0 +1,194 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myPurchaseOrderLabel">Create or edit a Purchase Order</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.purchaseOrder.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.purchaseOrder.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_sellerOrderId">Seller Order Id</label>
+            <input type="text" class="form-control" name="sellerOrderId" id="field_sellerOrderId"
+                    ng-model="vm.purchaseOrder.sellerOrderId"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_purchaseLocalDate">Purchase Local Date</label>
+                <div class="input-group">
+                    <input id="field_purchaseLocalDate" type="text" class="form-control" name="purchaseLocalDate" uib-datepicker-popup="{{dateformat}}" ng-model="vm.purchaseOrder.purchaseLocalDate" is-open="vm.datePickerOpenStatus.purchaseLocalDate"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('purchaseLocalDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_lastUpdateLocalDate">Last Update Local Date</label>
+                <div class="input-group">
+                    <input id="field_lastUpdateLocalDate" type="text" class="form-control" name="lastUpdateLocalDate" uib-datepicker-popup="{{dateformat}}" ng-model="vm.purchaseOrder.lastUpdateLocalDate" is-open="vm.datePickerOpenStatus.lastUpdateLocalDate"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('lastUpdateLocalDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_orderStatus">Order Status</label>
+            <input type="text" class="form-control" name="orderStatus" id="field_orderStatus"
+                    ng-model="vm.purchaseOrder.orderStatus"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_fulfillmentChannel">Fulfillment Channel</label>
+            <input type="text" class="form-control" name="fulfillmentChannel" id="field_fulfillmentChannel"
+                    ng-model="vm.purchaseOrder.fulfillmentChannel"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_orderChannel">Order Channel</label>
+            <input type="text" class="form-control" name="orderChannel" id="field_orderChannel"
+                    ng-model="vm.purchaseOrder.orderChannel"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_shipServiceLevel">Ship Service Level</label>
+            <input type="text" class="form-control" name="shipServiceLevel" id="field_shipServiceLevel"
+                    ng-model="vm.purchaseOrder.shipServiceLevel"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_orderTotal">Order Total</label>
+            <input type="number" class="form-control" name="orderTotal" id="field_orderTotal"
+                    ng-model="vm.purchaseOrder.orderTotal"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_currencyCode">Currency Code</label>
+            <input type="text" class="form-control" name="currencyCode" id="field_currencyCode"
+                    ng-model="vm.purchaseOrder.currencyCode"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_amount">Amount</label>
+            <input type="number" class="form-control" name="amount" id="field_amount"
+                    ng-model="vm.purchaseOrder.amount"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_numberOfItemsShipped">Number Of Items Shipped</label>
+            <input type="number" class="form-control" name="numberOfItemsShipped" id="field_numberOfItemsShipped"
+                    ng-model="vm.purchaseOrder.numberOfItemsShipped"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_numberOfItemsUnshipped">Number Of Items Unshipped</label>
+            <input type="number" class="form-control" name="numberOfItemsUnshipped" id="field_numberOfItemsUnshipped"
+                    ng-model="vm.purchaseOrder.numberOfItemsUnshipped"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_paymentMethod">Payment Method</label>
+            <select class="form-control" name="paymentMethod" ng-model="vm.purchaseOrder.paymentMethod" id="field_paymentMethod">
+                <option value="COD">COD</option>
+                <option value="CVS">CVS</option>
+                <option value="OTHER">OTHER</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_marketplaceId">Marketplace Id</label>
+            <input type="text" class="form-control" name="marketplaceId" id="field_marketplaceId"
+                    ng-model="vm.purchaseOrder.marketplaceId"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_buyerEmail">Buyer Email</label>
+            <input type="text" class="form-control" name="buyerEmail" id="field_buyerEmail"
+                    ng-model="vm.purchaseOrder.buyerEmail"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_buyerName">Buyer Name</label>
+            <input type="text" class="form-control" name="buyerName" id="field_buyerName"
+                    ng-model="vm.purchaseOrder.buyerName"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_shipmentServiceLevelCategory">Shipment Service Level Category</label>
+            <input type="text" class="form-control" name="shipmentServiceLevelCategory" id="field_shipmentServiceLevelCategory"
+                    ng-model="vm.purchaseOrder.shipmentServiceLevelCategory"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_shippedByAmazonTFM">Shipped By Amazon TFM</label>
+            <input type="checkbox" class="form-control" name="shippedByAmazonTFM" id="field_shippedByAmazonTFM"
+                    ng-model="vm.purchaseOrder.shippedByAmazonTFM"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_tfmShipmentStatus">Tfm Shipment Status</label>
+            <input type="text" class="form-control" name="tfmShipmentStatus" id="field_tfmShipmentStatus"
+                    ng-model="vm.purchaseOrder.tfmShipmentStatus"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_cbaDisplayableShippingLabel">Cba Displayable Shipping Label</label>
+            <input type="text" class="form-control" name="cbaDisplayableShippingLabel" id="field_cbaDisplayableShippingLabel"
+                    ng-model="vm.purchaseOrder.cbaDisplayableShippingLabel"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_orderType">Order Type</label>
+            <input type="text" class="form-control" name="orderType" id="field_orderType"
+                    ng-model="vm.purchaseOrder.orderType"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_earliestShipLocalDate">Earliest Ship Local Date</label>
+                <div class="input-group">
+                    <input id="field_earliestShipLocalDate" type="text" class="form-control" name="earliestShipLocalDate" uib-datepicker-popup="{{dateformat}}" ng-model="vm.purchaseOrder.earliestShipLocalDate" is-open="vm.datePickerOpenStatus.earliestShipLocalDate"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('earliestShipLocalDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_latestShipLocalDate">Latest Ship Local Date</label>
+                <div class="input-group">
+                    <input id="field_latestShipLocalDate" type="text" class="form-control" name="latestShipLocalDate" uib-datepicker-popup="{{dateformat}}" ng-model="vm.purchaseOrder.latestShipLocalDate" is-open="vm.datePickerOpenStatus.latestShipLocalDate"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('latestShipLocalDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+
+        <div class="form-group">
+            <label for="field_invoice">Invoice</label>
+            <select class="form-control" id="field_invoice" name="invoice" ng-model="vm.purchaseOrder.invoiceId" ng-options="invoiceData.id as invoiceData.id for invoiceData in vm.invoices | orderBy:'id'">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_payment">Payment</label>
+            <select class="form-control" id="field_payment" name="payment" ng-model="vm.purchaseOrder.paymentId" ng-options="paymentExecution.id as paymentExecution.id for paymentExecution in vm.payments | orderBy:'id'">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

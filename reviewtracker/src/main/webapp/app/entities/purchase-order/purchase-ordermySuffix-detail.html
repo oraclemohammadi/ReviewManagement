@@ -1,0 +1,119 @@
+
+<div>
+    <h2><span>Purchase Order</span> {{vm.purchaseOrder.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Seller Order Id</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrder.sellerOrderId}}</span>
+        </dd>
+        <dt><span>Purchase Local Date</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrder.purchaseLocalDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Last Update Local Date</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrder.lastUpdateLocalDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Order Status</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrder.orderStatus}}</span>
+        </dd>
+        <dt><span>Fulfillment Channel</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrder.fulfillmentChannel}}</span>
+        </dd>
+        <dt><span>Order Channel</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrder.orderChannel}}</span>
+        </dd>
+        <dt><span>Ship Service Level</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrder.shipServiceLevel}}</span>
+        </dd>
+        <dt><span>Order Total</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrder.orderTotal}}</span>
+        </dd>
+        <dt><span>Currency Code</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrder.currencyCode}}</span>
+        </dd>
+        <dt><span>Amount</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrder.amount}}</span>
+        </dd>
+        <dt><span>Number Of Items Shipped</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrder.numberOfItemsShipped}}</span>
+        </dd>
+        <dt><span>Number Of Items Unshipped</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrder.numberOfItemsUnshipped}}</span>
+        </dd>
+        <dt><span>Payment Method</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrder.paymentMethod}}</span>
+        </dd>
+        <dt><span>Marketplace Id</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrder.marketplaceId}}</span>
+        </dd>
+        <dt><span>Buyer Email</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrder.buyerEmail}}</span>
+        </dd>
+        <dt><span>Buyer Name</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrder.buyerName}}</span>
+        </dd>
+        <dt><span>Shipment Service Level Category</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrder.shipmentServiceLevelCategory}}</span>
+        </dd>
+        <dt><span>Shipped By Amazon TFM</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrder.shippedByAmazonTFM}}</span>
+        </dd>
+        <dt><span>Tfm Shipment Status</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrder.tfmShipmentStatus}}</span>
+        </dd>
+        <dt><span>Cba Displayable Shipping Label</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrder.cbaDisplayableShippingLabel}}</span>
+        </dd>
+        <dt><span>Order Type</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrder.orderType}}</span>
+        </dd>
+        <dt><span>Earliest Ship Local Date</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrder.earliestShipLocalDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Latest Ship Local Date</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrder.latestShipLocalDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Invoice</span></dt>
+        <dd>
+            <a ui-sref="invoice-datamySuffix-detail({id:vm.purchaseOrder.invoiceId})">{{vm.purchaseOrder.invoiceId}}</a>
+        </dd>
+        <dt><span>Payment</span></dt>
+        <dd>
+            <a ui-sref="payment-executionmySuffix-detail({id:vm.purchaseOrder.paymentId})">{{vm.purchaseOrder.paymentId}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="purchase-ordermySuffix-detail.edit({id:vm.purchaseOrder.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm"> Edit</span>
+    </button>
+</div>

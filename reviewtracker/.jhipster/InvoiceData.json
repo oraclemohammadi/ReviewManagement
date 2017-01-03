@@ -1,0 +1,30 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "invoiceRequirement",
+            "javadoc": "The firstname attribute.",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "buyerSelectedInvoiceCategory",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "invoiceTitle",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "invoiceInformation",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170103120712",
+    "javadoc": "The Employee entity.",
+    "entityTableName": "invoice_data",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "angularJSSuffix": "mySuffix"
+}

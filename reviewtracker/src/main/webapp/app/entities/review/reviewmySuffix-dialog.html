@@ -1,0 +1,120 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myReviewLabel">Create or edit a Review</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.review.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.review.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_itemID">Item ID</label>
+            <input type="text" class="form-control" name="itemID" id="field_itemID"
+                    ng-model="vm.review.itemID"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_reviewID">Review ID</label>
+            <input type="text" class="form-control" name="reviewID" id="field_reviewID"
+                    ng-model="vm.review.reviewID"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_customerName">Customer Name</label>
+            <input type="text" class="form-control" name="customerName" id="field_customerName"
+                    ng-model="vm.review.customerName"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_customerID">Customer ID</label>
+            <input type="text" class="form-control" name="customerID" id="field_customerID"
+                    ng-model="vm.review.customerID"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_title">Title</label>
+            <input type="text" class="form-control" name="title" id="field_title"
+                    ng-model="vm.review.title"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_rating">Rating</label>
+            <input type="number" class="form-control" name="rating" id="field_rating"
+                    ng-model="vm.review.rating"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_fullRating">Full Rating</label>
+            <input type="number" class="form-control" name="fullRating" id="field_fullRating"
+                    ng-model="vm.review.fullRating"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_helpfulVotes">Helpful Votes</label>
+            <input type="number" class="form-control" name="helpfulVotes" id="field_helpfulVotes"
+                    ng-model="vm.review.helpfulVotes"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_totalVotes">Total Votes</label>
+            <input type="number" class="form-control" name="totalVotes" id="field_totalVotes"
+                    ng-model="vm.review.totalVotes"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_verifiedPurchase">Verified Purchase</label>
+            <input type="checkbox" class="form-control" name="verifiedPurchase" id="field_verifiedPurchase"
+                    ng-model="vm.review.verifiedPurchase"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_realName">Real Name</label>
+            <input type="text" class="form-control" name="realName" id="field_realName"
+                    ng-model="vm.review.realName"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_reviewLocalDate">Review Local Date</label>
+                <div class="input-group">
+                    <input id="field_reviewLocalDate" type="text" class="form-control" name="reviewLocalDate" uib-datepicker-popup="{{dateformat}}" ng-model="vm.review.reviewLocalDate" is-open="vm.datePickerOpenStatus.reviewLocalDate"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('reviewLocalDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_content">Content</label>
+            <input type="text" class="form-control" name="content" id="field_content"
+                    ng-model="vm.review.content"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_specificNote">Specific Note</label>
+            <input type="text" class="form-control" name="specificNote" id="field_specificNote"
+                    ng-model="vm.review.specificNote"
+                     />
+        </div>
+
+        <div class="form-group">
+            <label for="field_product">Product</label>
+            <select class="form-control" id="field_product" name="product" ng-model="vm.review.productId" ng-options="product.id as product.id for product in vm.products"            >
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

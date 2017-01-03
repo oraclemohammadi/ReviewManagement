@@ -1,0 +1,112 @@
+<div>
+    <h2>Purchase Orders</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="purchase-ordermySuffix.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span >
+                        Create new Purchase Order
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="sellerOrderId"><span>Seller Order Id</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="purchaseLocalDate"><span>Purchase Local Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="lastUpdateLocalDate"><span>Last Update Local Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="orderStatus"><span>Order Status</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="fulfillmentChannel"><span>Fulfillment Channel</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="orderChannel"><span>Order Channel</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="shipServiceLevel"><span>Ship Service Level</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="orderTotal"><span>Order Total</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="currencyCode"><span>Currency Code</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="amount"><span>Amount</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="numberOfItemsShipped"><span>Number Of Items Shipped</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="numberOfItemsUnshipped"><span>Number Of Items Unshipped</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="paymentMethod"><span>Payment Method</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="marketplaceId"><span>Marketplace Id</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="buyerEmail"><span>Buyer Email</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="buyerName"><span>Buyer Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="shipmentServiceLevelCategory"><span>Shipment Service Level Category</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="shippedByAmazonTFM"><span>Shipped By Amazon TFM</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="tfmShipmentStatus"><span>Tfm Shipment Status</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="cbaDisplayableShippingLabel"><span>Cba Displayable Shipping Label</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="orderType"><span>Order Type</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="earliestShipLocalDate"><span>Earliest Ship Local Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="latestShipLocalDate"><span>Latest Ship Local Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="invoiceId"><span>Invoice</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="paymentId"><span>Payment</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="purchaseOrder in vm.purchaseOrders track by purchaseOrder.id">
+                    <td><a ui-sref="purchase-ordermySuffix-detail({id:purchaseOrder.id})">{{purchaseOrder.id}}</a></td>
+                    <td>{{purchaseOrder.sellerOrderId}}</td>
+                        <td>{{purchaseOrder.purchaseLocalDate | date:'mediumDate'}}</td>
+                        <td>{{purchaseOrder.lastUpdateLocalDate | date:'mediumDate'}}</td>
+                    <td>{{purchaseOrder.orderStatus}}</td>
+                    <td>{{purchaseOrder.fulfillmentChannel}}</td>
+                    <td>{{purchaseOrder.orderChannel}}</td>
+                    <td>{{purchaseOrder.shipServiceLevel}}</td>
+                    <td>{{purchaseOrder.orderTotal}}</td>
+                    <td>{{purchaseOrder.currencyCode}}</td>
+                    <td>{{purchaseOrder.amount}}</td>
+                    <td>{{purchaseOrder.numberOfItemsShipped}}</td>
+                    <td>{{purchaseOrder.numberOfItemsUnshipped}}</td>
+                    <td>{{purchaseOrder.paymentMethod}}</td>
+                    <td>{{purchaseOrder.marketplaceId}}</td>
+                    <td>{{purchaseOrder.buyerEmail}}</td>
+                    <td>{{purchaseOrder.buyerName}}</td>
+                    <td>{{purchaseOrder.shipmentServiceLevelCategory}}</td>
+                    <td>{{purchaseOrder.shippedByAmazonTFM}}</td>
+                    <td>{{purchaseOrder.tfmShipmentStatus}}</td>
+                    <td>{{purchaseOrder.cbaDisplayableShippingLabel}}</td>
+                    <td>{{purchaseOrder.orderType}}</td>
+                        <td>{{purchaseOrder.earliestShipLocalDate | date:'mediumDate'}}</td>
+                        <td>{{purchaseOrder.latestShipLocalDate | date:'mediumDate'}}</td>
+                    <td>
+                        <a ui-sref="invoice-datamySuffix-detail({id:purchaseOrder.invoiceId})">{{purchaseOrder.invoiceId}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="payment-executionmySuffix-detail({id:purchaseOrder.paymentId})">{{purchaseOrder.paymentId}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="purchase-ordermySuffix-detail({id:purchaseOrder.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="purchase-ordermySuffix.edit({id:purchaseOrder.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="purchase-ordermySuffix.delete({id:purchaseOrder.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+        <uib-pagination class="pagination-sm" total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+    </div>
+</div>

@@ -1,0 +1,176 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myPurchaseOrderItemLabel">Create or edit a Purchase Order Item</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.purchaseOrderItem.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.purchaseOrderItem.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_asin">Asin</label>
+            <input type="text" class="form-control" name="asin" id="field_asin"
+                    ng-model="vm.purchaseOrderItem.asin"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_sellerSKU">Seller SKU</label>
+            <input type="text" class="form-control" name="sellerSKU" id="field_sellerSKU"
+                    ng-model="vm.purchaseOrderItem.sellerSKU"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_orderItemId">Order Item Id</label>
+            <input type="text" class="form-control" name="orderItemId" id="field_orderItemId"
+                    ng-model="vm.purchaseOrderItem.orderItemId"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_title">Title</label>
+            <input type="text" class="form-control" name="title" id="field_title"
+                    ng-model="vm.purchaseOrderItem.title"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_quantityOrdered">Quantity Ordered</label>
+            <input type="number" class="form-control" name="quantityOrdered" id="field_quantityOrdered"
+                    ng-model="vm.purchaseOrderItem.quantityOrdered"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_quantityShipped">Quantity Shipped</label>
+            <input type="number" class="form-control" name="quantityShipped" id="field_quantityShipped"
+                    ng-model="vm.purchaseOrderItem.quantityShipped"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_itemPrice">Item Price</label>
+            <input type="number" class="form-control" name="itemPrice" id="field_itemPrice"
+                    ng-model="vm.purchaseOrderItem.itemPrice"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_shippingPrice">Shipping Price</label>
+            <input type="number" class="form-control" name="shippingPrice" id="field_shippingPrice"
+                    ng-model="vm.purchaseOrderItem.shippingPrice"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_giftWrapPrice">Gift Wrap Price</label>
+            <input type="number" class="form-control" name="giftWrapPrice" id="field_giftWrapPrice"
+                    ng-model="vm.purchaseOrderItem.giftWrapPrice"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_itemTax">Item Tax</label>
+            <input type="number" class="form-control" name="itemTax" id="field_itemTax"
+                    ng-model="vm.purchaseOrderItem.itemTax"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_shippingTax">Shipping Tax</label>
+            <input type="number" class="form-control" name="shippingTax" id="field_shippingTax"
+                    ng-model="vm.purchaseOrderItem.shippingTax"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_giftWrapTax">Gift Wrap Tax</label>
+            <input type="number" class="form-control" name="giftWrapTax" id="field_giftWrapTax"
+                    ng-model="vm.purchaseOrderItem.giftWrapTax"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_shippingDiscount">Shipping Discount</label>
+            <input type="number" class="form-control" name="shippingDiscount" id="field_shippingDiscount"
+                    ng-model="vm.purchaseOrderItem.shippingDiscount"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_promotionDiscount">Promotion Discount</label>
+            <input type="number" class="form-control" name="promotionDiscount" id="field_promotionDiscount"
+                    ng-model="vm.purchaseOrderItem.promotionDiscount"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_codFee">Cod Fee</label>
+            <input type="number" class="form-control" name="codFee" id="field_codFee"
+                    ng-model="vm.purchaseOrderItem.codFee"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_codFeeDiscount">Cod Fee Discount</label>
+            <input type="number" class="form-control" name="codFeeDiscount" id="field_codFeeDiscount"
+                    ng-model="vm.purchaseOrderItem.codFeeDiscount"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_giftMessageText">Gift Message Text</label>
+            <input type="text" class="form-control" name="giftMessageText" id="field_giftMessageText"
+                    ng-model="vm.purchaseOrderItem.giftMessageText"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_giftWrapLevel">Gift Wrap Level</label>
+            <input type="text" class="form-control" name="giftWrapLevel" id="field_giftWrapLevel"
+                    ng-model="vm.purchaseOrderItem.giftWrapLevel"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_conditionNote">Condition Note</label>
+            <input type="text" class="form-control" name="conditionNote" id="field_conditionNote"
+                    ng-model="vm.purchaseOrderItem.conditionNote"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_conditionId">Condition Id</label>
+            <input type="text" class="form-control" name="conditionId" id="field_conditionId"
+                    ng-model="vm.purchaseOrderItem.conditionId"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_conditionSubtypeId">Condition Subtype Id</label>
+            <input type="text" class="form-control" name="conditionSubtypeId" id="field_conditionSubtypeId"
+                    ng-model="vm.purchaseOrderItem.conditionSubtypeId"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_scheduledDeliveryStartLocalDate">Scheduled Delivery Start Local Date</label>
+            <input type="text" class="form-control" name="scheduledDeliveryStartLocalDate" id="field_scheduledDeliveryStartLocalDate"
+                    ng-model="vm.purchaseOrderItem.scheduledDeliveryStartLocalDate"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_scheduledDeliveryEndLocalDate">Scheduled Delivery End Local Date</label>
+            <input type="text" class="form-control" name="scheduledDeliveryEndLocalDate" id="field_scheduledDeliveryEndLocalDate"
+                    ng-model="vm.purchaseOrderItem.scheduledDeliveryEndLocalDate"
+                     />
+        </div>
+
+        <div class="form-group">
+            <label for="field_product">Product</label>
+            <select class="form-control" id="field_product" name="product" ng-model="vm.purchaseOrderItem.productId" ng-options="product.id as product.id for product in vm.products"            >
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_purchaseOrder">Purchase Order</label>
+            <select class="form-control" id="field_purchaseOrder" name="purchaseOrder" ng-model="vm.purchaseOrderItem.purchaseOrderId" ng-options="purchaseOrder.id as purchaseOrder.id for purchaseOrder in vm.purchaseorders"            >
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

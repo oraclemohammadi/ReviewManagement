@@ -1,0 +1,63 @@
+
+<div>
+    <h2><span>Shipping Address</span> {{vm.shippingAddress.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Name</span></dt>
+        <dd>
+            <span>{{vm.shippingAddress.name}}</span>
+        </dd>
+        <dt><span>Address Line 1</span></dt>
+        <dd>
+            <span>{{vm.shippingAddress.addressLine1}}</span>
+        </dd>
+        <dt><span>Address Line 2</span></dt>
+        <dd>
+            <span>{{vm.shippingAddress.addressLine2}}</span>
+        </dd>
+        <dt><span>Address Line 3</span></dt>
+        <dd>
+            <span>{{vm.shippingAddress.addressLine3}}</span>
+        </dd>
+        <dt><span>City</span></dt>
+        <dd>
+            <span>{{vm.shippingAddress.city}}</span>
+        </dd>
+        <dt><span>County</span></dt>
+        <dd>
+            <span>{{vm.shippingAddress.county}}</span>
+        </dd>
+        <dt><span>Postal Code</span></dt>
+        <dd>
+            <span>{{vm.shippingAddress.postalCode}}</span>
+        </dd>
+        <dt><span>District</span></dt>
+        <dd>
+            <span>{{vm.shippingAddress.district}}</span>
+        </dd>
+        <dt><span>State Or Region</span></dt>
+        <dd>
+            <span>{{vm.shippingAddress.stateOrRegion}}</span>
+        </dd>
+        <dt><span>Phone</span></dt>
+        <dd>
+            <span>{{vm.shippingAddress.phone}}</span>
+        </dd>
+        <dt><span>Purchase Order</span></dt>
+        <dd>
+            <a ui-sref="purchase-ordermySuffix-detail({id:vm.shippingAddress.purchaseOrderId})">{{vm.shippingAddress.purchaseOrderId}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="shipping-addressmySuffix-detail.edit({id:vm.shippingAddress.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm"> Edit</span>
+    </button>
+</div>

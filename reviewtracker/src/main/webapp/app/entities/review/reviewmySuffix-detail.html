@@ -1,0 +1,79 @@
+
+<div>
+    <h2><span>Review</span> {{vm.review.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Item ID</span></dt>
+        <dd>
+            <span>{{vm.review.itemID}}</span>
+        </dd>
+        <dt><span>Review ID</span></dt>
+        <dd>
+            <span>{{vm.review.reviewID}}</span>
+        </dd>
+        <dt><span>Customer Name</span></dt>
+        <dd>
+            <span>{{vm.review.customerName}}</span>
+        </dd>
+        <dt><span>Customer ID</span></dt>
+        <dd>
+            <span>{{vm.review.customerID}}</span>
+        </dd>
+        <dt><span>Title</span></dt>
+        <dd>
+            <span>{{vm.review.title}}</span>
+        </dd>
+        <dt><span>Rating</span></dt>
+        <dd>
+            <span>{{vm.review.rating}}</span>
+        </dd>
+        <dt><span>Full Rating</span></dt>
+        <dd>
+            <span>{{vm.review.fullRating}}</span>
+        </dd>
+        <dt><span>Helpful Votes</span></dt>
+        <dd>
+            <span>{{vm.review.helpfulVotes}}</span>
+        </dd>
+        <dt><span>Total Votes</span></dt>
+        <dd>
+            <span>{{vm.review.totalVotes}}</span>
+        </dd>
+        <dt><span>Verified Purchase</span></dt>
+        <dd>
+            <span>{{vm.review.verifiedPurchase}}</span>
+        </dd>
+        <dt><span>Real Name</span></dt>
+        <dd>
+            <span>{{vm.review.realName}}</span>
+        </dd>
+        <dt><span>Review Local Date</span></dt>
+        <dd>
+            <span>{{vm.review.reviewLocalDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Content</span></dt>
+        <dd>
+            <span>{{vm.review.content}}</span>
+        </dd>
+        <dt><span>Specific Note</span></dt>
+        <dd>
+            <span>{{vm.review.specificNote}}</span>
+        </dd>
+        <dt><span>Product</span></dt>
+        <dd>
+            <a ui-sref="productmySuffix-detail({id:vm.review.productId})">{{vm.review.productId}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="reviewmySuffix-detail.edit({id:vm.review.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm"> Edit</span>
+    </button>
+</div>

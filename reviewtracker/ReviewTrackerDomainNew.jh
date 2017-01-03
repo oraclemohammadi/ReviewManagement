@@ -1,0 +1,174 @@
+entity Product {
+	asin String
+    title String
+}
+entity Review {
+	 itemID String
+     reviewID String 
+	customerName String 
+	customerID String 
+	title String 
+	rating Long
+	fullRating Long 
+	helpfulVotes Long
+	totalVotes Long
+	verifiedPurchase Boolean
+	realName String 
+	reviewLocalDate LocalDate 
+	content String 
+	specificNote String 
+}
+
+entity PurchaseOrder {
+	sellerOrderId String
+	purchaseLocalDate  LocalDate
+	lastUpdateLocalDate LocalDate
+    orderStatus String
+    fulfillmentChannel String
+    fulfillmentChannel String
+    orderChannel String
+    shipServiceLevel String
+    orderTotal Long
+    currencyCode String
+    amount Long
+    numberOfItemsShipped Long
+    numberOfItemsUnshipped Long
+    paymentMethod PaymentMethodEnum
+    marketplaceId String
+    buyerEmail String
+    buyerName String
+    shipmentServiceLevelCategory String
+    shippedByAmazonTFM Boolean
+    tfmShipmentStatus String
+    cbaDisplayableShippingLabel String
+    orderType String
+    earliestShipLocalDate LocalDate
+    latestShipLocalDate LocalDate
+}
+
+// an ignored comment
+/** not an ignored comment */
+entity ShippingAddress {
+	name String required
+	addressLine1 String required
+	addressLine2 String
+	addressLine3 String
+    city String required
+    county String required
+    postalCode String required
+    district String required
+    stateOrRegion String required
+    postalCode String 
+    phone String
+}
+
+entity PurchaseOrderItem {
+	 asin String
+	 sellerSKU String
+	 orderItemId String 
+   
+	 title String 
+   
+	 quantityOrdered Long
+   
+	 quantityShipped Long
+   
+	 itemPrice Long
+   
+	 shippingPrice Long
+   
+	 giftWrapPrice Long
+   
+	 itemTax  Long
+    
+	 shippingTax Long
+  
+	 giftWrapTax Long
+   
+	 shippingDiscount  Long
+  
+	 promotionDiscount Long
+  
+   // public PromotionIdList promotionIds;
+  
+	 codFee Long
+  
+	 codFeeDiscount Long
+  
+	 giftMessageText String
+   
+	 giftWrapLevel String
+  
+	 conditionNote String 
+   
+	 conditionId String 
+   
+	 conditionSubtypeId String 
+   
+	 scheduledDeliveryStartLocalDate String 
+   
+	 scheduledDeliveryEndLocalDate String 
+	
+}
+
+/**
+ * Task entity.
+ * @author The JHipster team.
+ */
+entity PaymentExecution {
+	paymentAmount Long
+	currencyCode String
+    paymentMethod String
+}
+
+/**
+ * The Employee entity.
+ */
+entity InvoiceData {
+	/**
+	* The firstname attribute.
+	*/
+	invoiceRequirement String,
+	buyerSelectedInvoiceCategory String,
+	invoiceTitle String,
+	invoiceInformation String
+}
+
+entity Promotions {
+	promotionId String
+}
+
+
+
+enum PaymentMethodEnum {
+    COD, CVS, OTHER
+}
+
+
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	PurchaseOrder {shippedTo} to ShippingAddress,
+    PurchaseOrder {Contains} to PurchaseOrderItem,
+    Product {Review} to Review,
+    Product {canBeOrderItem} to PurchaseOrderItem
+}
+
+relationship OneToOne {
+  PurchaseOrder {invoice} to InvoiceData,
+  PurchaseOrder {payment} to PaymentExecution
+}
+
+
+
+// Set pagination options
+paginate PurchaseOrderItem  with infinite-scroll
+paginate Review , Product , PurchaseOrder with pagination
+
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl 
+//except Employee, Job
+// Set an angular suffix
+angularSuffix * with mySuffix

@@ -1,0 +1,33 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "review",
+            "otherEntityName": "review",
+            "otherEntityRelationshipName": "product"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "canBeOrderItem",
+            "otherEntityName": "purchaseOrderItem",
+            "otherEntityRelationshipName": "product"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "asin",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "title",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170103120706",
+    "entityTableName": "product",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "angularJSSuffix": "mySuffix"
+}

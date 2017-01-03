@@ -1,0 +1,90 @@
+<div>
+    <h2>Reviews</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="reviewmySuffix.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span >
+                        Create new Review
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="itemID"><span>Item ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="reviewID"><span>Review ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="customerName"><span>Customer Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="customerID"><span>Customer ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="title"><span>Title</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="rating"><span>Rating</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="fullRating"><span>Full Rating</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="helpfulVotes"><span>Helpful Votes</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="totalVotes"><span>Total Votes</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="verifiedPurchase"><span>Verified Purchase</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="realName"><span>Real Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="reviewLocalDate"><span>Review Local Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="content"><span>Content</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="specificNote"><span>Specific Note</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="productId"><span>Product</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="review in vm.reviews track by review.id">
+                    <td><a ui-sref="reviewmySuffix-detail({id:review.id})">{{review.id}}</a></td>
+                    <td>{{review.itemID}}</td>
+                    <td>{{review.reviewID}}</td>
+                    <td>{{review.customerName}}</td>
+                    <td>{{review.customerID}}</td>
+                    <td>{{review.title}}</td>
+                    <td>{{review.rating}}</td>
+                    <td>{{review.fullRating}}</td>
+                    <td>{{review.helpfulVotes}}</td>
+                    <td>{{review.totalVotes}}</td>
+                    <td>{{review.verifiedPurchase}}</td>
+                    <td>{{review.realName}}</td>
+                        <td>{{review.reviewLocalDate | date:'mediumDate'}}</td>
+                    <td>{{review.content}}</td>
+                    <td>{{review.specificNote}}</td>
+                    <td>
+                        <a ui-sref="productmySuffix-detail({id:review.productId})">{{review.productId}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="reviewmySuffix-detail({id:review.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="reviewmySuffix.edit({id:review.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="reviewmySuffix.delete({id:review.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+        <uib-pagination class="pagination-sm" total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+    </div>
+</div>

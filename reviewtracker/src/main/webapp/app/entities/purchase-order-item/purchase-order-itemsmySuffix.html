@@ -1,0 +1,108 @@
+<div>
+    <h2>Purchase Order Items</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="purchase-order-itemmySuffix.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span >
+                        Create new Purchase Order Item
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
+                    <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="asin"><span>Asin</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="sellerSKU"><span>Seller SKU</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="orderItemId"><span>Order Item Id</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="title"><span>Title</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="quantityOrdered"><span>Quantity Ordered</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="quantityShipped"><span>Quantity Shipped</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="itemPrice"><span>Item Price</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="shippingPrice"><span>Shipping Price</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="giftWrapPrice"><span>Gift Wrap Price</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="itemTax"><span>Item Tax</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="shippingTax"><span>Shipping Tax</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="giftWrapTax"><span>Gift Wrap Tax</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="shippingDiscount"><span>Shipping Discount</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="promotionDiscount"><span>Promotion Discount</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="codFee"><span>Cod Fee</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="codFeeDiscount"><span>Cod Fee Discount</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="giftMessageText"><span>Gift Message Text</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="giftWrapLevel"><span>Gift Wrap Level</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="conditionNote"><span>Condition Note</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="conditionId"><span>Condition Id</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="conditionSubtypeId"><span>Condition Subtype Id</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="scheduledDeliveryStartLocalDate"><span>Scheduled Delivery Start Local Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="scheduledDeliveryEndLocalDate"><span>Scheduled Delivery End Local Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="productId"><span>Product</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="purchaseOrderId"><span>Purchase Order</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
+                <tr ng-repeat="purchaseOrderItem in vm.purchaseOrderItems track by purchaseOrderItem.id">
+                    <td><a ui-sref="purchase-order-itemmySuffix-detail({id:purchaseOrderItem.id})">{{purchaseOrderItem.id}}</a></td>
+                    <td>{{purchaseOrderItem.asin}}</td>
+                    <td>{{purchaseOrderItem.sellerSKU}}</td>
+                    <td>{{purchaseOrderItem.orderItemId}}</td>
+                    <td>{{purchaseOrderItem.title}}</td>
+                    <td>{{purchaseOrderItem.quantityOrdered}}</td>
+                    <td>{{purchaseOrderItem.quantityShipped}}</td>
+                    <td>{{purchaseOrderItem.itemPrice}}</td>
+                    <td>{{purchaseOrderItem.shippingPrice}}</td>
+                    <td>{{purchaseOrderItem.giftWrapPrice}}</td>
+                    <td>{{purchaseOrderItem.itemTax}}</td>
+                    <td>{{purchaseOrderItem.shippingTax}}</td>
+                    <td>{{purchaseOrderItem.giftWrapTax}}</td>
+                    <td>{{purchaseOrderItem.shippingDiscount}}</td>
+                    <td>{{purchaseOrderItem.promotionDiscount}}</td>
+                    <td>{{purchaseOrderItem.codFee}}</td>
+                    <td>{{purchaseOrderItem.codFeeDiscount}}</td>
+                    <td>{{purchaseOrderItem.giftMessageText}}</td>
+                    <td>{{purchaseOrderItem.giftWrapLevel}}</td>
+                    <td>{{purchaseOrderItem.conditionNote}}</td>
+                    <td>{{purchaseOrderItem.conditionId}}</td>
+                    <td>{{purchaseOrderItem.conditionSubtypeId}}</td>
+                    <td>{{purchaseOrderItem.scheduledDeliveryStartLocalDate}}</td>
+                    <td>{{purchaseOrderItem.scheduledDeliveryEndLocalDate}}</td>
+                    <td>
+                        <a ui-sref="productmySuffix-detail({id:purchaseOrderItem.productId})">{{purchaseOrderItem.productId}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="purchase-ordermySuffix-detail({id:purchaseOrderItem.purchaseOrderId})">{{purchaseOrderItem.purchaseOrderId}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="purchase-order-itemmySuffix-detail({id:purchaseOrderItem.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="purchase-order-itemmySuffix.edit({id:purchaseOrderItem.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="purchase-order-itemmySuffix.delete({id:purchaseOrderItem.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

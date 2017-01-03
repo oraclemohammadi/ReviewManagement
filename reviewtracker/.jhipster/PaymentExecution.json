@@ -1,0 +1,25 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "paymentAmount",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "currencyCode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "paymentMethod",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170103120711",
+    "javadoc": "Task entity.@author The JHipster team.",
+    "entityTableName": "payment_execution",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "angularJSSuffix": "mySuffix"
+}

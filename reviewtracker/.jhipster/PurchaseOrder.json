@@ -1,0 +1,134 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "invoice",
+            "otherEntityName": "invoiceData",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "purchaseOrder"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "payment",
+            "otherEntityName": "paymentExecution",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "purchaseOrder"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "shippedTo",
+            "otherEntityName": "shippingAddress",
+            "otherEntityRelationshipName": "purchaseOrder"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "contains",
+            "otherEntityName": "purchaseOrderItem",
+            "otherEntityRelationshipName": "purchaseOrder"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "sellerOrderId",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "purchaseLocalDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "lastUpdateLocalDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "orderStatus",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "fulfillmentChannel",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "orderChannel",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "shipServiceLevel",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "orderTotal",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "currencyCode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "amount",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "numberOfItemsShipped",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "numberOfItemsUnshipped",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "paymentMethod",
+            "fieldType": "PaymentMethodEnum",
+            "fieldValues": "COD,CVS,OTHER"
+        },
+        {
+            "fieldName": "marketplaceId",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "buyerEmail",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "buyerName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "shipmentServiceLevelCategory",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "shippedByAmazonTFM",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "tfmShipmentStatus",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "cbaDisplayableShippingLabel",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "orderType",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "earliestShipLocalDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "latestShipLocalDate",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "changelogDate": "20170103120708",
+    "entityTableName": "purchase_order",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "angularJSSuffix": "mySuffix"
+}

@@ -1,0 +1,35 @@
+
+<div>
+    <h2><span>Invoice Data</span> {{vm.invoiceData.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Invoice Requirement</span></dt>
+        <dd>
+            <span>{{vm.invoiceData.invoiceRequirement}}</span>
+        </dd>
+        <dt><span>Buyer Selected Invoice Category</span></dt>
+        <dd>
+            <span>{{vm.invoiceData.buyerSelectedInvoiceCategory}}</span>
+        </dd>
+        <dt><span>Invoice Title</span></dt>
+        <dd>
+            <span>{{vm.invoiceData.invoiceTitle}}</span>
+        </dd>
+        <dt><span>Invoice Information</span></dt>
+        <dd>
+            <span>{{vm.invoiceData.invoiceInformation}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="invoice-datamySuffix-detail.edit({id:vm.invoiceData.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,16 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "promotionId",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170103120713",
+    "entityTableName": "promotions",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "angularJSSuffix": "mySuffix"
+}

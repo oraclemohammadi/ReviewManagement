@@ -1,0 +1,119 @@
+
+<div>
+    <h2><span>Purchase Order Item</span> {{vm.purchaseOrderItem.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Asin</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrderItem.asin}}</span>
+        </dd>
+        <dt><span>Seller SKU</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrderItem.sellerSKU}}</span>
+        </dd>
+        <dt><span>Order Item Id</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrderItem.orderItemId}}</span>
+        </dd>
+        <dt><span>Title</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrderItem.title}}</span>
+        </dd>
+        <dt><span>Quantity Ordered</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrderItem.quantityOrdered}}</span>
+        </dd>
+        <dt><span>Quantity Shipped</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrderItem.quantityShipped}}</span>
+        </dd>
+        <dt><span>Item Price</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrderItem.itemPrice}}</span>
+        </dd>
+        <dt><span>Shipping Price</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrderItem.shippingPrice}}</span>
+        </dd>
+        <dt><span>Gift Wrap Price</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrderItem.giftWrapPrice}}</span>
+        </dd>
+        <dt><span>Item Tax</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrderItem.itemTax}}</span>
+        </dd>
+        <dt><span>Shipping Tax</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrderItem.shippingTax}}</span>
+        </dd>
+        <dt><span>Gift Wrap Tax</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrderItem.giftWrapTax}}</span>
+        </dd>
+        <dt><span>Shipping Discount</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrderItem.shippingDiscount}}</span>
+        </dd>
+        <dt><span>Promotion Discount</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrderItem.promotionDiscount}}</span>
+        </dd>
+        <dt><span>Cod Fee</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrderItem.codFee}}</span>
+        </dd>
+        <dt><span>Cod Fee Discount</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrderItem.codFeeDiscount}}</span>
+        </dd>
+        <dt><span>Gift Message Text</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrderItem.giftMessageText}}</span>
+        </dd>
+        <dt><span>Gift Wrap Level</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrderItem.giftWrapLevel}}</span>
+        </dd>
+        <dt><span>Condition Note</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrderItem.conditionNote}}</span>
+        </dd>
+        <dt><span>Condition Id</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrderItem.conditionId}}</span>
+        </dd>
+        <dt><span>Condition Subtype Id</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrderItem.conditionSubtypeId}}</span>
+        </dd>
+        <dt><span>Scheduled Delivery Start Local Date</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrderItem.scheduledDeliveryStartLocalDate}}</span>
+        </dd>
+        <dt><span>Scheduled Delivery End Local Date</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrderItem.scheduledDeliveryEndLocalDate}}</span>
+        </dd>
+        <dt><span>Product</span></dt>
+        <dd>
+            <a ui-sref="productmySuffix-detail({id:vm.purchaseOrderItem.productId})">{{vm.purchaseOrderItem.productId}}</a>
+        </dd>
+        <dt><span>Purchase Order</span></dt>
+        <dd>
+            <a ui-sref="purchase-ordermySuffix-detail({id:vm.purchaseOrderItem.purchaseOrderId})">{{vm.purchaseOrderItem.purchaseOrderId}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="purchase-order-itemmySuffix-detail.edit({id:vm.purchaseOrderItem.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm"> Edit</span>
+    </button>
+</div>

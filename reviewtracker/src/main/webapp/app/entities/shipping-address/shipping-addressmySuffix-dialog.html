@@ -1,0 +1,128 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myShippingAddressLabel">Create or edit a Shipping Address</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.shippingAddress.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.shippingAddress.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                    ng-model="vm.shippingAddress.name"
+                    required />
+            <div ng-show="editForm.name.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.name.$error.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_addressLine1">Address Line 1</label>
+            <input type="text" class="form-control" name="addressLine1" id="field_addressLine1"
+                    ng-model="vm.shippingAddress.addressLine1"
+                    required />
+            <div ng-show="editForm.addressLine1.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.addressLine1.$error.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_addressLine2">Address Line 2</label>
+            <input type="text" class="form-control" name="addressLine2" id="field_addressLine2"
+                    ng-model="vm.shippingAddress.addressLine2"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_addressLine3">Address Line 3</label>
+            <input type="text" class="form-control" name="addressLine3" id="field_addressLine3"
+                    ng-model="vm.shippingAddress.addressLine3"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_city">City</label>
+            <input type="text" class="form-control" name="city" id="field_city"
+                    ng-model="vm.shippingAddress.city"
+                    required />
+            <div ng-show="editForm.city.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.city.$error.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_county">County</label>
+            <input type="text" class="form-control" name="county" id="field_county"
+                    ng-model="vm.shippingAddress.county"
+                    required />
+            <div ng-show="editForm.county.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.county.$error.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_postalCode">Postal Code</label>
+            <input type="text" class="form-control" name="postalCode" id="field_postalCode"
+                    ng-model="vm.shippingAddress.postalCode"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_district">District</label>
+            <input type="text" class="form-control" name="district" id="field_district"
+                    ng-model="vm.shippingAddress.district"
+                    required />
+            <div ng-show="editForm.district.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.district.$error.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_stateOrRegion">State Or Region</label>
+            <input type="text" class="form-control" name="stateOrRegion" id="field_stateOrRegion"
+                    ng-model="vm.shippingAddress.stateOrRegion"
+                    required />
+            <div ng-show="editForm.stateOrRegion.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.stateOrRegion.$error.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_phone">Phone</label>
+            <input type="text" class="form-control" name="phone" id="field_phone"
+                    ng-model="vm.shippingAddress.phone"
+                     />
+        </div>
+
+        <div class="form-group">
+            <label for="field_purchaseOrder">Purchase Order</label>
+            <select class="form-control" id="field_purchaseOrder" name="purchaseOrder" ng-model="vm.shippingAddress.purchaseOrderId" ng-options="purchaseOrder.id as purchaseOrder.id for purchaseOrder in vm.purchaseorders"            >
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>
