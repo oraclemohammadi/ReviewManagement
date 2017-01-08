@@ -1,13 +1,20 @@
 {
     "fluentMethods": true,
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipName": "purchaseOrderItem",
+            "otherEntityName": "purchaseOrderItem",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
     "fields": [
         {
             "fieldName": "promotionId",
             "fieldType": "String"
         }
     ],
-    "changelogDate": "20170103120713",
+    "changelogDate": "20170104133700",
     "entityTableName": "promotions",
     "dto": "mapstruct",
     "pagination": "no",

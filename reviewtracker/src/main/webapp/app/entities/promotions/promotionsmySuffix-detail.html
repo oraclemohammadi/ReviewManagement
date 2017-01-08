@@ -8,6 +8,10 @@
         <dd>
             <span>{{vm.promotions.promotionId}}</span>
         </dd>
+        <dt><span>Purchase Order Item</span></dt>
+        <dd>
+            <a ui-sref="purchase-order-itemmySuffix-detail({id:vm.promotions.purchaseOrderItemId})">{{vm.promotions.purchaseOrderItemId}}</a>
+        </dd>
     </dl>
 
     <button type="submit"

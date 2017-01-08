@@ -10,17 +10,15 @@
             "otherEntityRelationshipName": "purchaseOrder"
         },
         {
-            "relationshipType": "one-to-one",
-            "relationshipName": "payment",
-            "otherEntityName": "paymentExecution",
-            "otherEntityField": "id",
-            "ownerSide": true,
+            "relationshipType": "one-to-many",
+            "relationshipName": "shippedTo",
+            "otherEntityName": "shippingAddress",
             "otherEntityRelationshipName": "purchaseOrder"
         },
         {
             "relationshipType": "one-to-many",
-            "relationshipName": "shippedTo",
-            "otherEntityName": "shippingAddress",
+            "relationshipName": "payment",
+            "otherEntityName": "paymentExecution",
             "otherEntityRelationshipName": "purchaseOrder"
         },
         {
@@ -36,11 +34,11 @@
             "fieldType": "String"
         },
         {
-            "fieldName": "purchaseLocalDate",
+            "fieldName": "purchaseDate",
             "fieldType": "LocalDate"
         },
         {
-            "fieldName": "lastUpdateLocalDate",
+            "fieldName": "lastUpdateDate",
             "fieldType": "LocalDate"
         },
         {
@@ -89,6 +87,10 @@
             "fieldType": "String"
         },
         {
+            "fieldName": "buyerId",
+            "fieldType": "String"
+        },
+        {
             "fieldName": "buyerEmail",
             "fieldType": "String"
         },
@@ -117,15 +119,15 @@
             "fieldType": "String"
         },
         {
-            "fieldName": "earliestShipLocalDate",
+            "fieldName": "earliestShipDate",
             "fieldType": "LocalDate"
         },
         {
-            "fieldName": "latestShipLocalDate",
+            "fieldName": "latestShipDate",
             "fieldType": "LocalDate"
         }
     ],
-    "changelogDate": "20170103120708",
+    "changelogDate": "20170104133755",
     "entityTableName": "purchase_order",
     "dto": "mapstruct",
     "pagination": "pagination",

@@ -20,22 +20,22 @@
                      />
         </div>
         <div class="form-group">
-            <label class="control-label" for="field_purchaseLocalDate">Purchase Local Date</label>
+            <label class="control-label" for="field_purchaseDate">Purchase Date</label>
                 <div class="input-group">
-                    <input id="field_purchaseLocalDate" type="text" class="form-control" name="purchaseLocalDate" uib-datepicker-popup="{{dateformat}}" ng-model="vm.purchaseOrder.purchaseLocalDate" is-open="vm.datePickerOpenStatus.purchaseLocalDate"
+                    <input id="field_purchaseDate" type="text" class="form-control" name="purchaseDate" uib-datepicker-popup="{{dateformat}}" ng-model="vm.purchaseOrder.purchaseDate" is-open="vm.datePickerOpenStatus.purchaseDate"
                     />
                     <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('purchaseLocalDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('purchaseDate')"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
                 </div>
         </div>
         <div class="form-group">
-            <label class="control-label" for="field_lastUpdateLocalDate">Last Update Local Date</label>
+            <label class="control-label" for="field_lastUpdateDate">Last Update Date</label>
                 <div class="input-group">
-                    <input id="field_lastUpdateLocalDate" type="text" class="form-control" name="lastUpdateLocalDate" uib-datepicker-popup="{{dateformat}}" ng-model="vm.purchaseOrder.lastUpdateLocalDate" is-open="vm.datePickerOpenStatus.lastUpdateLocalDate"
+                    <input id="field_lastUpdateDate" type="text" class="form-control" name="lastUpdateDate" uib-datepicker-popup="{{dateformat}}" ng-model="vm.purchaseOrder.lastUpdateDate" is-open="vm.datePickerOpenStatus.lastUpdateDate"
                     />
                     <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('lastUpdateLocalDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('lastUpdateDate')"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
                 </div>
         </div>
@@ -108,6 +108,12 @@
                      />
         </div>
         <div class="form-group">
+            <label class="control-label" for="field_buyerId">Buyer Id</label>
+            <input type="text" class="form-control" name="buyerId" id="field_buyerId"
+                    ng-model="vm.purchaseOrder.buyerId"
+                     />
+        </div>
+        <div class="form-group">
             <label class="control-label" for="field_buyerEmail">Buyer Email</label>
             <input type="text" class="form-control" name="buyerEmail" id="field_buyerEmail"
                     ng-model="vm.purchaseOrder.buyerEmail"
@@ -150,22 +156,22 @@
                      />
         </div>
         <div class="form-group">
-            <label class="control-label" for="field_earliestShipLocalDate">Earliest Ship Local Date</label>
+            <label class="control-label" for="field_earliestShipDate">Earliest Ship Date</label>
                 <div class="input-group">
-                    <input id="field_earliestShipLocalDate" type="text" class="form-control" name="earliestShipLocalDate" uib-datepicker-popup="{{dateformat}}" ng-model="vm.purchaseOrder.earliestShipLocalDate" is-open="vm.datePickerOpenStatus.earliestShipLocalDate"
+                    <input id="field_earliestShipDate" type="text" class="form-control" name="earliestShipDate" uib-datepicker-popup="{{dateformat}}" ng-model="vm.purchaseOrder.earliestShipDate" is-open="vm.datePickerOpenStatus.earliestShipDate"
                     />
                     <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('earliestShipLocalDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('earliestShipDate')"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
                 </div>
         </div>
         <div class="form-group">
-            <label class="control-label" for="field_latestShipLocalDate">Latest Ship Local Date</label>
+            <label class="control-label" for="field_latestShipDate">Latest Ship Date</label>
                 <div class="input-group">
-                    <input id="field_latestShipLocalDate" type="text" class="form-control" name="latestShipLocalDate" uib-datepicker-popup="{{dateformat}}" ng-model="vm.purchaseOrder.latestShipLocalDate" is-open="vm.datePickerOpenStatus.latestShipLocalDate"
+                    <input id="field_latestShipDate" type="text" class="form-control" name="latestShipDate" uib-datepicker-popup="{{dateformat}}" ng-model="vm.purchaseOrder.latestShipDate" is-open="vm.datePickerOpenStatus.latestShipDate"
                     />
                     <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('latestShipLocalDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('latestShipDate')"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
                 </div>
         </div>
@@ -173,12 +179,6 @@
         <div class="form-group">
             <label for="field_invoice">Invoice</label>
             <select class="form-control" id="field_invoice" name="invoice" ng-model="vm.purchaseOrder.invoiceId" ng-options="invoiceData.id as invoiceData.id for invoiceData in vm.invoices | orderBy:'id'">
-                <option value=""></option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="field_payment">Payment</label>
-            <select class="form-control" id="field_payment" name="payment" ng-model="vm.purchaseOrder.paymentId" ng-options="paymentExecution.id as paymentExecution.id for paymentExecution in vm.payments | orderBy:'id'">
                 <option value=""></option>
             </select>
         </div>

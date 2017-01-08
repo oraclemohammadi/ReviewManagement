@@ -116,8 +116,8 @@
                         entity: function () {
                             return {
                                 sellerOrderId: null,
-                                purchaseLocalDate: null,
-                                lastUpdateLocalDate: null,
+                                purchaseDate: null,
+                                lastUpdateDate: null,
                                 orderStatus: null,
                                 fulfillmentChannel: null,
                                 orderChannel: null,
@@ -129,6 +129,7 @@
                                 numberOfItemsUnshipped: null,
                                 paymentMethod: null,
                                 marketplaceId: null,
+                                buyerId: null,
                                 buyerEmail: null,
                                 buyerName: null,
                                 shipmentServiceLevelCategory: null,
@@ -136,8 +137,8 @@
                                 tfmShipmentStatus: null,
                                 cbaDisplayableShippingLabel: null,
                                 orderType: null,
-                                earliestShipLocalDate: null,
-                                latestShipLocalDate: null,
+                                earliestShipDate: null,
+                                latestShipDate: null,
                                 id: null
                             };
                         }

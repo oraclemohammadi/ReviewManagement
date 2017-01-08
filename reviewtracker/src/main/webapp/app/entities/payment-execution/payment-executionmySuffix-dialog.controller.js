@@ -5,14 +5,15 @@
         .module('reviewtrackerApp')
         .controller('PaymentExecutionMySuffixDialogController', PaymentExecutionMySuffixDialogController);
 
-    PaymentExecutionMySuffixDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'PaymentExecution'];
+    PaymentExecutionMySuffixDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'PaymentExecution', 'PurchaseOrder'];
 
-    function PaymentExecutionMySuffixDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, PaymentExecution) {
+    function PaymentExecutionMySuffixDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, PaymentExecution, PurchaseOrder) {
         var vm = this;
 
         vm.paymentExecution = entity;
         vm.clear = clear;
         vm.save = save;
+        vm.purchaseorders = PurchaseOrder.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

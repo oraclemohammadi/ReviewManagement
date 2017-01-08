@@ -1,0 +1,62 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myMarketPlaceLabel">Create or edit a Market Place</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.marketPlace.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.marketPlace.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_accessKey">Access Key</label>
+            <input type="text" class="form-control" name="accessKey" id="field_accessKey"
+                    ng-model="vm.marketPlace.accessKey"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_secrectKey">Secrect Key</label>
+            <input type="text" class="form-control" name="secrectKey" id="field_secrectKey"
+                    ng-model="vm.marketPlace.secrectKey"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_sellerId">Seller Id</label>
+            <input type="text" class="form-control" name="sellerId" id="field_sellerId"
+                    ng-model="vm.marketPlace.sellerId"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_marketPlaceId">Market Place Id</label>
+            <input type="text" class="form-control" name="marketPlaceId" id="field_marketPlaceId"
+                    ng-model="vm.marketPlace.marketPlaceId"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_serviceUrl">Service Url</label>
+            <input type="text" class="form-control" name="serviceUrl" id="field_serviceUrl"
+                    ng-model="vm.marketPlace.serviceUrl"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_activated">Activated</label>
+            <input type="checkbox" class="form-control" name="activated" id="field_activated"
+                    ng-model="vm.marketPlace.activated"
+                     />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

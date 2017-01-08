@@ -4,7 +4,7 @@ describe('Controller Tests', function() {
 
     describe('PurchaseOrder Management Detail Controller', function() {
         var $scope, $rootScope;
-        var MockEntity, MockPreviousState, MockPurchaseOrder, MockInvoiceData, MockPaymentExecution, MockShippingAddress, MockPurchaseOrderItem;
+        var MockEntity, MockPreviousState, MockPurchaseOrder, MockInvoiceData, MockShippingAddress, MockPaymentExecution, MockPurchaseOrderItem;
         var createController;
 
         beforeEach(inject(function($injector) {
@@ -14,8 +14,8 @@ describe('Controller Tests', function() {
             MockPreviousState = jasmine.createSpy('MockPreviousState');
             MockPurchaseOrder = jasmine.createSpy('MockPurchaseOrder');
             MockInvoiceData = jasmine.createSpy('MockInvoiceData');
-            MockPaymentExecution = jasmine.createSpy('MockPaymentExecution');
             MockShippingAddress = jasmine.createSpy('MockShippingAddress');
+            MockPaymentExecution = jasmine.createSpy('MockPaymentExecution');
             MockPurchaseOrderItem = jasmine.createSpy('MockPurchaseOrderItem');
             
 
@@ -26,8 +26,8 @@ describe('Controller Tests', function() {
                 'previousState': MockPreviousState,
                 'PurchaseOrder': MockPurchaseOrder,
                 'InvoiceData': MockInvoiceData,
-                'PaymentExecution': MockPaymentExecution,
                 'ShippingAddress': MockShippingAddress,
+                'PaymentExecution': MockPaymentExecution,
                 'PurchaseOrderItem': MockPurchaseOrderItem
             };
             createController = function() {

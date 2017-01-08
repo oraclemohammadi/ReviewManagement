@@ -16,7 +16,7 @@
     <!--
         Added the entity Promotions.
     -->
-    <changeSet id="20170103120713-1" author="jhipster">
+    <changeSet id="20170104133700-1" author="jhipster">
         <createTable tableName="promotions">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
@@ -25,6 +25,10 @@
                 <constraints nullable="true" />
             </column>
             
+            <column name="purchase_order_item_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         

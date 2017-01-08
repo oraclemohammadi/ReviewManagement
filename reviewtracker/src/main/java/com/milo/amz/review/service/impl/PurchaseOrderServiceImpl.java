@@ -82,4 +82,9 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService{
         log.debug("Request to delete PurchaseOrder : {}", id);
         purchaseOrderRepository.delete(id);
     }
+    
+    public List<PurchaseOrderDTO> findOrdersWithIcompleteItems()
+    {
+    	return purchaseOrderMapper.purchaseOrdersToPurchaseOrderDTOs(purchaseOrderRepository.findPurchaseOrdersWithIncompleteItems());
+    }
 }

@@ -30,11 +30,11 @@ public class PurchaseOrder implements Serializable {
     @Column(name = "seller_order_id")
     private String sellerOrderId;
 
-    @Column(name = "purchase_local_date")
-    private LocalDate purchaseLocalDate;
+    @Column(name = "purchase_date")
+    private LocalDate purchaseDate;
 
-    @Column(name = "last_update_local_date")
-    private LocalDate lastUpdateLocalDate;
+    @Column(name = "last_update_date")
+    private LocalDate lastUpdateDate;
 
     @Column(name = "order_status")
     private String orderStatus;
@@ -49,7 +49,7 @@ public class PurchaseOrder implements Serializable {
     private String shipServiceLevel;
 
     @Column(name = "order_total")
-    private Long orderTotal;
+    private String orderTotal;
 
     @Column(name = "currency_code")
     private String currencyCode;
@@ -69,6 +69,9 @@ public class PurchaseOrder implements Serializable {
 
     @Column(name = "marketplace_id")
     private String marketplaceId;
+
+    @Column(name = "buyer_id")
+    private String buyerId;
 
     @Column(name = "buyer_email")
     private String buyerEmail;
@@ -91,24 +94,25 @@ public class PurchaseOrder implements Serializable {
     @Column(name = "order_type")
     private String orderType;
 
-    @Column(name = "earliest_ship_local_date")
-    private LocalDate earliestShipLocalDate;
+    @Column(name = "earliest_ship_date")
+    private LocalDate earliestShipDate;
 
-    @Column(name = "latest_ship_local_date")
-    private LocalDate latestShipLocalDate;
+    @Column(name = "latest_ship_date")
+    private LocalDate latestShipDate;
 
     @OneToOne
     @JoinColumn(unique = true)
     private InvoiceData invoice;
 
-    @OneToOne
-    @JoinColumn(unique = true)
-    private PaymentExecution payment;
-
     @OneToMany(mappedBy = "purchaseOrder")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<ShippingAddress> shippedTos = new HashSet<>();
+
+    @OneToMany(mappedBy = "purchaseOrder")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<PaymentExecution> payments = new HashSet<>();
 
     @OneToMany(mappedBy = "purchaseOrder")
     @JsonIgnore
@@ -136,30 +140,30 @@ public class PurchaseOrder implements Serializable {
         this.sellerOrderId = sellerOrderId;
     }
 
-    public LocalDate getPurchaseLocalDate() {
-        return purchaseLocalDate;
+    public LocalDate getPurchaseDate() {
+        return purchaseDate;
     }
 
-    public PurchaseOrder purchaseLocalDate(LocalDate purchaseLocalDate) {
-        this.purchaseLocalDate = purchaseLocalDate;
+    public PurchaseOrder purchaseDate(LocalDate purchaseDate) {
+        this.purchaseDate = purchaseDate;
         return this;
     }
 
-    public void setPurchaseLocalDate(LocalDate purchaseLocalDate) {
-        this.purchaseLocalDate = purchaseLocalDate;
+    public void setPurchaseDate(LocalDate purchaseDate) {
+        this.purchaseDate = purchaseDate;
     }
 
-    public LocalDate getLastUpdateLocalDate() {
-        return lastUpdateLocalDate;
+    public LocalDate getLastUpdateDate() {
+        return lastUpdateDate;
     }
 
-    public PurchaseOrder lastUpdateLocalDate(LocalDate lastUpdateLocalDate) {
-        this.lastUpdateLocalDate = lastUpdateLocalDate;
+    public PurchaseOrder lastUpdateDate(LocalDate lastUpdateDate) {
+        this.lastUpdateDate = lastUpdateDate;
         return this;
     }
 
-    public void setLastUpdateLocalDate(LocalDate lastUpdateLocalDate) {
-        this.lastUpdateLocalDate = lastUpdateLocalDate;
+    public void setLastUpdateDate(LocalDate lastUpdateDate) {
+        this.lastUpdateDate = lastUpdateDate;
     }
 
     public String getOrderStatus() {
@@ -214,16 +218,16 @@ public class PurchaseOrder implements Serializable {
         this.shipServiceLevel = shipServiceLevel;
     }
 
-    public Long getOrderTotal() {
+    public String getOrderTotal() {
         return orderTotal;
     }
 
-    public PurchaseOrder orderTotal(Long orderTotal) {
+    public PurchaseOrder orderTotal(String orderTotal) {
         this.orderTotal = orderTotal;
         return this;
     }
 
-    public void setOrderTotal(Long orderTotal) {
+    public void setOrderTotal(String orderTotal) {
         this.orderTotal = orderTotal;
     }
 
@@ -303,6 +307,19 @@ public class PurchaseOrder implements Serializable {
 
     public void setMarketplaceId(String marketplaceId) {
         this.marketplaceId = marketplaceId;
+    }
+
+    public String getBuyerId() {
+        return buyerId;
+    }
+
+    public PurchaseOrder buyerId(String buyerId) {
+        this.buyerId = buyerId;
+        return this;
+    }
+
+    public void setBuyerId(String buyerId) {
+        this.buyerId = buyerId;
     }
 
     public String getBuyerEmail() {
@@ -396,30 +413,30 @@ public class PurchaseOrder implements Serializable {
         this.orderType = orderType;
     }
 
-    public LocalDate getEarliestShipLocalDate() {
-        return earliestShipLocalDate;
+    public LocalDate getEarliestShipDate() {
+        return earliestShipDate;
     }
 
-    public PurchaseOrder earliestShipLocalDate(LocalDate earliestShipLocalDate) {
-        this.earliestShipLocalDate = earliestShipLocalDate;
+    public PurchaseOrder earliestShipDate(LocalDate earliestShipDate) {
+        this.earliestShipDate = earliestShipDate;
         return this;
     }
 
-    public void setEarliestShipLocalDate(LocalDate earliestShipLocalDate) {
-        this.earliestShipLocalDate = earliestShipLocalDate;
+    public void setEarliestShipDate(LocalDate earliestShipDate) {
+        this.earliestShipDate = earliestShipDate;
     }
 
-    public LocalDate getLatestShipLocalDate() {
-        return latestShipLocalDate;
+    public LocalDate getLatestShipDate() {
+        return latestShipDate;
     }
 
-    public PurchaseOrder latestShipLocalDate(LocalDate latestShipLocalDate) {
-        this.latestShipLocalDate = latestShipLocalDate;
+    public PurchaseOrder latestShipDate(LocalDate latestShipDate) {
+        this.latestShipDate = latestShipDate;
         return this;
     }
 
-    public void setLatestShipLocalDate(LocalDate latestShipLocalDate) {
-        this.latestShipLocalDate = latestShipLocalDate;
+    public void setLatestShipDate(LocalDate latestShipDate) {
+        this.latestShipDate = latestShipDate;
     }
 
     public InvoiceData getInvoice() {
@@ -433,19 +450,6 @@ public class PurchaseOrder implements Serializable {
 
     public void setInvoice(InvoiceData invoiceData) {
         this.invoice = invoiceData;
-    }
-
-    public PaymentExecution getPayment() {
-        return payment;
-    }
-
-    public PurchaseOrder payment(PaymentExecution paymentExecution) {
-        this.payment = paymentExecution;
-        return this;
-    }
-
-    public void setPayment(PaymentExecution paymentExecution) {
-        this.payment = paymentExecution;
     }
 
     public Set<ShippingAddress> getShippedTos() {
@@ -471,6 +475,31 @@ public class PurchaseOrder implements Serializable {
 
     public void setShippedTos(Set<ShippingAddress> shippingAddresses) {
         this.shippedTos = shippingAddresses;
+    }
+
+    public Set<PaymentExecution> getPayments() {
+        return payments;
+    }
+
+    public PurchaseOrder payments(Set<PaymentExecution> paymentExecutions) {
+        this.payments = paymentExecutions;
+        return this;
+    }
+
+    public PurchaseOrder addPayment(PaymentExecution paymentExecution) {
+        payments.add(paymentExecution);
+        paymentExecution.setPurchaseOrder(this);
+        return this;
+    }
+
+    public PurchaseOrder removePayment(PaymentExecution paymentExecution) {
+        payments.remove(paymentExecution);
+        paymentExecution.setPurchaseOrder(null);
+        return this;
+    }
+
+    public void setPayments(Set<PaymentExecution> paymentExecutions) {
+        this.payments = paymentExecutions;
     }
 
     public Set<PurchaseOrderItem> getContains() {
@@ -523,8 +552,8 @@ public class PurchaseOrder implements Serializable {
         return "PurchaseOrder{" +
             "id=" + id +
             ", sellerOrderId='" + sellerOrderId + "'" +
-            ", purchaseLocalDate='" + purchaseLocalDate + "'" +
-            ", lastUpdateLocalDate='" + lastUpdateLocalDate + "'" +
+            ", purchaseDate='" + purchaseDate + "'" +
+            ", lastUpdateDate='" + lastUpdateDate + "'" +
             ", orderStatus='" + orderStatus + "'" +
             ", fulfillmentChannel='" + fulfillmentChannel + "'" +
             ", orderChannel='" + orderChannel + "'" +
@@ -536,6 +565,7 @@ public class PurchaseOrder implements Serializable {
             ", numberOfItemsUnshipped='" + numberOfItemsUnshipped + "'" +
             ", paymentMethod='" + paymentMethod + "'" +
             ", marketplaceId='" + marketplaceId + "'" +
+            ", buyerId='" + buyerId + "'" +
             ", buyerEmail='" + buyerEmail + "'" +
             ", buyerName='" + buyerName + "'" +
             ", shipmentServiceLevelCategory='" + shipmentServiceLevelCategory + "'" +
@@ -543,8 +573,8 @@ public class PurchaseOrder implements Serializable {
             ", tfmShipmentStatus='" + tfmShipmentStatus + "'" +
             ", cbaDisplayableShippingLabel='" + cbaDisplayableShippingLabel + "'" +
             ", orderType='" + orderType + "'" +
-            ", earliestShipLocalDate='" + earliestShipLocalDate + "'" +
-            ", latestShipLocalDate='" + latestShipLocalDate + "'" +
+            ", earliestShipDate='" + earliestShipDate + "'" +
+            ", latestShipDate='" + latestShipDate + "'" +
             '}';
     }
 }

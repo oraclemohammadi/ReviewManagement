@@ -12,11 +12,22 @@ import java.util.List;
 @Mapper(componentModel = "spring", uses = {})
 public interface PromotionsMapper {
 
+    @Mapping(source = "purchaseOrderItem.id", target = "purchaseOrderItemId")
     PromotionsDTO promotionsToPromotionsDTO(Promotions promotions);
 
     List<PromotionsDTO> promotionsToPromotionsDTOs(List<Promotions> promotions);
 
+    @Mapping(source = "purchaseOrderItemId", target = "purchaseOrderItem")
     Promotions promotionsDTOToPromotions(PromotionsDTO promotionsDTO);
 
     List<Promotions> promotionsDTOsToPromotions(List<PromotionsDTO> promotionsDTOs);
+
+    default PurchaseOrderItem purchaseOrderItemFromId(Long id) {
+        if (id == null) {
+            return null;
+        }
+        PurchaseOrderItem purchaseOrderItem = new PurchaseOrderItem();
+        purchaseOrderItem.setId(id);
+        return purchaseOrderItem;
+    }
 }

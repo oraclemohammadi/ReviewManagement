@@ -14,22 +14,18 @@
     <property name="floatType" value="float" dbms="mysql, oracle"/>
 
     <!--
-        Added the entity PaymentExecution.
+        Added the entity Product.
     -->
-    <changeSet id="20170103120711-1" author="jhipster">
-        <createTable tableName="payment_execution">
+    <changeSet id="20170104133753-1" author="jhipster">
+        <createTable tableName="product">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="payment_amount" type="bigint">
+            <column name="asin" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             
-            <column name="currency_code" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="payment_method" type="varchar(255)">
+            <column name="title" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             

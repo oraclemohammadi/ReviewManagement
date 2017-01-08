@@ -46,11 +46,11 @@ public class PurchaseOrderResourceIntTest {
     private static final String DEFAULT_SELLER_ORDER_ID = "AAAAAAAAAA";
     private static final String UPDATED_SELLER_ORDER_ID = "BBBBBBBBBB";
 
-    private static final LocalDate DEFAULT_PURCHASE_LOCAL_DATE = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_PURCHASE_LOCAL_DATE = LocalDate.now(ZoneId.systemDefault());
+    private static final LocalDate DEFAULT_PURCHASE_DATE = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_PURCHASE_DATE = LocalDate.now(ZoneId.systemDefault());
 
-    private static final LocalDate DEFAULT_LAST_UPDATE_LOCAL_DATE = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_LAST_UPDATE_LOCAL_DATE = LocalDate.now(ZoneId.systemDefault());
+    private static final LocalDate DEFAULT_LAST_UPDATE_DATE = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_LAST_UPDATE_DATE = LocalDate.now(ZoneId.systemDefault());
 
     private static final String DEFAULT_ORDER_STATUS = "AAAAAAAAAA";
     private static final String UPDATED_ORDER_STATUS = "BBBBBBBBBB";
@@ -64,8 +64,8 @@ public class PurchaseOrderResourceIntTest {
     private static final String DEFAULT_SHIP_SERVICE_LEVEL = "AAAAAAAAAA";
     private static final String UPDATED_SHIP_SERVICE_LEVEL = "BBBBBBBBBB";
 
-    private static final Long DEFAULT_ORDER_TOTAL = 1L;
-    private static final Long UPDATED_ORDER_TOTAL = 2L;
+    private static final String DEFAULT_ORDER_TOTAL = "1";
+    private static final String UPDATED_ORDER_TOTAL = "2";
 
     private static final String DEFAULT_CURRENCY_CODE = "AAAAAAAAAA";
     private static final String UPDATED_CURRENCY_CODE = "BBBBBBBBBB";
@@ -84,6 +84,9 @@ public class PurchaseOrderResourceIntTest {
 
     private static final String DEFAULT_MARKETPLACE_ID = "AAAAAAAAAA";
     private static final String UPDATED_MARKETPLACE_ID = "BBBBBBBBBB";
+
+    private static final String DEFAULT_BUYER_ID = "AAAAAAAAAA";
+    private static final String UPDATED_BUYER_ID = "BBBBBBBBBB";
 
     private static final String DEFAULT_BUYER_EMAIL = "AAAAAAAAAA";
     private static final String UPDATED_BUYER_EMAIL = "BBBBBBBBBB";
@@ -106,11 +109,11 @@ public class PurchaseOrderResourceIntTest {
     private static final String DEFAULT_ORDER_TYPE = "AAAAAAAAAA";
     private static final String UPDATED_ORDER_TYPE = "BBBBBBBBBB";
 
-    private static final LocalDate DEFAULT_EARLIEST_SHIP_LOCAL_DATE = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_EARLIEST_SHIP_LOCAL_DATE = LocalDate.now(ZoneId.systemDefault());
+    private static final LocalDate DEFAULT_EARLIEST_SHIP_DATE = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_EARLIEST_SHIP_DATE = LocalDate.now(ZoneId.systemDefault());
 
-    private static final LocalDate DEFAULT_LATEST_SHIP_LOCAL_DATE = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_LATEST_SHIP_LOCAL_DATE = LocalDate.now(ZoneId.systemDefault());
+    private static final LocalDate DEFAULT_LATEST_SHIP_DATE = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_LATEST_SHIP_DATE = LocalDate.now(ZoneId.systemDefault());
 
     @Inject
     private PurchaseOrderRepository purchaseOrderRepository;
@@ -153,8 +156,8 @@ public class PurchaseOrderResourceIntTest {
     public static PurchaseOrder createEntity(EntityManager em) {
         PurchaseOrder purchaseOrder = new PurchaseOrder()
                 .sellerOrderId(DEFAULT_SELLER_ORDER_ID)
-                .purchaseLocalDate(DEFAULT_PURCHASE_LOCAL_DATE)
-                .lastUpdateLocalDate(DEFAULT_LAST_UPDATE_LOCAL_DATE)
+                .purchaseDate(DEFAULT_PURCHASE_DATE)
+                .lastUpdateDate(DEFAULT_LAST_UPDATE_DATE)
                 .orderStatus(DEFAULT_ORDER_STATUS)
                 .fulfillmentChannel(DEFAULT_FULFILLMENT_CHANNEL)
                 .orderChannel(DEFAULT_ORDER_CHANNEL)
@@ -166,6 +169,7 @@ public class PurchaseOrderResourceIntTest {
                 .numberOfItemsUnshipped(DEFAULT_NUMBER_OF_ITEMS_UNSHIPPED)
                 .paymentMethod(DEFAULT_PAYMENT_METHOD)
                 .marketplaceId(DEFAULT_MARKETPLACE_ID)
+                .buyerId(DEFAULT_BUYER_ID)
                 .buyerEmail(DEFAULT_BUYER_EMAIL)
                 .buyerName(DEFAULT_BUYER_NAME)
                 .shipmentServiceLevelCategory(DEFAULT_SHIPMENT_SERVICE_LEVEL_CATEGORY)
@@ -173,8 +177,8 @@ public class PurchaseOrderResourceIntTest {
                 .tfmShipmentStatus(DEFAULT_TFM_SHIPMENT_STATUS)
                 .cbaDisplayableShippingLabel(DEFAULT_CBA_DISPLAYABLE_SHIPPING_LABEL)
                 .orderType(DEFAULT_ORDER_TYPE)
-                .earliestShipLocalDate(DEFAULT_EARLIEST_SHIP_LOCAL_DATE)
-                .latestShipLocalDate(DEFAULT_LATEST_SHIP_LOCAL_DATE);
+                .earliestShipDate(DEFAULT_EARLIEST_SHIP_DATE)
+                .latestShipDate(DEFAULT_LATEST_SHIP_DATE);
         return purchaseOrder;
     }
 
@@ -201,8 +205,8 @@ public class PurchaseOrderResourceIntTest {
         assertThat(purchaseOrders).hasSize(databaseSizeBeforeCreate + 1);
         PurchaseOrder testPurchaseOrder = purchaseOrders.get(purchaseOrders.size() - 1);
         assertThat(testPurchaseOrder.getSellerOrderId()).isEqualTo(DEFAULT_SELLER_ORDER_ID);
-        assertThat(testPurchaseOrder.getPurchaseLocalDate()).isEqualTo(DEFAULT_PURCHASE_LOCAL_DATE);
-        assertThat(testPurchaseOrder.getLastUpdateLocalDate()).isEqualTo(DEFAULT_LAST_UPDATE_LOCAL_DATE);
+        assertThat(testPurchaseOrder.getPurchaseDate()).isEqualTo(DEFAULT_PURCHASE_DATE);
+        assertThat(testPurchaseOrder.getLastUpdateDate()).isEqualTo(DEFAULT_LAST_UPDATE_DATE);
         assertThat(testPurchaseOrder.getOrderStatus()).isEqualTo(DEFAULT_ORDER_STATUS);
         assertThat(testPurchaseOrder.getFulfillmentChannel()).isEqualTo(DEFAULT_FULFILLMENT_CHANNEL);
         assertThat(testPurchaseOrder.getOrderChannel()).isEqualTo(DEFAULT_ORDER_CHANNEL);
@@ -214,6 +218,7 @@ public class PurchaseOrderResourceIntTest {
         assertThat(testPurchaseOrder.getNumberOfItemsUnshipped()).isEqualTo(DEFAULT_NUMBER_OF_ITEMS_UNSHIPPED);
         assertThat(testPurchaseOrder.getPaymentMethod()).isEqualTo(DEFAULT_PAYMENT_METHOD);
         assertThat(testPurchaseOrder.getMarketplaceId()).isEqualTo(DEFAULT_MARKETPLACE_ID);
+        assertThat(testPurchaseOrder.getBuyerId()).isEqualTo(DEFAULT_BUYER_ID);
         assertThat(testPurchaseOrder.getBuyerEmail()).isEqualTo(DEFAULT_BUYER_EMAIL);
         assertThat(testPurchaseOrder.getBuyerName()).isEqualTo(DEFAULT_BUYER_NAME);
         assertThat(testPurchaseOrder.getShipmentServiceLevelCategory()).isEqualTo(DEFAULT_SHIPMENT_SERVICE_LEVEL_CATEGORY);
@@ -221,8 +226,8 @@ public class PurchaseOrderResourceIntTest {
         assertThat(testPurchaseOrder.getTfmShipmentStatus()).isEqualTo(DEFAULT_TFM_SHIPMENT_STATUS);
         assertThat(testPurchaseOrder.getCbaDisplayableShippingLabel()).isEqualTo(DEFAULT_CBA_DISPLAYABLE_SHIPPING_LABEL);
         assertThat(testPurchaseOrder.getOrderType()).isEqualTo(DEFAULT_ORDER_TYPE);
-        assertThat(testPurchaseOrder.getEarliestShipLocalDate()).isEqualTo(DEFAULT_EARLIEST_SHIP_LOCAL_DATE);
-        assertThat(testPurchaseOrder.getLatestShipLocalDate()).isEqualTo(DEFAULT_LATEST_SHIP_LOCAL_DATE);
+        assertThat(testPurchaseOrder.getEarliestShipDate()).isEqualTo(DEFAULT_EARLIEST_SHIP_DATE);
+        assertThat(testPurchaseOrder.getLatestShipDate()).isEqualTo(DEFAULT_LATEST_SHIP_DATE);
     }
 
     @Test
@@ -237,19 +242,20 @@ public class PurchaseOrderResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(purchaseOrder.getId().intValue())))
             .andExpect(jsonPath("$.[*].sellerOrderId").value(hasItem(DEFAULT_SELLER_ORDER_ID.toString())))
-            .andExpect(jsonPath("$.[*].purchaseLocalDate").value(hasItem(DEFAULT_PURCHASE_LOCAL_DATE.toString())))
-            .andExpect(jsonPath("$.[*].lastUpdateLocalDate").value(hasItem(DEFAULT_LAST_UPDATE_LOCAL_DATE.toString())))
+            .andExpect(jsonPath("$.[*].purchaseDate").value(hasItem(DEFAULT_PURCHASE_DATE.toString())))
+            .andExpect(jsonPath("$.[*].lastUpdateDate").value(hasItem(DEFAULT_LAST_UPDATE_DATE.toString())))
             .andExpect(jsonPath("$.[*].orderStatus").value(hasItem(DEFAULT_ORDER_STATUS.toString())))
             .andExpect(jsonPath("$.[*].fulfillmentChannel").value(hasItem(DEFAULT_FULFILLMENT_CHANNEL.toString())))
             .andExpect(jsonPath("$.[*].orderChannel").value(hasItem(DEFAULT_ORDER_CHANNEL.toString())))
             .andExpect(jsonPath("$.[*].shipServiceLevel").value(hasItem(DEFAULT_SHIP_SERVICE_LEVEL.toString())))
-            .andExpect(jsonPath("$.[*].orderTotal").value(hasItem(DEFAULT_ORDER_TOTAL.intValue())))
+            .andExpect(jsonPath("$.[*].orderTotal").value(hasItem(DEFAULT_ORDER_TOTAL)))
             .andExpect(jsonPath("$.[*].currencyCode").value(hasItem(DEFAULT_CURRENCY_CODE.toString())))
             .andExpect(jsonPath("$.[*].amount").value(hasItem(DEFAULT_AMOUNT.intValue())))
             .andExpect(jsonPath("$.[*].numberOfItemsShipped").value(hasItem(DEFAULT_NUMBER_OF_ITEMS_SHIPPED.intValue())))
             .andExpect(jsonPath("$.[*].numberOfItemsUnshipped").value(hasItem(DEFAULT_NUMBER_OF_ITEMS_UNSHIPPED.intValue())))
             .andExpect(jsonPath("$.[*].paymentMethod").value(hasItem(DEFAULT_PAYMENT_METHOD.toString())))
             .andExpect(jsonPath("$.[*].marketplaceId").value(hasItem(DEFAULT_MARKETPLACE_ID.toString())))
+            .andExpect(jsonPath("$.[*].buyerId").value(hasItem(DEFAULT_BUYER_ID.toString())))
             .andExpect(jsonPath("$.[*].buyerEmail").value(hasItem(DEFAULT_BUYER_EMAIL.toString())))
             .andExpect(jsonPath("$.[*].buyerName").value(hasItem(DEFAULT_BUYER_NAME.toString())))
             .andExpect(jsonPath("$.[*].shipmentServiceLevelCategory").value(hasItem(DEFAULT_SHIPMENT_SERVICE_LEVEL_CATEGORY.toString())))
@@ -257,8 +263,8 @@ public class PurchaseOrderResourceIntTest {
             .andExpect(jsonPath("$.[*].tfmShipmentStatus").value(hasItem(DEFAULT_TFM_SHIPMENT_STATUS.toString())))
             .andExpect(jsonPath("$.[*].cbaDisplayableShippingLabel").value(hasItem(DEFAULT_CBA_DISPLAYABLE_SHIPPING_LABEL.toString())))
             .andExpect(jsonPath("$.[*].orderType").value(hasItem(DEFAULT_ORDER_TYPE.toString())))
-            .andExpect(jsonPath("$.[*].earliestShipLocalDate").value(hasItem(DEFAULT_EARLIEST_SHIP_LOCAL_DATE.toString())))
-            .andExpect(jsonPath("$.[*].latestShipLocalDate").value(hasItem(DEFAULT_LATEST_SHIP_LOCAL_DATE.toString())));
+            .andExpect(jsonPath("$.[*].earliestShipDate").value(hasItem(DEFAULT_EARLIEST_SHIP_DATE.toString())))
+            .andExpect(jsonPath("$.[*].latestShipDate").value(hasItem(DEFAULT_LATEST_SHIP_DATE.toString())));
     }
 
     @Test
@@ -273,19 +279,20 @@ public class PurchaseOrderResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(purchaseOrder.getId().intValue()))
             .andExpect(jsonPath("$.sellerOrderId").value(DEFAULT_SELLER_ORDER_ID.toString()))
-            .andExpect(jsonPath("$.purchaseLocalDate").value(DEFAULT_PURCHASE_LOCAL_DATE.toString()))
-            .andExpect(jsonPath("$.lastUpdateLocalDate").value(DEFAULT_LAST_UPDATE_LOCAL_DATE.toString()))
+            .andExpect(jsonPath("$.purchaseDate").value(DEFAULT_PURCHASE_DATE.toString()))
+            .andExpect(jsonPath("$.lastUpdateDate").value(DEFAULT_LAST_UPDATE_DATE.toString()))
             .andExpect(jsonPath("$.orderStatus").value(DEFAULT_ORDER_STATUS.toString()))
             .andExpect(jsonPath("$.fulfillmentChannel").value(DEFAULT_FULFILLMENT_CHANNEL.toString()))
             .andExpect(jsonPath("$.orderChannel").value(DEFAULT_ORDER_CHANNEL.toString()))
             .andExpect(jsonPath("$.shipServiceLevel").value(DEFAULT_SHIP_SERVICE_LEVEL.toString()))
-            .andExpect(jsonPath("$.orderTotal").value(DEFAULT_ORDER_TOTAL.intValue()))
+            .andExpect(jsonPath("$.orderTotal").value(DEFAULT_ORDER_TOTAL))
             .andExpect(jsonPath("$.currencyCode").value(DEFAULT_CURRENCY_CODE.toString()))
             .andExpect(jsonPath("$.amount").value(DEFAULT_AMOUNT.intValue()))
             .andExpect(jsonPath("$.numberOfItemsShipped").value(DEFAULT_NUMBER_OF_ITEMS_SHIPPED.intValue()))
             .andExpect(jsonPath("$.numberOfItemsUnshipped").value(DEFAULT_NUMBER_OF_ITEMS_UNSHIPPED.intValue()))
             .andExpect(jsonPath("$.paymentMethod").value(DEFAULT_PAYMENT_METHOD.toString()))
             .andExpect(jsonPath("$.marketplaceId").value(DEFAULT_MARKETPLACE_ID.toString()))
+            .andExpect(jsonPath("$.buyerId").value(DEFAULT_BUYER_ID.toString()))
             .andExpect(jsonPath("$.buyerEmail").value(DEFAULT_BUYER_EMAIL.toString()))
             .andExpect(jsonPath("$.buyerName").value(DEFAULT_BUYER_NAME.toString()))
             .andExpect(jsonPath("$.shipmentServiceLevelCategory").value(DEFAULT_SHIPMENT_SERVICE_LEVEL_CATEGORY.toString()))
@@ -293,8 +300,8 @@ public class PurchaseOrderResourceIntTest {
             .andExpect(jsonPath("$.tfmShipmentStatus").value(DEFAULT_TFM_SHIPMENT_STATUS.toString()))
             .andExpect(jsonPath("$.cbaDisplayableShippingLabel").value(DEFAULT_CBA_DISPLAYABLE_SHIPPING_LABEL.toString()))
             .andExpect(jsonPath("$.orderType").value(DEFAULT_ORDER_TYPE.toString()))
-            .andExpect(jsonPath("$.earliestShipLocalDate").value(DEFAULT_EARLIEST_SHIP_LOCAL_DATE.toString()))
-            .andExpect(jsonPath("$.latestShipLocalDate").value(DEFAULT_LATEST_SHIP_LOCAL_DATE.toString()));
+            .andExpect(jsonPath("$.earliestShipDate").value(DEFAULT_EARLIEST_SHIP_DATE.toString()))
+            .andExpect(jsonPath("$.latestShipDate").value(DEFAULT_LATEST_SHIP_DATE.toString()));
     }
 
     @Test
@@ -316,8 +323,8 @@ public class PurchaseOrderResourceIntTest {
         PurchaseOrder updatedPurchaseOrder = purchaseOrderRepository.findOne(purchaseOrder.getId());
         updatedPurchaseOrder
                 .sellerOrderId(UPDATED_SELLER_ORDER_ID)
-                .purchaseLocalDate(UPDATED_PURCHASE_LOCAL_DATE)
-                .lastUpdateLocalDate(UPDATED_LAST_UPDATE_LOCAL_DATE)
+                .purchaseDate(UPDATED_PURCHASE_DATE)
+                .lastUpdateDate(UPDATED_LAST_UPDATE_DATE)
                 .orderStatus(UPDATED_ORDER_STATUS)
                 .fulfillmentChannel(UPDATED_FULFILLMENT_CHANNEL)
                 .orderChannel(UPDATED_ORDER_CHANNEL)
@@ -329,6 +336,7 @@ public class PurchaseOrderResourceIntTest {
                 .numberOfItemsUnshipped(UPDATED_NUMBER_OF_ITEMS_UNSHIPPED)
                 .paymentMethod(UPDATED_PAYMENT_METHOD)
                 .marketplaceId(UPDATED_MARKETPLACE_ID)
+                .buyerId(UPDATED_BUYER_ID)
                 .buyerEmail(UPDATED_BUYER_EMAIL)
                 .buyerName(UPDATED_BUYER_NAME)
                 .shipmentServiceLevelCategory(UPDATED_SHIPMENT_SERVICE_LEVEL_CATEGORY)
@@ -336,8 +344,8 @@ public class PurchaseOrderResourceIntTest {
                 .tfmShipmentStatus(UPDATED_TFM_SHIPMENT_STATUS)
                 .cbaDisplayableShippingLabel(UPDATED_CBA_DISPLAYABLE_SHIPPING_LABEL)
                 .orderType(UPDATED_ORDER_TYPE)
-                .earliestShipLocalDate(UPDATED_EARLIEST_SHIP_LOCAL_DATE)
-                .latestShipLocalDate(UPDATED_LATEST_SHIP_LOCAL_DATE);
+                .earliestShipDate(UPDATED_EARLIEST_SHIP_DATE)
+                .latestShipDate(UPDATED_LATEST_SHIP_DATE);
         PurchaseOrderDTO purchaseOrderDTO = purchaseOrderMapper.purchaseOrderToPurchaseOrderDTO(updatedPurchaseOrder);
 
         restPurchaseOrderMockMvc.perform(put("/api/purchase-orders")
@@ -350,8 +358,8 @@ public class PurchaseOrderResourceIntTest {
         assertThat(purchaseOrders).hasSize(databaseSizeBeforeUpdate);
         PurchaseOrder testPurchaseOrder = purchaseOrders.get(purchaseOrders.size() - 1);
         assertThat(testPurchaseOrder.getSellerOrderId()).isEqualTo(UPDATED_SELLER_ORDER_ID);
-        assertThat(testPurchaseOrder.getPurchaseLocalDate()).isEqualTo(UPDATED_PURCHASE_LOCAL_DATE);
-        assertThat(testPurchaseOrder.getLastUpdateLocalDate()).isEqualTo(UPDATED_LAST_UPDATE_LOCAL_DATE);
+        assertThat(testPurchaseOrder.getPurchaseDate()).isEqualTo(UPDATED_PURCHASE_DATE);
+        assertThat(testPurchaseOrder.getLastUpdateDate()).isEqualTo(UPDATED_LAST_UPDATE_DATE);
         assertThat(testPurchaseOrder.getOrderStatus()).isEqualTo(UPDATED_ORDER_STATUS);
         assertThat(testPurchaseOrder.getFulfillmentChannel()).isEqualTo(UPDATED_FULFILLMENT_CHANNEL);
         assertThat(testPurchaseOrder.getOrderChannel()).isEqualTo(UPDATED_ORDER_CHANNEL);
@@ -363,6 +371,7 @@ public class PurchaseOrderResourceIntTest {
         assertThat(testPurchaseOrder.getNumberOfItemsUnshipped()).isEqualTo(UPDATED_NUMBER_OF_ITEMS_UNSHIPPED);
         assertThat(testPurchaseOrder.getPaymentMethod()).isEqualTo(UPDATED_PAYMENT_METHOD);
         assertThat(testPurchaseOrder.getMarketplaceId()).isEqualTo(UPDATED_MARKETPLACE_ID);
+        assertThat(testPurchaseOrder.getBuyerId()).isEqualTo(UPDATED_BUYER_ID);
         assertThat(testPurchaseOrder.getBuyerEmail()).isEqualTo(UPDATED_BUYER_EMAIL);
         assertThat(testPurchaseOrder.getBuyerName()).isEqualTo(UPDATED_BUYER_NAME);
         assertThat(testPurchaseOrder.getShipmentServiceLevelCategory()).isEqualTo(UPDATED_SHIPMENT_SERVICE_LEVEL_CATEGORY);
@@ -370,8 +379,8 @@ public class PurchaseOrderResourceIntTest {
         assertThat(testPurchaseOrder.getTfmShipmentStatus()).isEqualTo(UPDATED_TFM_SHIPMENT_STATUS);
         assertThat(testPurchaseOrder.getCbaDisplayableShippingLabel()).isEqualTo(UPDATED_CBA_DISPLAYABLE_SHIPPING_LABEL);
         assertThat(testPurchaseOrder.getOrderType()).isEqualTo(UPDATED_ORDER_TYPE);
-        assertThat(testPurchaseOrder.getEarliestShipLocalDate()).isEqualTo(UPDATED_EARLIEST_SHIP_LOCAL_DATE);
-        assertThat(testPurchaseOrder.getLatestShipLocalDate()).isEqualTo(UPDATED_LATEST_SHIP_LOCAL_DATE);
+        assertThat(testPurchaseOrder.getEarliestShipDate()).isEqualTo(UPDATED_EARLIEST_SHIP_DATE);
+        assertThat(testPurchaseOrder.getLatestShipDate()).isEqualTo(UPDATED_LATEST_SHIP_DATE);
     }
 
     @Test

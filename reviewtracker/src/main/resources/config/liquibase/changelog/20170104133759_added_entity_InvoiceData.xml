@@ -14,18 +14,26 @@
     <property name="floatType" value="float" dbms="mysql, oracle"/>
 
     <!--
-        Added the entity Product.
+        Added the entity InvoiceData.
     -->
-    <changeSet id="20170103120706-1" author="jhipster">
-        <createTable tableName="product">
+    <changeSet id="20170104133759-1" author="jhipster">
+        <createTable tableName="invoice_data">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="asin" type="varchar(255)">
+            <column name="invoice_requirement" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             
-            <column name="title" type="varchar(255)">
+            <column name="buyer_selected_invoice_category" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="invoice_title" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="invoice_information" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             

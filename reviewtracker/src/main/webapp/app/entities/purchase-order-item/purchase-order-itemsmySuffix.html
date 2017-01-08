@@ -40,8 +40,8 @@
                     <th jh-sort-by="conditionNote"><span>Condition Note</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="conditionId"><span>Condition Id</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="conditionSubtypeId"><span>Condition Subtype Id</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="scheduledDeliveryStartLocalDate"><span>Scheduled Delivery Start Local Date</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="scheduledDeliveryEndLocalDate"><span>Scheduled Delivery End Local Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="scheduledDeliveryStartDate"><span>Scheduled Delivery Start Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="scheduledDeliveryEndDate"><span>Scheduled Delivery End Date</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="productId"><span>Product</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="purchaseOrderId"><span>Purchase Order</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
@@ -71,8 +71,8 @@
                     <td>{{purchaseOrderItem.conditionNote}}</td>
                     <td>{{purchaseOrderItem.conditionId}}</td>
                     <td>{{purchaseOrderItem.conditionSubtypeId}}</td>
-                    <td>{{purchaseOrderItem.scheduledDeliveryStartLocalDate}}</td>
-                    <td>{{purchaseOrderItem.scheduledDeliveryEndLocalDate}}</td>
+                    <td>{{purchaseOrderItem.scheduledDeliveryStartDate}}</td>
+                    <td>{{purchaseOrderItem.scheduledDeliveryEndDate}}</td>
                     <td>
                         <a ui-sref="productmySuffix-detail({id:purchaseOrderItem.productId})">{{purchaseOrderItem.productId}}</a>
                     </td>

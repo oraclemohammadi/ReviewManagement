@@ -16,10 +16,10 @@
                 transformResponse: function (data) {
                     if (data) {
                         data = angular.fromJson(data);
-                        data.purchaseLocalDate = DateUtils.convertLocalDateFromServer(data.purchaseLocalDate);
-                        data.lastUpdateLocalDate = DateUtils.convertLocalDateFromServer(data.lastUpdateLocalDate);
-                        data.earliestShipLocalDate = DateUtils.convertLocalDateFromServer(data.earliestShipLocalDate);
-                        data.latestShipLocalDate = DateUtils.convertLocalDateFromServer(data.latestShipLocalDate);
+                        data.purchaseDate = DateUtils.convertLocalDateFromServer(data.purchaseDate);
+                        data.lastUpdateDate = DateUtils.convertLocalDateFromServer(data.lastUpdateDate);
+                        data.earliestShipDate = DateUtils.convertLocalDateFromServer(data.earliestShipDate);
+                        data.latestShipDate = DateUtils.convertLocalDateFromServer(data.latestShipDate);
                     }
                     return data;
                 }
@@ -28,10 +28,10 @@
                 method: 'PUT',
                 transformRequest: function (data) {
                     var copy = angular.copy(data);
-                    copy.purchaseLocalDate = DateUtils.convertLocalDateToServer(copy.purchaseLocalDate);
-                    copy.lastUpdateLocalDate = DateUtils.convertLocalDateToServer(copy.lastUpdateLocalDate);
-                    copy.earliestShipLocalDate = DateUtils.convertLocalDateToServer(copy.earliestShipLocalDate);
-                    copy.latestShipLocalDate = DateUtils.convertLocalDateToServer(copy.latestShipLocalDate);
+                    copy.purchaseDate = DateUtils.convertLocalDateToServer(copy.purchaseDate);
+                    copy.lastUpdateDate = DateUtils.convertLocalDateToServer(copy.lastUpdateDate);
+                    copy.earliestShipDate = DateUtils.convertLocalDateToServer(copy.earliestShipDate);
+                    copy.latestShipDate = DateUtils.convertLocalDateToServer(copy.latestShipDate);
                     return angular.toJson(copy);
                 }
             },
@@ -39,10 +39,10 @@
                 method: 'POST',
                 transformRequest: function (data) {
                     var copy = angular.copy(data);
-                    copy.purchaseLocalDate = DateUtils.convertLocalDateToServer(copy.purchaseLocalDate);
-                    copy.lastUpdateLocalDate = DateUtils.convertLocalDateToServer(copy.lastUpdateLocalDate);
-                    copy.earliestShipLocalDate = DateUtils.convertLocalDateToServer(copy.earliestShipLocalDate);
-                    copy.latestShipLocalDate = DateUtils.convertLocalDateToServer(copy.latestShipLocalDate);
+                    copy.purchaseDate = DateUtils.convertLocalDateToServer(copy.purchaseDate);
+                    copy.lastUpdateDate = DateUtils.convertLocalDateToServer(copy.lastUpdateDate);
+                    copy.earliestShipDate = DateUtils.convertLocalDateToServer(copy.earliestShipDate);
+                    copy.latestShipDate = DateUtils.convertLocalDateToServer(copy.latestShipDate);
                     return angular.toJson(copy);
                 }
             }

@@ -5,9 +5,9 @@
         .module('reviewtrackerApp')
         .controller('PurchaseOrderItemMySuffixDetailController', PurchaseOrderItemMySuffixDetailController);
 
-    PurchaseOrderItemMySuffixDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'PurchaseOrderItem', 'Product', 'PurchaseOrder'];
+    PurchaseOrderItemMySuffixDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'PurchaseOrderItem', 'Product', 'PurchaseOrder', 'Promotions'];
 
-    function PurchaseOrderItemMySuffixDetailController($scope, $rootScope, $stateParams, previousState, entity, PurchaseOrderItem, Product, PurchaseOrder) {
+    function PurchaseOrderItemMySuffixDetailController($scope, $rootScope, $stateParams, previousState, entity, PurchaseOrderItem, Product, PurchaseOrder, Promotions) {
         var vm = this;
 
         vm.purchaseOrderItem = entity;

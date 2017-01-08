@@ -20,6 +20,8 @@
     </prerequisites>
 
     <properties>
+        <amazon.order.client>1.0</amazon.order.client>
+        <amazon.product.client>1.0</amazon.product.client>
         <argLine>-Djava.security.egd=file:/dev/./urandom -Xmx256m</argLine>
         <assertj-core.version>3.5.2</assertj-core.version>
         <awaitility.version>1.7.0</awaitility.version>
@@ -54,6 +56,7 @@
         <project.testresult.directory>${project.build.directory}/test-results</project.testresult.directory>
         <prometheus-simpleclient.version>0.0.18</prometheus-simpleclient.version>
         <run.addResources>false</run.addResources>
+        <selenium.version>3.0.1</selenium.version>
         <sonar-maven-plugin.version>3.2</sonar-maven-plugin.version>
         <sonar.exclusions>src/main/webapp/content/**/*.*, src/main/webapp/bower_components/**/*.*, target/www/**/*.*</sonar.exclusions>
         <sonar.jacoco.itReportPath>${project.testresult.directory}/coverage/jacoco/jacoco-it.exec</sonar.jacoco.itReportPath>
@@ -321,6 +324,12 @@
             <artifactId>mapstruct-jdk8</artifactId>
             <version>${mapstruct.version}</version>
         </dependency>
+        <!-- Selenium for crawling reviews -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${selenium.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
@@ -438,6 +447,24 @@
             <groupId>org.springframework.social</groupId>
             <artifactId>spring-social-twitter</artifactId>
         </dependency>
+        <!-- amazon -->
+        <dependency>
+            <groupId>technology.integration.amazonservices.mws</groupId>
+            <artifactId>amazon-mws-order</artifactId>
+            <version>${amazon.order.client}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>servlet-api</artifactId>
+                    <groupId>javax.servlet</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>technology.integration.amazonservices.mws</groupId>
+            <artifactId>amazon-mws-product</artifactId>
+            <version>${amazon.product.client}</version>
+        </dependency>
+
     </dependencies>
     <build>
         <defaultGoal>spring-boot:run</defaultGoal>
@@ -673,6 +700,13 @@
                 <groupId>org.liquibase</groupId>
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <version>${liquibase.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>clearCheckSums</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <dependencies>
                     <dependency>
                         <groupId>javax.validation</groupId>
@@ -694,6 +728,7 @@
                         <artifactId>spring-boot-starter-data-jpa</artifactId>
                         <version>${project.parent.version}</version>
                     </dependency>
+
                 </dependencies>
                 <configuration>
                     <changeLogFile>src/main/resources/config/liquibase/master.xml</changeLogFile>
@@ -708,13 +743,6 @@
                     <logging>debug</logging>
                     <diffExcludeObjects>oauth_access_token, oauth_approvals, oauth_client_details, oauth_client_token, oauth_code, oauth_refresh_token</diffExcludeObjects>
                 </configuration>
-                 <executions>
-        		<execution>
-          			<goals>
-            			<goal>clearCheckSums</goal>
-          			</goals>
-        		</execution>
-      </executions>
             </plugin>
             <plugin>
                 <groupId>org.sonarsource.scanner.maven</groupId>

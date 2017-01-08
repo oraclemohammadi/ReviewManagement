@@ -1,6 +1,13 @@
 {
     "fluentMethods": true,
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipName": "purchaseOrder",
+            "otherEntityName": "purchaseOrder",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
     "fields": [
         {
             "fieldName": "paymentAmount",
@@ -15,7 +22,7 @@
             "fieldType": "String"
         }
     ],
-    "changelogDate": "20170103120711",
+    "changelogDate": "20170104133758",
     "javadoc": "Task entity.@author The JHipster team.",
     "entityTableName": "payment_execution",
     "dto": "mapstruct",

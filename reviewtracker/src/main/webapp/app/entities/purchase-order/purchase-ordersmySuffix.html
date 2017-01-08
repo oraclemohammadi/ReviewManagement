@@ -20,8 +20,8 @@
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="sellerOrderId"><span>Seller Order Id</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="purchaseLocalDate"><span>Purchase Local Date</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="lastUpdateLocalDate"><span>Last Update Local Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="purchaseDate"><span>Purchase Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="lastUpdateDate"><span>Last Update Date</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="orderStatus"><span>Order Status</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="fulfillmentChannel"><span>Fulfillment Channel</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="orderChannel"><span>Order Channel</span> <span class="glyphicon glyphicon-sort"></span></th>
@@ -33,6 +33,7 @@
                     <th jh-sort-by="numberOfItemsUnshipped"><span>Number Of Items Unshipped</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="paymentMethod"><span>Payment Method</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="marketplaceId"><span>Marketplace Id</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="buyerId"><span>Buyer Id</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="buyerEmail"><span>Buyer Email</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="buyerName"><span>Buyer Name</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="shipmentServiceLevelCategory"><span>Shipment Service Level Category</span> <span class="glyphicon glyphicon-sort"></span></th>
@@ -40,10 +41,9 @@
                     <th jh-sort-by="tfmShipmentStatus"><span>Tfm Shipment Status</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="cbaDisplayableShippingLabel"><span>Cba Displayable Shipping Label</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="orderType"><span>Order Type</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="earliestShipLocalDate"><span>Earliest Ship Local Date</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="latestShipLocalDate"><span>Latest Ship Local Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="earliestShipDate"><span>Earliest Ship Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="latestShipDate"><span>Latest Ship Date</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="invoiceId"><span>Invoice</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="paymentId"><span>Payment</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -51,8 +51,8 @@
                 <tr ng-repeat="purchaseOrder in vm.purchaseOrders track by purchaseOrder.id">
                     <td><a ui-sref="purchase-ordermySuffix-detail({id:purchaseOrder.id})">{{purchaseOrder.id}}</a></td>
                     <td>{{purchaseOrder.sellerOrderId}}</td>
-                        <td>{{purchaseOrder.purchaseLocalDate | date:'mediumDate'}}</td>
-                        <td>{{purchaseOrder.lastUpdateLocalDate | date:'mediumDate'}}</td>
+                        <td>{{purchaseOrder.purchaseDate | date:'mediumDate'}}</td>
+                        <td>{{purchaseOrder.lastUpdateDate | date:'mediumDate'}}</td>
                     <td>{{purchaseOrder.orderStatus}}</td>
                     <td>{{purchaseOrder.fulfillmentChannel}}</td>
                     <td>{{purchaseOrder.orderChannel}}</td>
@@ -64,6 +64,7 @@
                     <td>{{purchaseOrder.numberOfItemsUnshipped}}</td>
                     <td>{{purchaseOrder.paymentMethod}}</td>
                     <td>{{purchaseOrder.marketplaceId}}</td>
+                    <td>{{purchaseOrder.buyerId}}</td>
                     <td>{{purchaseOrder.buyerEmail}}</td>
                     <td>{{purchaseOrder.buyerName}}</td>
                     <td>{{purchaseOrder.shipmentServiceLevelCategory}}</td>
@@ -71,13 +72,10 @@
                     <td>{{purchaseOrder.tfmShipmentStatus}}</td>
                     <td>{{purchaseOrder.cbaDisplayableShippingLabel}}</td>
                     <td>{{purchaseOrder.orderType}}</td>
-                        <td>{{purchaseOrder.earliestShipLocalDate | date:'mediumDate'}}</td>
-                        <td>{{purchaseOrder.latestShipLocalDate | date:'mediumDate'}}</td>
+                        <td>{{purchaseOrder.earliestShipDate | date:'mediumDate'}}</td>
+                        <td>{{purchaseOrder.latestShipDate | date:'mediumDate'}}</td>
                     <td>
                         <a ui-sref="invoice-datamySuffix-detail({id:purchaseOrder.invoiceId})">{{purchaseOrder.invoiceId}}</a>
-                    </td>
-                    <td>
-                        <a ui-sref="payment-executionmySuffix-detail({id:purchaseOrder.paymentId})">{{purchaseOrder.paymentId}}</a>
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">

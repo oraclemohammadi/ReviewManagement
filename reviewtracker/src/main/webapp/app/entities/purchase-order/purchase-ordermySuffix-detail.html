@@ -8,13 +8,13 @@
         <dd>
             <span>{{vm.purchaseOrder.sellerOrderId}}</span>
         </dd>
-        <dt><span>Purchase Local Date</span></dt>
+        <dt><span>Purchase Date</span></dt>
         <dd>
-            <span>{{vm.purchaseOrder.purchaseLocalDate | date:'mediumDate'}}</span>
+            <span>{{vm.purchaseOrder.purchaseDate | date:'mediumDate'}}</span>
         </dd>
-        <dt><span>Last Update Local Date</span></dt>
+        <dt><span>Last Update Date</span></dt>
         <dd>
-            <span>{{vm.purchaseOrder.lastUpdateLocalDate | date:'mediumDate'}}</span>
+            <span>{{vm.purchaseOrder.lastUpdateDate | date:'mediumDate'}}</span>
         </dd>
         <dt><span>Order Status</span></dt>
         <dd>
@@ -60,6 +60,10 @@
         <dd>
             <span>{{vm.purchaseOrder.marketplaceId}}</span>
         </dd>
+        <dt><span>Buyer Id</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrder.buyerId}}</span>
+        </dd>
         <dt><span>Buyer Email</span></dt>
         <dd>
             <span>{{vm.purchaseOrder.buyerEmail}}</span>
@@ -88,21 +92,17 @@
         <dd>
             <span>{{vm.purchaseOrder.orderType}}</span>
         </dd>
-        <dt><span>Earliest Ship Local Date</span></dt>
+        <dt><span>Earliest Ship Date</span></dt>
         <dd>
-            <span>{{vm.purchaseOrder.earliestShipLocalDate | date:'mediumDate'}}</span>
+            <span>{{vm.purchaseOrder.earliestShipDate | date:'mediumDate'}}</span>
         </dd>
-        <dt><span>Latest Ship Local Date</span></dt>
+        <dt><span>Latest Ship Date</span></dt>
         <dd>
-            <span>{{vm.purchaseOrder.latestShipLocalDate | date:'mediumDate'}}</span>
+            <span>{{vm.purchaseOrder.latestShipDate | date:'mediumDate'}}</span>
         </dd>
         <dt><span>Invoice</span></dt>
         <dd>
             <a ui-sref="invoice-datamySuffix-detail({id:vm.purchaseOrder.invoiceId})">{{vm.purchaseOrder.invoiceId}}</a>
-        </dd>
-        <dt><span>Payment</span></dt>
-        <dd>
-            <a ui-sref="payment-executionmySuffix-detail({id:vm.purchaseOrder.paymentId})">{{vm.purchaseOrder.paymentId}}</a>
         </dd>
     </dl>
 

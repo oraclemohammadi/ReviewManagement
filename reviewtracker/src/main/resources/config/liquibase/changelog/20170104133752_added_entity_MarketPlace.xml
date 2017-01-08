@@ -14,26 +14,34 @@
     <property name="floatType" value="float" dbms="mysql, oracle"/>
 
     <!--
-        Added the entity InvoiceData.
+        Added the entity MarketPlace.
     -->
-    <changeSet id="20170103120712-1" author="jhipster">
-        <createTable tableName="invoice_data">
+    <changeSet id="20170104133752-1" author="jhipster">
+        <createTable tableName="market_place">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="invoice_requirement" type="varchar(255)">
+            <column name="access_key" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             
-            <column name="buyer_selected_invoice_category" type="varchar(255)">
+            <column name="secrect_key" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             
-            <column name="invoice_title" type="varchar(255)">
+            <column name="seller_id" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             
-            <column name="invoice_information" type="varchar(255)">
+            <column name="market_place_id" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="service_url" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="activated" type="bit">
                 <constraints nullable="true" />
             </column>
             

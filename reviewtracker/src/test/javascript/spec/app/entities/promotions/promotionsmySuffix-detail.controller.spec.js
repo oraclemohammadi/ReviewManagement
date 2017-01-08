@@ -4,7 +4,7 @@ describe('Controller Tests', function() {
 
     describe('Promotions Management Detail Controller', function() {
         var $scope, $rootScope;
-        var MockEntity, MockPreviousState, MockPromotions;
+        var MockEntity, MockPreviousState, MockPromotions, MockPurchaseOrderItem;
         var createController;
 
         beforeEach(inject(function($injector) {
@@ -13,6 +13,7 @@ describe('Controller Tests', function() {
             MockEntity = jasmine.createSpy('MockEntity');
             MockPreviousState = jasmine.createSpy('MockPreviousState');
             MockPromotions = jasmine.createSpy('MockPromotions');
+            MockPurchaseOrderItem = jasmine.createSpy('MockPurchaseOrderItem');
             
 
             var locals = {
@@ -20,7 +21,8 @@ describe('Controller Tests', function() {
                 '$rootScope': $rootScope,
                 'entity': MockEntity,
                 'previousState': MockPreviousState,
-                'Promotions': MockPromotions
+                'Promotions': MockPromotions,
+                'PurchaseOrderItem': MockPurchaseOrderItem
             };
             createController = function() {
                 $injector.get('$controller')("PromotionsMySuffixDetailController", locals);

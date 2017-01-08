@@ -55,8 +55,8 @@ public class Review implements Serializable {
     @Column(name = "real_name")
     private String realName;
 
-    @Column(name = "review_local_date")
-    private LocalDate reviewLocalDate;
+    @Column(name = "review_date")
+    private LocalDate reviewDate;
 
     @Column(name = "content")
     private String content;
@@ -218,17 +218,17 @@ public class Review implements Serializable {
         this.realName = realName;
     }
 
-    public LocalDate getReviewLocalDate() {
-        return reviewLocalDate;
+    public LocalDate getReviewDate() {
+        return reviewDate;
     }
 
-    public Review reviewLocalDate(LocalDate reviewLocalDate) {
-        this.reviewLocalDate = reviewLocalDate;
+    public Review reviewDate(LocalDate reviewDate) {
+        this.reviewDate = reviewDate;
         return this;
     }
 
-    public void setReviewLocalDate(LocalDate reviewLocalDate) {
-        this.reviewLocalDate = reviewLocalDate;
+    public void setReviewDate(LocalDate reviewDate) {
+        this.reviewDate = reviewDate;
     }
 
     public String getContent() {
@@ -305,7 +305,7 @@ public class Review implements Serializable {
             ", totalVotes='" + totalVotes + "'" +
             ", verifiedPurchase='" + verifiedPurchase + "'" +
             ", realName='" + realName + "'" +
-            ", reviewLocalDate='" + reviewLocalDate + "'" +
+            ", reviewDate='" + reviewDate + "'" +
             ", content='" + content + "'" +
             ", specificNote='" + specificNote + "'" +
             '}';

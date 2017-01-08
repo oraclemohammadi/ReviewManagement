@@ -116,8 +116,8 @@
                                 conditionNote: null,
                                 conditionId: null,
                                 conditionSubtypeId: null,
-                                scheduledDeliveryStartLocalDate: null,
-                                scheduledDeliveryEndLocalDate: null,
+                                scheduledDeliveryStartDate: null,
+                                scheduledDeliveryEndDate: null,
                                 id: null
                             };
                         }

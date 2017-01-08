@@ -32,6 +32,9 @@ public class PaymentExecution implements Serializable {
     @Column(name = "payment_method")
     private String paymentMethod;
 
+    @ManyToOne
+    private PurchaseOrder purchaseOrder;
+
     public Long getId() {
         return id;
     }
@@ -77,6 +80,19 @@ public class PaymentExecution implements Serializable {
 
     public void setPaymentMethod(String paymentMethod) {
         this.paymentMethod = paymentMethod;
+    }
+
+    public PurchaseOrder getPurchaseOrder() {
+        return purchaseOrder;
+    }
+
+    public PaymentExecution purchaseOrder(PurchaseOrder purchaseOrder) {
+        this.purchaseOrder = purchaseOrder;
+        return this;
+    }
+
+    public void setPurchaseOrder(PurchaseOrder purchaseOrder) {
+        this.purchaseOrder = purchaseOrder;
     }
 
     @Override

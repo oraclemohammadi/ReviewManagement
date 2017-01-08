@@ -1,0 +1,66 @@
+<div>
+    <h2>Market Places</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="market-placemySuffix.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span >
+                        Create new Market Place
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span>ID</span></th>
+                    <th><span>Access Key</span></th>
+                    <th><span>Secrect Key</span></th>
+                    <th><span>Seller Id</span></th>
+                    <th><span>Market Place Id</span></th>
+                    <th><span>Service Url</span></th>
+                    <th><span>Activated</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="marketPlace in vm.marketPlaces track by marketPlace.id">
+                    <td><a ui-sref="market-placemySuffix-detail({id:marketPlace.id})">{{marketPlace.id}}</a></td>
+                    <td>{{marketPlace.accessKey}}</td>
+                    <td>{{marketPlace.secrectKey}}</td>
+                    <td>{{marketPlace.sellerId}}</td>
+                    <td>{{marketPlace.marketPlaceId}}</td>
+                    <td>{{marketPlace.serviceUrl}}</td>
+                    <td>{{marketPlace.activated}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="market-placemySuffix-detail({id:marketPlace.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="market-placemySuffix.edit({id:marketPlace.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="market-placemySuffix.delete({id:marketPlace.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

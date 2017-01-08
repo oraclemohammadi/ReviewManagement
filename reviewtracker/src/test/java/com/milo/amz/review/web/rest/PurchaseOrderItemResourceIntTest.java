@@ -103,11 +103,11 @@ public class PurchaseOrderItemResourceIntTest {
     private static final String DEFAULT_CONDITION_SUBTYPE_ID = "AAAAAAAAAA";
     private static final String UPDATED_CONDITION_SUBTYPE_ID = "BBBBBBBBBB";
 
-    private static final String DEFAULT_SCHEDULED_DELIVERY_START_LOCAL_DATE = "AAAAAAAAAA";
-    private static final String UPDATED_SCHEDULED_DELIVERY_START_LOCAL_DATE = "BBBBBBBBBB";
+    private static final String DEFAULT_SCHEDULED_DELIVERY_START_DATE = "AAAAAAAAAA";
+    private static final String UPDATED_SCHEDULED_DELIVERY_START_DATE = "BBBBBBBBBB";
 
-    private static final String DEFAULT_SCHEDULED_DELIVERY_END_LOCAL_DATE = "AAAAAAAAAA";
-    private static final String UPDATED_SCHEDULED_DELIVERY_END_LOCAL_DATE = "BBBBBBBBBB";
+    private static final String DEFAULT_SCHEDULED_DELIVERY_END_DATE = "AAAAAAAAAA";
+    private static final String UPDATED_SCHEDULED_DELIVERY_END_DATE = "BBBBBBBBBB";
 
     @Inject
     private PurchaseOrderItemRepository purchaseOrderItemRepository;
@@ -170,8 +170,8 @@ public class PurchaseOrderItemResourceIntTest {
                 .conditionNote(DEFAULT_CONDITION_NOTE)
                 .conditionId(DEFAULT_CONDITION_ID)
                 .conditionSubtypeId(DEFAULT_CONDITION_SUBTYPE_ID)
-                .scheduledDeliveryStartLocalDate(DEFAULT_SCHEDULED_DELIVERY_START_LOCAL_DATE)
-                .scheduledDeliveryEndLocalDate(DEFAULT_SCHEDULED_DELIVERY_END_LOCAL_DATE);
+                .scheduledDeliveryStartDate(DEFAULT_SCHEDULED_DELIVERY_START_DATE)
+                .scheduledDeliveryEndDate(DEFAULT_SCHEDULED_DELIVERY_END_DATE);
         return purchaseOrderItem;
     }
 
@@ -218,8 +218,8 @@ public class PurchaseOrderItemResourceIntTest {
         assertThat(testPurchaseOrderItem.getConditionNote()).isEqualTo(DEFAULT_CONDITION_NOTE);
         assertThat(testPurchaseOrderItem.getConditionId()).isEqualTo(DEFAULT_CONDITION_ID);
         assertThat(testPurchaseOrderItem.getConditionSubtypeId()).isEqualTo(DEFAULT_CONDITION_SUBTYPE_ID);
-        assertThat(testPurchaseOrderItem.getScheduledDeliveryStartLocalDate()).isEqualTo(DEFAULT_SCHEDULED_DELIVERY_START_LOCAL_DATE);
-        assertThat(testPurchaseOrderItem.getScheduledDeliveryEndLocalDate()).isEqualTo(DEFAULT_SCHEDULED_DELIVERY_END_LOCAL_DATE);
+        assertThat(testPurchaseOrderItem.getScheduledDeliveryStartDate()).isEqualTo(DEFAULT_SCHEDULED_DELIVERY_START_DATE);
+        assertThat(testPurchaseOrderItem.getScheduledDeliveryEndDate()).isEqualTo(DEFAULT_SCHEDULED_DELIVERY_END_DATE);
     }
 
     @Test
@@ -254,8 +254,8 @@ public class PurchaseOrderItemResourceIntTest {
             .andExpect(jsonPath("$.[*].conditionNote").value(hasItem(DEFAULT_CONDITION_NOTE.toString())))
             .andExpect(jsonPath("$.[*].conditionId").value(hasItem(DEFAULT_CONDITION_ID.toString())))
             .andExpect(jsonPath("$.[*].conditionSubtypeId").value(hasItem(DEFAULT_CONDITION_SUBTYPE_ID.toString())))
-            .andExpect(jsonPath("$.[*].scheduledDeliveryStartLocalDate").value(hasItem(DEFAULT_SCHEDULED_DELIVERY_START_LOCAL_DATE.toString())))
-            .andExpect(jsonPath("$.[*].scheduledDeliveryEndLocalDate").value(hasItem(DEFAULT_SCHEDULED_DELIVERY_END_LOCAL_DATE.toString())));
+            .andExpect(jsonPath("$.[*].scheduledDeliveryStartDate").value(hasItem(DEFAULT_SCHEDULED_DELIVERY_START_DATE.toString())))
+            .andExpect(jsonPath("$.[*].scheduledDeliveryEndDate").value(hasItem(DEFAULT_SCHEDULED_DELIVERY_END_DATE.toString())));
     }
 
     @Test
@@ -290,8 +290,8 @@ public class PurchaseOrderItemResourceIntTest {
             .andExpect(jsonPath("$.conditionNote").value(DEFAULT_CONDITION_NOTE.toString()))
             .andExpect(jsonPath("$.conditionId").value(DEFAULT_CONDITION_ID.toString()))
             .andExpect(jsonPath("$.conditionSubtypeId").value(DEFAULT_CONDITION_SUBTYPE_ID.toString()))
-            .andExpect(jsonPath("$.scheduledDeliveryStartLocalDate").value(DEFAULT_SCHEDULED_DELIVERY_START_LOCAL_DATE.toString()))
-            .andExpect(jsonPath("$.scheduledDeliveryEndLocalDate").value(DEFAULT_SCHEDULED_DELIVERY_END_LOCAL_DATE.toString()));
+            .andExpect(jsonPath("$.scheduledDeliveryStartDate").value(DEFAULT_SCHEDULED_DELIVERY_START_DATE.toString()))
+            .andExpect(jsonPath("$.scheduledDeliveryEndDate").value(DEFAULT_SCHEDULED_DELIVERY_END_DATE.toString()));
     }
 
     @Test
@@ -333,8 +333,8 @@ public class PurchaseOrderItemResourceIntTest {
                 .conditionNote(UPDATED_CONDITION_NOTE)
                 .conditionId(UPDATED_CONDITION_ID)
                 .conditionSubtypeId(UPDATED_CONDITION_SUBTYPE_ID)
-                .scheduledDeliveryStartLocalDate(UPDATED_SCHEDULED_DELIVERY_START_LOCAL_DATE)
-                .scheduledDeliveryEndLocalDate(UPDATED_SCHEDULED_DELIVERY_END_LOCAL_DATE);
+                .scheduledDeliveryStartDate(UPDATED_SCHEDULED_DELIVERY_START_DATE)
+                .scheduledDeliveryEndDate(UPDATED_SCHEDULED_DELIVERY_END_DATE);
         PurchaseOrderItemDTO purchaseOrderItemDTO = purchaseOrderItemMapper.purchaseOrderItemToPurchaseOrderItemDTO(updatedPurchaseOrderItem);
 
         restPurchaseOrderItemMockMvc.perform(put("/api/purchase-order-items")
@@ -367,8 +367,8 @@ public class PurchaseOrderItemResourceIntTest {
         assertThat(testPurchaseOrderItem.getConditionNote()).isEqualTo(UPDATED_CONDITION_NOTE);
         assertThat(testPurchaseOrderItem.getConditionId()).isEqualTo(UPDATED_CONDITION_ID);
         assertThat(testPurchaseOrderItem.getConditionSubtypeId()).isEqualTo(UPDATED_CONDITION_SUBTYPE_ID);
-        assertThat(testPurchaseOrderItem.getScheduledDeliveryStartLocalDate()).isEqualTo(UPDATED_SCHEDULED_DELIVERY_START_LOCAL_DATE);
-        assertThat(testPurchaseOrderItem.getScheduledDeliveryEndLocalDate()).isEqualTo(UPDATED_SCHEDULED_DELIVERY_END_LOCAL_DATE);
+        assertThat(testPurchaseOrderItem.getScheduledDeliveryStartDate()).isEqualTo(UPDATED_SCHEDULED_DELIVERY_START_DATE);
+        assertThat(testPurchaseOrderItem.getScheduledDeliveryEndDate()).isEqualTo(UPDATED_SCHEDULED_DELIVERY_END_DATE);
     }
 
     @Test

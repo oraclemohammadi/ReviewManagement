@@ -5,9 +5,9 @@
         .module('reviewtrackerApp')
         .controller('PaymentExecutionMySuffixDetailController', PaymentExecutionMySuffixDetailController);
 
-    PaymentExecutionMySuffixDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'PaymentExecution'];
+    PaymentExecutionMySuffixDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'PaymentExecution', 'PurchaseOrder'];
 
-    function PaymentExecutionMySuffixDetailController($scope, $rootScope, $stateParams, previousState, entity, PaymentExecution) {
+    function PaymentExecutionMySuffixDetailController($scope, $rootScope, $stateParams, previousState, entity, PaymentExecution, PurchaseOrder) {
         var vm = this;
 
         vm.paymentExecution = entity;

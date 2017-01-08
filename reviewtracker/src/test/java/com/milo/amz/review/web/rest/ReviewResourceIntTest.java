@@ -75,8 +75,8 @@ public class ReviewResourceIntTest {
     private static final String DEFAULT_REAL_NAME = "AAAAAAAAAA";
     private static final String UPDATED_REAL_NAME = "BBBBBBBBBB";
 
-    private static final LocalDate DEFAULT_REVIEW_LOCAL_DATE = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_REVIEW_LOCAL_DATE = LocalDate.now(ZoneId.systemDefault());
+    private static final LocalDate DEFAULT_REVIEW_DATE = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_REVIEW_DATE = LocalDate.now(ZoneId.systemDefault());
 
     private static final String DEFAULT_CONTENT = "AAAAAAAAAA";
     private static final String UPDATED_CONTENT = "BBBBBBBBBB";
@@ -135,7 +135,7 @@ public class ReviewResourceIntTest {
                 .totalVotes(DEFAULT_TOTAL_VOTES)
                 .verifiedPurchase(DEFAULT_VERIFIED_PURCHASE)
                 .realName(DEFAULT_REAL_NAME)
-                .reviewLocalDate(DEFAULT_REVIEW_LOCAL_DATE)
+                .reviewDate(DEFAULT_REVIEW_DATE)
                 .content(DEFAULT_CONTENT)
                 .specificNote(DEFAULT_SPECIFIC_NOTE);
         return review;
@@ -174,7 +174,7 @@ public class ReviewResourceIntTest {
         assertThat(testReview.getTotalVotes()).isEqualTo(DEFAULT_TOTAL_VOTES);
         assertThat(testReview.isVerifiedPurchase()).isEqualTo(DEFAULT_VERIFIED_PURCHASE);
         assertThat(testReview.getRealName()).isEqualTo(DEFAULT_REAL_NAME);
-        assertThat(testReview.getReviewLocalDate()).isEqualTo(DEFAULT_REVIEW_LOCAL_DATE);
+        assertThat(testReview.getReviewDate()).isEqualTo(DEFAULT_REVIEW_DATE);
         assertThat(testReview.getContent()).isEqualTo(DEFAULT_CONTENT);
         assertThat(testReview.getSpecificNote()).isEqualTo(DEFAULT_SPECIFIC_NOTE);
     }
@@ -201,7 +201,7 @@ public class ReviewResourceIntTest {
             .andExpect(jsonPath("$.[*].totalVotes").value(hasItem(DEFAULT_TOTAL_VOTES.intValue())))
             .andExpect(jsonPath("$.[*].verifiedPurchase").value(hasItem(DEFAULT_VERIFIED_PURCHASE.booleanValue())))
             .andExpect(jsonPath("$.[*].realName").value(hasItem(DEFAULT_REAL_NAME.toString())))
-            .andExpect(jsonPath("$.[*].reviewLocalDate").value(hasItem(DEFAULT_REVIEW_LOCAL_DATE.toString())))
+            .andExpect(jsonPath("$.[*].reviewDate").value(hasItem(DEFAULT_REVIEW_DATE.toString())))
             .andExpect(jsonPath("$.[*].content").value(hasItem(DEFAULT_CONTENT.toString())))
             .andExpect(jsonPath("$.[*].specificNote").value(hasItem(DEFAULT_SPECIFIC_NOTE.toString())));
     }
@@ -228,7 +228,7 @@ public class ReviewResourceIntTest {
             .andExpect(jsonPath("$.totalVotes").value(DEFAULT_TOTAL_VOTES.intValue()))
             .andExpect(jsonPath("$.verifiedPurchase").value(DEFAULT_VERIFIED_PURCHASE.booleanValue()))
             .andExpect(jsonPath("$.realName").value(DEFAULT_REAL_NAME.toString()))
-            .andExpect(jsonPath("$.reviewLocalDate").value(DEFAULT_REVIEW_LOCAL_DATE.toString()))
+            .andExpect(jsonPath("$.reviewDate").value(DEFAULT_REVIEW_DATE.toString()))
             .andExpect(jsonPath("$.content").value(DEFAULT_CONTENT.toString()))
             .andExpect(jsonPath("$.specificNote").value(DEFAULT_SPECIFIC_NOTE.toString()));
     }
@@ -262,7 +262,7 @@ public class ReviewResourceIntTest {
                 .totalVotes(UPDATED_TOTAL_VOTES)
                 .verifiedPurchase(UPDATED_VERIFIED_PURCHASE)
                 .realName(UPDATED_REAL_NAME)
-                .reviewLocalDate(UPDATED_REVIEW_LOCAL_DATE)
+                .reviewDate(UPDATED_REVIEW_DATE)
                 .content(UPDATED_CONTENT)
                 .specificNote(UPDATED_SPECIFIC_NOTE);
         ReviewDTO reviewDTO = reviewMapper.reviewToReviewDTO(updatedReview);
@@ -287,7 +287,7 @@ public class ReviewResourceIntTest {
         assertThat(testReview.getTotalVotes()).isEqualTo(UPDATED_TOTAL_VOTES);
         assertThat(testReview.isVerifiedPurchase()).isEqualTo(UPDATED_VERIFIED_PURCHASE);
         assertThat(testReview.getRealName()).isEqualTo(UPDATED_REAL_NAME);
-        assertThat(testReview.getReviewLocalDate()).isEqualTo(UPDATED_REVIEW_LOCAL_DATE);
+        assertThat(testReview.getReviewDate()).isEqualTo(UPDATED_REVIEW_DATE);
         assertThat(testReview.getContent()).isEqualTo(UPDATED_CONTENT);
         assertThat(testReview.getSpecificNote()).isEqualTo(UPDATED_SPECIFIC_NOTE);
     }

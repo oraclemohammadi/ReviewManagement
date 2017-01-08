@@ -20,6 +20,7 @@ public interface PurchaseOrderItemMapper {
 
     @Mapping(source = "productId", target = "product")
     @Mapping(source = "purchaseOrderId", target = "purchaseOrder")
+    @Mapping(target = "includePromotions", ignore = true)
     PurchaseOrderItem purchaseOrderItemDTOToPurchaseOrderItem(PurchaseOrderItemDTO purchaseOrderItemDTO);
 
     List<PurchaseOrderItem> purchaseOrderItemDTOsToPurchaseOrderItems(List<PurchaseOrderItemDTO> purchaseOrderItemDTOs);

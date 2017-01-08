@@ -1,0 +1,43 @@
+
+<div>
+    <h2><span>Market Place</span> {{vm.marketPlace.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Access Key</span></dt>
+        <dd>
+            <span>{{vm.marketPlace.accessKey}}</span>
+        </dd>
+        <dt><span>Secrect Key</span></dt>
+        <dd>
+            <span>{{vm.marketPlace.secrectKey}}</span>
+        </dd>
+        <dt><span>Seller Id</span></dt>
+        <dd>
+            <span>{{vm.marketPlace.sellerId}}</span>
+        </dd>
+        <dt><span>Market Place Id</span></dt>
+        <dd>
+            <span>{{vm.marketPlace.marketPlaceId}}</span>
+        </dd>
+        <dt><span>Service Url</span></dt>
+        <dd>
+            <span>{{vm.marketPlace.serviceUrl}}</span>
+        </dd>
+        <dt><span>Activated</span></dt>
+        <dd>
+            <span>{{vm.marketPlace.activated}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="market-placemySuffix-detail.edit({id:vm.marketPlace.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm"> Edit</span>
+    </button>
+</div>

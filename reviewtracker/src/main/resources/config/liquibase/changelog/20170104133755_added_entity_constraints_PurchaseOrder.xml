@@ -6,19 +6,13 @@
     <!--
         Added the constraints for entity PurchaseOrder.
     -->
-    <changeSet id="20170103120708-2" author="jhipster">
+    <changeSet id="20170104133755-2" author="jhipster">
         
         <addForeignKeyConstraint baseColumnNames="invoice_id"
                                  baseTableName="purchase_order"
                                  constraintName="fk_purchase_order_invoice_id"
                                  referencedColumnNames="id"
                                  referencedTableName="invoice_data"/>
-
-        <addForeignKeyConstraint baseColumnNames="payment_id"
-                                 baseTableName="purchase_order"
-                                 constraintName="fk_purchase_order_payment_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="payment_execution"/>
 
     </changeSet>
 </databaseChangeLog>

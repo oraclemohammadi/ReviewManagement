@@ -4,15 +4,15 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
     <!--
-        Added the constraints for entity ShippingAddress.
+        Added the constraints for entity Promotions.
     -->
-    <changeSet id="20170103120709-2" author="jhipster">
+    <changeSet id="20170104133700-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="purchase_order_id"
-                                 baseTableName="shipping_address"
-                                 constraintName="fk_shipping_address_purchase_order_id"
+        <addForeignKeyConstraint baseColumnNames="purchase_order_item_id"
+                                 baseTableName="promotions"
+                                 constraintName="fk_promotions_purchase_order_item_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="purchase_order"/>
+                                 referencedTableName="purchase_order_item"/>
 
     </changeSet>
 </databaseChangeLog>

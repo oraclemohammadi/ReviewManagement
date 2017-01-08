@@ -14,70 +14,54 @@
     <property name="floatType" value="float" dbms="mysql, oracle"/>
 
     <!--
-        Added the entity Review.
+        Added the entity ShippingAddress.
     -->
-    <changeSet id="20170103120707-1" author="jhipster">
-        <createTable tableName="review">
+    <changeSet id="20170104133756-1" author="jhipster">
+        <createTable tableName="shipping_address">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="item_id" type="varchar(255)">
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            
+            <column name="address_line_1" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            
+            <column name="address_line_2" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             
-            <column name="review_id" type="varchar(255)">
+            <column name="address_line_3" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             
-            <column name="customer_name" type="varchar(255)">
+            <column name="city" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            
+            <column name="county" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            
+            <column name="postal_code" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             
-            <column name="customer_id" type="varchar(255)">
+            <column name="district" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            
+            <column name="state_or_region" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            
+            <column name="phone" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             
-            <column name="title" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="rating" type="bigint">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="full_rating" type="bigint">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="helpful_votes" type="bigint">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="total_votes" type="bigint">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="verified_purchase" type="bit">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="real_name" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="review_local_date" type="date">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="content" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="specific_note" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="product_id" type="bigint">
+            <column name="purchase_order_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 

@@ -80,7 +80,7 @@ class PurchaseOrderItemGatlingTest extends Simulation {
             .exec(http("Create new purchaseOrderItem")
             .post("/api/purchase-order-items")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "asin":"SAMPLE_TEXT", "sellerSKU":"SAMPLE_TEXT", "orderItemId":"SAMPLE_TEXT", "title":"SAMPLE_TEXT", "quantityOrdered":null, "quantityShipped":null, "itemPrice":null, "shippingPrice":null, "giftWrapPrice":null, "itemTax":null, "shippingTax":null, "giftWrapTax":null, "shippingDiscount":null, "promotionDiscount":null, "codFee":null, "codFeeDiscount":null, "giftMessageText":"SAMPLE_TEXT", "giftWrapLevel":"SAMPLE_TEXT", "conditionNote":"SAMPLE_TEXT", "conditionId":"SAMPLE_TEXT", "conditionSubtypeId":"SAMPLE_TEXT", "scheduledDeliveryStartLocalDate":"SAMPLE_TEXT", "scheduledDeliveryEndLocalDate":"SAMPLE_TEXT"}""")).asJSON
+            .body(StringBody("""{"id":null, "asin":"SAMPLE_TEXT", "sellerSKU":"SAMPLE_TEXT", "orderItemId":"SAMPLE_TEXT", "title":"SAMPLE_TEXT", "quantityOrdered":null, "quantityShipped":null, "itemPrice":null, "shippingPrice":null, "giftWrapPrice":null, "itemTax":null, "shippingTax":null, "giftWrapTax":null, "shippingDiscount":null, "promotionDiscount":null, "codFee":null, "codFeeDiscount":null, "giftMessageText":"SAMPLE_TEXT", "giftWrapLevel":"SAMPLE_TEXT", "conditionNote":"SAMPLE_TEXT", "conditionId":"SAMPLE_TEXT", "conditionSubtypeId":"SAMPLE_TEXT", "scheduledDeliveryStartDate":"SAMPLE_TEXT", "scheduledDeliveryEndDate":"SAMPLE_TEXT"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_purchaseOrderItem_url"))).exitHereIfFailed
             .pause(10)

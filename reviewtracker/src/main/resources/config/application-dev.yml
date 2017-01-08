@@ -57,7 +57,10 @@ spring:
         cache-seconds: 1
     thymeleaf:
         cache: false
-
+        
+    batch :
+        job : 
+         enabled : false  
 liquibase:
     contexts: dev
 

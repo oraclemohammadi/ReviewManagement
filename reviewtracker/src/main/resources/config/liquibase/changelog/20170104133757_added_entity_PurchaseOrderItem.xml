@@ -16,7 +16,7 @@
     <!--
         Added the entity PurchaseOrderItem.
     -->
-    <changeSet id="20170103120710-1" author="jhipster">
+    <changeSet id="20170104133757-1" author="jhipster">
         <createTable tableName="purchase_order_item">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
@@ -105,11 +105,11 @@
                 <constraints nullable="true" />
             </column>
             
-            <column name="scheduled_delivery_start_local_date" type="varchar(255)">
+            <column name="scheduled_delivery_start_date" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             
-            <column name="scheduled_delivery_end_local_date" type="varchar(255)">
+            <column name="scheduled_delivery_end_date" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             

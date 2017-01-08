@@ -20,7 +20,7 @@
             "fieldType": "String"
         }
     ],
-    "changelogDate": "20170103120712",
+    "changelogDate": "20170104133759",
     "javadoc": "The Employee entity.",
     "entityTableName": "invoice_data",
     "dto": "mapstruct",

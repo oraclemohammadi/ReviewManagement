@@ -36,7 +36,7 @@ public class ReviewDTO implements Serializable {
 
     private String realName;
 
-    private LocalDate reviewLocalDate;
+    private LocalDate reviewDate;
 
     private String content;
 
@@ -129,12 +129,12 @@ public class ReviewDTO implements Serializable {
     public void setRealName(String realName) {
         this.realName = realName;
     }
-    public LocalDate getReviewLocalDate() {
-        return reviewLocalDate;
+    public LocalDate getReviewDate() {
+        return reviewDate;
     }
 
-    public void setReviewLocalDate(LocalDate reviewLocalDate) {
-        this.reviewLocalDate = reviewLocalDate;
+    public void setReviewDate(LocalDate reviewDate) {
+        this.reviewDate = reviewDate;
     }
     public String getContent() {
         return content;
@@ -195,7 +195,7 @@ public class ReviewDTO implements Serializable {
             ", totalVotes='" + totalVotes + "'" +
             ", verifiedPurchase='" + verifiedPurchase + "'" +
             ", realName='" + realName + "'" +
-            ", reviewLocalDate='" + reviewLocalDate + "'" +
+            ", reviewDate='" + reviewDate + "'" +
             ", content='" + content + "'" +
             ", specificNote='" + specificNote + "'" +
             '}';

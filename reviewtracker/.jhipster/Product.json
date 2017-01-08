@@ -24,7 +24,7 @@
             "fieldType": "String"
         }
     ],
-    "changelogDate": "20170103120706",
+    "changelogDate": "20170104133753",
     "entityTableName": "product",
     "dto": "mapstruct",
     "pagination": "pagination",

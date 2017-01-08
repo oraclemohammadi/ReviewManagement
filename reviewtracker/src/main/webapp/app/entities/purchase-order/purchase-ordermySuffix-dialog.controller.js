@@ -5,9 +5,9 @@
         .module('reviewtrackerApp')
         .controller('PurchaseOrderMySuffixDialogController', PurchaseOrderMySuffixDialogController);
 
-    PurchaseOrderMySuffixDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$q', 'entity', 'PurchaseOrder', 'InvoiceData', 'PaymentExecution', 'ShippingAddress', 'PurchaseOrderItem'];
+    PurchaseOrderMySuffixDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$q', 'entity', 'PurchaseOrder', 'InvoiceData', 'ShippingAddress', 'PaymentExecution', 'PurchaseOrderItem'];
 
-    function PurchaseOrderMySuffixDialogController ($timeout, $scope, $stateParams, $uibModalInstance, $q, entity, PurchaseOrder, InvoiceData, PaymentExecution, ShippingAddress, PurchaseOrderItem) {
+    function PurchaseOrderMySuffixDialogController ($timeout, $scope, $stateParams, $uibModalInstance, $q, entity, PurchaseOrder, InvoiceData, ShippingAddress, PaymentExecution, PurchaseOrderItem) {
         var vm = this;
 
         vm.purchaseOrder = entity;
@@ -24,16 +24,8 @@
         }).then(function(invoice) {
             vm.invoices.push(invoice);
         });
-        vm.payments = PaymentExecution.query({filter: 'purchaseorder-is-null'});
-        $q.all([vm.purchaseOrder.$promise, vm.payments.$promise]).then(function() {
-            if (!vm.purchaseOrder.paymentId) {
-                return $q.reject();
-            }
-            return PaymentExecution.get({id : vm.purchaseOrder.paymentId}).$promise;
-        }).then(function(payment) {
-            vm.payments.push(payment);
-        });
         vm.shippingaddresses = ShippingAddress.query();
+        vm.paymentexecutions = PaymentExecution.query();
         vm.purchaseorderitems = PurchaseOrderItem.query();
 
         $timeout(function (){
@@ -63,10 +55,10 @@
             vm.isSaving = false;
         }
 
-        vm.datePickerOpenStatus.purchaseLocalDate = false;
-        vm.datePickerOpenStatus.lastUpdateLocalDate = false;
-        vm.datePickerOpenStatus.earliestShipLocalDate = false;
-        vm.datePickerOpenStatus.latestShipLocalDate = false;
+        vm.datePickerOpenStatus.purchaseDate = false;
+        vm.datePickerOpenStatus.lastUpdateDate = false;
+        vm.datePickerOpenStatus.earliestShipDate = false;
+        vm.datePickerOpenStatus.latestShipDate = false;
 
         function openCalendar (date) {
             vm.datePickerOpenStatus[date] = true;

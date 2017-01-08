@@ -55,9 +55,9 @@ public class PurchaseOrderItemDTO implements Serializable {
 
     private String conditionSubtypeId;
 
-    private String scheduledDeliveryStartLocalDate;
+    private String scheduledDeliveryStartDate;
 
-    private String scheduledDeliveryEndLocalDate;
+    private String scheduledDeliveryEndDate;
 
 
     private Long productId;
@@ -218,19 +218,19 @@ public class PurchaseOrderItemDTO implements Serializable {
     public void setConditionSubtypeId(String conditionSubtypeId) {
         this.conditionSubtypeId = conditionSubtypeId;
     }
-    public String getScheduledDeliveryStartLocalDate() {
-        return scheduledDeliveryStartLocalDate;
+    public String getScheduledDeliveryStartDate() {
+        return scheduledDeliveryStartDate;
     }
 
-    public void setScheduledDeliveryStartLocalDate(String scheduledDeliveryStartLocalDate) {
-        this.scheduledDeliveryStartLocalDate = scheduledDeliveryStartLocalDate;
+    public void setScheduledDeliveryStartDate(String scheduledDeliveryStartDate) {
+        this.scheduledDeliveryStartDate = scheduledDeliveryStartDate;
     }
-    public String getScheduledDeliveryEndLocalDate() {
-        return scheduledDeliveryEndLocalDate;
+    public String getScheduledDeliveryEndDate() {
+        return scheduledDeliveryEndDate;
     }
 
-    public void setScheduledDeliveryEndLocalDate(String scheduledDeliveryEndLocalDate) {
-        this.scheduledDeliveryEndLocalDate = scheduledDeliveryEndLocalDate;
+    public void setScheduledDeliveryEndDate(String scheduledDeliveryEndDate) {
+        this.scheduledDeliveryEndDate = scheduledDeliveryEndDate;
     }
 
     public Long getProductId() {
@@ -295,8 +295,8 @@ public class PurchaseOrderItemDTO implements Serializable {
             ", conditionNote='" + conditionNote + "'" +
             ", conditionId='" + conditionId + "'" +
             ", conditionSubtypeId='" + conditionSubtypeId + "'" +
-            ", scheduledDeliveryStartLocalDate='" + scheduledDeliveryStartLocalDate + "'" +
-            ", scheduledDeliveryEndLocalDate='" + scheduledDeliveryEndLocalDate + "'" +
+            ", scheduledDeliveryStartDate='" + scheduledDeliveryStartDate + "'" +
+            ", scheduledDeliveryEndDate='" + scheduledDeliveryEndDate + "'" +
             '}';
     }
 }

@@ -126,7 +126,7 @@
                                 totalVotes: null,
                                 verifiedPurchase: null,
                                 realName: null,
-                                reviewLocalDate: null,
+                                reviewDate: null,
                                 content: null,
                                 specificNote: null,
                                 id: null

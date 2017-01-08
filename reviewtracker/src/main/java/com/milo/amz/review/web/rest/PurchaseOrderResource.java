@@ -124,5 +124,10 @@ public class PurchaseOrderResource {
         purchaseOrderService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("purchaseOrder", id.toString())).build();
     }
-
+    
+    @GetMapping("/incomplete-purchase-orders")
+    @Timed
+    public ResponseEntity<List<PurchaseOrderDTO>> getPurchaseOrderWithIncompleteItems() {
+    	 	return new ResponseEntity<>(purchaseOrderService.findOrdersWithIcompleteItems(), null, HttpStatus.OK);
+       }
 }

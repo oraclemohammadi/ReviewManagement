@@ -80,7 +80,7 @@ class ReviewGatlingTest extends Simulation {
             .exec(http("Create new review")
             .post("/api/reviews")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "itemID":"SAMPLE_TEXT", "reviewID":"SAMPLE_TEXT", "customerName":"SAMPLE_TEXT", "customerID":"SAMPLE_TEXT", "title":"SAMPLE_TEXT", "rating":null, "fullRating":null, "helpfulVotes":null, "totalVotes":null, "verifiedPurchase":null, "realName":"SAMPLE_TEXT", "reviewLocalDate":"2020-01-01T00:00:00.000Z", "content":"SAMPLE_TEXT", "specificNote":"SAMPLE_TEXT"}""")).asJSON
+            .body(StringBody("""{"id":null, "itemID":"SAMPLE_TEXT", "reviewID":"SAMPLE_TEXT", "customerName":"SAMPLE_TEXT", "customerID":"SAMPLE_TEXT", "title":"SAMPLE_TEXT", "rating":null, "fullRating":null, "helpfulVotes":null, "totalVotes":null, "verifiedPurchase":null, "realName":"SAMPLE_TEXT", "reviewDate":"2020-01-01T00:00:00.000Z", "content":"SAMPLE_TEXT", "specificNote":"SAMPLE_TEXT"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_review_url"))).exitHereIfFailed
             .pause(10)

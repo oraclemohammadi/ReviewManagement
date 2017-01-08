@@ -14,50 +14,22 @@
     <property name="floatType" value="float" dbms="mysql, oracle"/>
 
     <!--
-        Added the entity ShippingAddress.
+        Added the entity PaymentExecution.
     -->
-    <changeSet id="20170103120709-1" author="jhipster">
-        <createTable tableName="shipping_address">
+    <changeSet id="20170104133758-1" author="jhipster">
+        <createTable tableName="payment_execution">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="name" type="varchar(255)">
-                <constraints nullable="false" />
-            </column>
-            
-            <column name="address_line_1" type="varchar(255)">
-                <constraints nullable="false" />
-            </column>
-            
-            <column name="address_line_2" type="varchar(255)">
+            <column name="payment_amount" type="bigint">
                 <constraints nullable="true" />
             </column>
             
-            <column name="address_line_3" type="varchar(255)">
+            <column name="currency_code" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             
-            <column name="city" type="varchar(255)">
-                <constraints nullable="false" />
-            </column>
-            
-            <column name="county" type="varchar(255)">
-                <constraints nullable="false" />
-            </column>
-            
-            <column name="postal_code" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="district" type="varchar(255)">
-                <constraints nullable="false" />
-            </column>
-            
-            <column name="state_or_region" type="varchar(255)">
-                <constraints nullable="false" />
-            </column>
-            
-            <column name="phone" type="varchar(255)">
+            <column name="payment_method" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             

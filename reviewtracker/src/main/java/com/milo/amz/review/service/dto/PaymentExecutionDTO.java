@@ -1,6 +1,8 @@
 package com.milo.amz.review.service.dto;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 
@@ -18,6 +20,8 @@ public class PaymentExecutionDTO implements Serializable {
     private String paymentMethod;
 
 
+    private Long purchaseOrderId;
+    
     public Long getId() {
         return id;
     }
@@ -45,6 +49,14 @@ public class PaymentExecutionDTO implements Serializable {
 
     public void setPaymentMethod(String paymentMethod) {
         this.paymentMethod = paymentMethod;
+    }
+
+    public Long getPurchaseOrderId() {
+        return purchaseOrderId;
+    }
+
+    public void setPurchaseOrderId(Long purchaseOrderId) {
+        this.purchaseOrderId = purchaseOrderId;
     }
 
     @Override

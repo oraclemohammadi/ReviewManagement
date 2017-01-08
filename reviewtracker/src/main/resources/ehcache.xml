@@ -22,29 +22,5 @@
 
     <cache alias="com.milo.amz.review.social.SocialUserConnection" uses-template="simple"/>
 
-    <cache alias="com.milo.amz.review.domain.Product" uses-template="simple"/>
-
-    <cache alias="com.milo.amz.review.domain.Product.reviews" uses-template="simple"/>
-
-    <cache alias="com.milo.amz.review.domain.Product.canBeOrderItems" uses-template="simple"/>
-
-    <cache alias="com.milo.amz.review.domain.Review" uses-template="simple"/>
-
-    <cache alias="com.milo.amz.review.domain.PurchaseOrder" uses-template="simple"/>
-
-    <cache alias="com.milo.amz.review.domain.PurchaseOrder.shippedTos" uses-template="simple"/>
-
-    <cache alias="com.milo.amz.review.domain.PurchaseOrder.contains" uses-template="simple"/>
-
-    <cache alias="com.milo.amz.review.domain.ShippingAddress" uses-template="simple"/>
-
-    <cache alias="com.milo.amz.review.domain.PurchaseOrderItem" uses-template="simple"/>
-
-    <cache alias="com.milo.amz.review.domain.PaymentExecution" uses-template="simple"/>
-
-    <cache alias="com.milo.amz.review.domain.InvoiceData" uses-template="simple"/>
-
-    <cache alias="com.milo.amz.review.domain.Promotions" uses-template="simple"/>
-
     <!-- jhipster-needle-ehcache-add-entry -->
 </config>

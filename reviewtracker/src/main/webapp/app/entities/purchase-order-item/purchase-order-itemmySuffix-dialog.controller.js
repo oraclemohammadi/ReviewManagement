@@ -5,9 +5,9 @@
         .module('reviewtrackerApp')
         .controller('PurchaseOrderItemMySuffixDialogController', PurchaseOrderItemMySuffixDialogController);
 
-    PurchaseOrderItemMySuffixDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'PurchaseOrderItem', 'Product', 'PurchaseOrder'];
+    PurchaseOrderItemMySuffixDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'PurchaseOrderItem', 'Product', 'PurchaseOrder', 'Promotions'];
 
-    function PurchaseOrderItemMySuffixDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, PurchaseOrderItem, Product, PurchaseOrder) {
+    function PurchaseOrderItemMySuffixDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, PurchaseOrderItem, Product, PurchaseOrder, Promotions) {
         var vm = this;
 
         vm.purchaseOrderItem = entity;
@@ -15,6 +15,7 @@
         vm.save = save;
         vm.products = Product.query();
         vm.purchaseorders = PurchaseOrder.query();
+        vm.promotions = Promotions.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

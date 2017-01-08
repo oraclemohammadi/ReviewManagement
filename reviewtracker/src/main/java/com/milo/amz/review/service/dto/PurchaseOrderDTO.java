@@ -17,9 +17,9 @@ public class PurchaseOrderDTO implements Serializable {
 
     private String sellerOrderId;
 
-    private LocalDate purchaseLocalDate;
+    private LocalDate purchaseDate;
 
-    private LocalDate lastUpdateLocalDate;
+    private LocalDate lastUpdateDate;
 
     private String orderStatus;
 
@@ -29,7 +29,7 @@ public class PurchaseOrderDTO implements Serializable {
 
     private String shipServiceLevel;
 
-    private Long orderTotal;
+    private String orderTotal;
 
     private String currencyCode;
 
@@ -42,6 +42,8 @@ public class PurchaseOrderDTO implements Serializable {
     private PaymentMethodEnum paymentMethod;
 
     private String marketplaceId;
+
+    private String buyerId;
 
     private String buyerEmail;
 
@@ -57,14 +59,12 @@ public class PurchaseOrderDTO implements Serializable {
 
     private String orderType;
 
-    private LocalDate earliestShipLocalDate;
+    private LocalDate earliestShipDate;
 
-    private LocalDate latestShipLocalDate;
+    private LocalDate latestShipDate;
 
 
     private Long invoiceId;
-    
-    private Long paymentId;
     
     public Long getId() {
         return id;
@@ -80,19 +80,19 @@ public class PurchaseOrderDTO implements Serializable {
     public void setSellerOrderId(String sellerOrderId) {
         this.sellerOrderId = sellerOrderId;
     }
-    public LocalDate getPurchaseLocalDate() {
-        return purchaseLocalDate;
+    public LocalDate getPurchaseDate() {
+        return purchaseDate;
     }
 
-    public void setPurchaseLocalDate(LocalDate purchaseLocalDate) {
-        this.purchaseLocalDate = purchaseLocalDate;
+    public void setPurchaseDate(LocalDate purchaseDate) {
+        this.purchaseDate = purchaseDate;
     }
-    public LocalDate getLastUpdateLocalDate() {
-        return lastUpdateLocalDate;
+    public LocalDate getLastUpdateDate() {
+        return lastUpdateDate;
     }
 
-    public void setLastUpdateLocalDate(LocalDate lastUpdateLocalDate) {
-        this.lastUpdateLocalDate = lastUpdateLocalDate;
+    public void setLastUpdateDate(LocalDate lastUpdateDate) {
+        this.lastUpdateDate = lastUpdateDate;
     }
     public String getOrderStatus() {
         return orderStatus;
@@ -122,11 +122,11 @@ public class PurchaseOrderDTO implements Serializable {
     public void setShipServiceLevel(String shipServiceLevel) {
         this.shipServiceLevel = shipServiceLevel;
     }
-    public Long getOrderTotal() {
+    public String getOrderTotal() {
         return orderTotal;
     }
 
-    public void setOrderTotal(Long orderTotal) {
+    public void setOrderTotal(String orderTotal) {
         this.orderTotal = orderTotal;
     }
     public String getCurrencyCode() {
@@ -170,6 +170,13 @@ public class PurchaseOrderDTO implements Serializable {
 
     public void setMarketplaceId(String marketplaceId) {
         this.marketplaceId = marketplaceId;
+    }
+    public String getBuyerId() {
+        return buyerId;
+    }
+
+    public void setBuyerId(String buyerId) {
+        this.buyerId = buyerId;
     }
     public String getBuyerEmail() {
         return buyerEmail;
@@ -220,19 +227,19 @@ public class PurchaseOrderDTO implements Serializable {
     public void setOrderType(String orderType) {
         this.orderType = orderType;
     }
-    public LocalDate getEarliestShipLocalDate() {
-        return earliestShipLocalDate;
+    public LocalDate getEarliestShipDate() {
+        return earliestShipDate;
     }
 
-    public void setEarliestShipLocalDate(LocalDate earliestShipLocalDate) {
-        this.earliestShipLocalDate = earliestShipLocalDate;
+    public void setEarliestShipDate(LocalDate earliestShipDate) {
+        this.earliestShipDate = earliestShipDate;
     }
-    public LocalDate getLatestShipLocalDate() {
-        return latestShipLocalDate;
+    public LocalDate getLatestShipDate() {
+        return latestShipDate;
     }
 
-    public void setLatestShipLocalDate(LocalDate latestShipLocalDate) {
-        this.latestShipLocalDate = latestShipLocalDate;
+    public void setLatestShipDate(LocalDate latestShipDate) {
+        this.latestShipDate = latestShipDate;
     }
 
     public Long getInvoiceId() {
@@ -241,14 +248,6 @@ public class PurchaseOrderDTO implements Serializable {
 
     public void setInvoiceId(Long invoiceDataId) {
         this.invoiceId = invoiceDataId;
-    }
-
-    public Long getPaymentId() {
-        return paymentId;
-    }
-
-    public void setPaymentId(Long paymentExecutionId) {
-        this.paymentId = paymentExecutionId;
     }
 
     @Override
@@ -277,8 +276,8 @@ public class PurchaseOrderDTO implements Serializable {
         return "PurchaseOrderDTO{" +
             "id=" + id +
             ", sellerOrderId='" + sellerOrderId + "'" +
-            ", purchaseLocalDate='" + purchaseLocalDate + "'" +
-            ", lastUpdateLocalDate='" + lastUpdateLocalDate + "'" +
+            ", purchaseDate='" + purchaseDate + "'" +
+            ", lastUpdateDate='" + lastUpdateDate + "'" +
             ", orderStatus='" + orderStatus + "'" +
             ", fulfillmentChannel='" + fulfillmentChannel + "'" +
             ", orderChannel='" + orderChannel + "'" +
@@ -290,6 +289,7 @@ public class PurchaseOrderDTO implements Serializable {
             ", numberOfItemsUnshipped='" + numberOfItemsUnshipped + "'" +
             ", paymentMethod='" + paymentMethod + "'" +
             ", marketplaceId='" + marketplaceId + "'" +
+            ", buyerId='" + buyerId + "'" +
             ", buyerEmail='" + buyerEmail + "'" +
             ", buyerName='" + buyerName + "'" +
             ", shipmentServiceLevelCategory='" + shipmentServiceLevelCategory + "'" +
@@ -297,8 +297,8 @@ public class PurchaseOrderDTO implements Serializable {
             ", tfmShipmentStatus='" + tfmShipmentStatus + "'" +
             ", cbaDisplayableShippingLabel='" + cbaDisplayableShippingLabel + "'" +
             ", orderType='" + orderType + "'" +
-            ", earliestShipLocalDate='" + earliestShipLocalDate + "'" +
-            ", latestShipLocalDate='" + latestShipLocalDate + "'" +
+            ", earliestShipDate='" + earliestShipDate + "'" +
+            ", latestShipDate='" + latestShipDate + "'" +
             '}';
     }
 }

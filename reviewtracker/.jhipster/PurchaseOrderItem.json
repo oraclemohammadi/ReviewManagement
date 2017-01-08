@@ -12,6 +12,12 @@
             "otherEntityName": "purchaseOrder",
             "relationshipType": "many-to-one",
             "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "includePromotions",
+            "otherEntityName": "promotions",
+            "otherEntityRelationshipName": "purchaseOrderItem"
         }
     ],
     "fields": [
@@ -100,15 +106,15 @@
             "fieldType": "String"
         },
         {
-            "fieldName": "scheduledDeliveryStartLocalDate",
+            "fieldName": "scheduledDeliveryStartDate",
             "fieldType": "String"
         },
         {
-            "fieldName": "scheduledDeliveryEndLocalDate",
+            "fieldName": "scheduledDeliveryEndDate",
             "fieldType": "String"
         }
     ],
-    "changelogDate": "20170103120710",
+    "changelogDate": "20170104133757",
     "entityTableName": "purchase_order_item",
     "dto": "mapstruct",
     "pagination": "infinite-scroll",

@@ -24,6 +24,9 @@ public class Promotions implements Serializable {
     @Column(name = "promotion_id")
     private String promotionId;
 
+    @ManyToOne
+    private PurchaseOrderItem purchaseOrderItem;
+
     public Long getId() {
         return id;
     }
@@ -43,6 +46,19 @@ public class Promotions implements Serializable {
 
     public void setPromotionId(String promotionId) {
         this.promotionId = promotionId;
+    }
+
+    public PurchaseOrderItem getPurchaseOrderItem() {
+        return purchaseOrderItem;
+    }
+
+    public Promotions purchaseOrderItem(PurchaseOrderItem purchaseOrderItem) {
+        this.purchaseOrderItem = purchaseOrderItem;
+        return this;
+    }
+
+    public void setPurchaseOrderItem(PurchaseOrderItem purchaseOrderItem) {
+        this.purchaseOrderItem = purchaseOrderItem;
     }
 
     @Override

@@ -22,6 +22,7 @@
                     <th><span>Payment Amount</span></th>
                     <th><span>Currency Code</span></th>
                     <th><span>Payment Method</span></th>
+                    <th><span>Purchase Order</span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -31,6 +32,9 @@
                     <td>{{paymentExecution.paymentAmount}}</td>
                     <td>{{paymentExecution.currencyCode}}</td>
                     <td>{{paymentExecution.paymentMethod}}</td>
+                    <td>
+                        <a ui-sref="purchase-ordermySuffix-detail({id:paymentExecution.purchaseOrderId})">{{paymentExecution.purchaseOrderId}}</a>
+                    </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

@@ -1,10 +1,13 @@
 package com.milo.amz.review.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -84,17 +87,22 @@ public class PurchaseOrderItem implements Serializable {
     @Column(name = "condition_subtype_id")
     private String conditionSubtypeId;
 
-    @Column(name = "scheduled_delivery_start_local_date")
-    private String scheduledDeliveryStartLocalDate;
+    @Column(name = "scheduled_delivery_start_date")
+    private String scheduledDeliveryStartDate;
 
-    @Column(name = "scheduled_delivery_end_local_date")
-    private String scheduledDeliveryEndLocalDate;
+    @Column(name = "scheduled_delivery_end_date")
+    private String scheduledDeliveryEndDate;
 
     @ManyToOne
     private Product product;
 
     @ManyToOne
     private PurchaseOrder purchaseOrder;
+
+    @OneToMany(mappedBy = "purchaseOrderItem")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Promotions> includePromotions = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -377,30 +385,30 @@ public class PurchaseOrderItem implements Serializable {
         this.conditionSubtypeId = conditionSubtypeId;
     }
 
-    public String getScheduledDeliveryStartLocalDate() {
-        return scheduledDeliveryStartLocalDate;
+    public String getScheduledDeliveryStartDate() {
+        return scheduledDeliveryStartDate;
     }
 
-    public PurchaseOrderItem scheduledDeliveryStartLocalDate(String scheduledDeliveryStartLocalDate) {
-        this.scheduledDeliveryStartLocalDate = scheduledDeliveryStartLocalDate;
+    public PurchaseOrderItem scheduledDeliveryStartDate(String scheduledDeliveryStartDate) {
+        this.scheduledDeliveryStartDate = scheduledDeliveryStartDate;
         return this;
     }
 
-    public void setScheduledDeliveryStartLocalDate(String scheduledDeliveryStartLocalDate) {
-        this.scheduledDeliveryStartLocalDate = scheduledDeliveryStartLocalDate;
+    public void setScheduledDeliveryStartDate(String scheduledDeliveryStartDate) {
+        this.scheduledDeliveryStartDate = scheduledDeliveryStartDate;
     }
 
-    public String getScheduledDeliveryEndLocalDate() {
-        return scheduledDeliveryEndLocalDate;
+    public String getScheduledDeliveryEndDate() {
+        return scheduledDeliveryEndDate;
     }
 
-    public PurchaseOrderItem scheduledDeliveryEndLocalDate(String scheduledDeliveryEndLocalDate) {
-        this.scheduledDeliveryEndLocalDate = scheduledDeliveryEndLocalDate;
+    public PurchaseOrderItem scheduledDeliveryEndDate(String scheduledDeliveryEndDate) {
+        this.scheduledDeliveryEndDate = scheduledDeliveryEndDate;
         return this;
     }
 
-    public void setScheduledDeliveryEndLocalDate(String scheduledDeliveryEndLocalDate) {
-        this.scheduledDeliveryEndLocalDate = scheduledDeliveryEndLocalDate;
+    public void setScheduledDeliveryEndDate(String scheduledDeliveryEndDate) {
+        this.scheduledDeliveryEndDate = scheduledDeliveryEndDate;
     }
 
     public Product getProduct() {
@@ -427,6 +435,31 @@ public class PurchaseOrderItem implements Serializable {
 
     public void setPurchaseOrder(PurchaseOrder purchaseOrder) {
         this.purchaseOrder = purchaseOrder;
+    }
+
+    public Set<Promotions> getIncludePromotions() {
+        return includePromotions;
+    }
+
+    public PurchaseOrderItem includePromotions(Set<Promotions> promotions) {
+        this.includePromotions = promotions;
+        return this;
+    }
+
+    public PurchaseOrderItem addIncludePromotions(Promotions promotions) {
+        includePromotions.add(promotions);
+        promotions.setPurchaseOrderItem(this);
+        return this;
+    }
+
+    public PurchaseOrderItem removeIncludePromotions(Promotions promotions) {
+        includePromotions.remove(promotions);
+        promotions.setPurchaseOrderItem(null);
+        return this;
+    }
+
+    public void setIncludePromotions(Set<Promotions> promotions) {
+        this.includePromotions = promotions;
     }
 
     @Override
@@ -474,8 +507,8 @@ public class PurchaseOrderItem implements Serializable {
             ", conditionNote='" + conditionNote + "'" +
             ", conditionId='" + conditionId + "'" +
             ", conditionSubtypeId='" + conditionSubtypeId + "'" +
-            ", scheduledDeliveryStartLocalDate='" + scheduledDeliveryStartLocalDate + "'" +
-            ", scheduledDeliveryEndLocalDate='" + scheduledDeliveryEndLocalDate + "'" +
+            ", scheduledDeliveryStartDate='" + scheduledDeliveryStartDate + "'" +
+            ", scheduledDeliveryEndDate='" + scheduledDeliveryEndDate + "'" +
             '}';
     }
 }

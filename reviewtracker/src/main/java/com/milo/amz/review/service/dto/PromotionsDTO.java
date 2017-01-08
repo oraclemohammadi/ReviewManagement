@@ -1,6 +1,8 @@
 package com.milo.amz.review.service.dto;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 
@@ -14,6 +16,8 @@ public class PromotionsDTO implements Serializable {
     private String promotionId;
 
 
+    private Long purchaseOrderItemId;
+    
     public Long getId() {
         return id;
     }
@@ -27,6 +31,14 @@ public class PromotionsDTO implements Serializable {
 
     public void setPromotionId(String promotionId) {
         this.promotionId = promotionId;
+    }
+
+    public Long getPurchaseOrderItemId() {
+        return purchaseOrderItemId;
+    }
+
+    public void setPurchaseOrderItemId(Long purchaseOrderItemId) {
+        this.purchaseOrderItemId = purchaseOrderItemId;
     }
 
     @Override

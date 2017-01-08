@@ -4,15 +4,15 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
     <!--
-        Added the constraints for entity Review.
+        Added the constraints for entity PaymentExecution.
     -->
-    <changeSet id="20170103120707-2" author="jhipster">
+    <changeSet id="20170104133758-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="product_id"
-                                 baseTableName="review"
-                                 constraintName="fk_review_product_id"
+        <addForeignKeyConstraint baseColumnNames="purchase_order_id"
+                                 baseTableName="payment_execution"
+                                 constraintName="fk_payment_execution_purchase_order_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="product"/>
+                                 referencedTableName="purchase_order"/>
 
     </changeSet>
 </databaseChangeLog>
