@@ -82,4 +82,12 @@ public class ReviewServiceImpl implements ReviewService{
         log.debug("Request to delete Review : {}", id);
         reviewRepository.delete(id);
     }
+
+	@Override
+	public long countReviewByproduct(long productId) {
+		// TODO Auto-generated method stub
+		return reviewRepository.countReviewByproduct(productId);
+	}
+    
+   
 }

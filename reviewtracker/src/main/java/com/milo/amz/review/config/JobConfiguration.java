@@ -107,6 +107,8 @@ public class JobConfiguration implements ApplicationContextAware {
 				.build();
 	}
 
+	
+	
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 		this.applicationContext = applicationContext;

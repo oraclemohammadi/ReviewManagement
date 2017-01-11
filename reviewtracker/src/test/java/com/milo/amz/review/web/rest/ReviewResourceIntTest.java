@@ -26,6 +26,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -57,14 +58,14 @@ public class ReviewResourceIntTest {
     private static final String DEFAULT_TITLE = "AAAAAAAAAA";
     private static final String UPDATED_TITLE = "BBBBBBBBBB";
 
-    private static final Long DEFAULT_RATING = 1L;
-    private static final Long UPDATED_RATING = 2L;
+    private static final int DEFAULT_RATING = 1;
+    private static final int UPDATED_RATING = 2;
 
     private static final Long DEFAULT_FULL_RATING = 1L;
     private static final Long UPDATED_FULL_RATING = 2L;
 
-    private static final Long DEFAULT_HELPFUL_VOTES = 1L;
-    private static final Long UPDATED_HELPFUL_VOTES = 2L;
+    private static final int DEFAULT_HELPFUL_VOTES = 1;
+    private static final int UPDATED_HELPFUL_VOTES = 2;
 
     private static final Long DEFAULT_TOTAL_VOTES = 1L;
     private static final Long UPDATED_TOTAL_VOTES = 2L;
@@ -75,8 +76,8 @@ public class ReviewResourceIntTest {
     private static final String DEFAULT_REAL_NAME = "AAAAAAAAAA";
     private static final String UPDATED_REAL_NAME = "BBBBBBBBBB";
 
-    private static final LocalDate DEFAULT_REVIEW_DATE = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_REVIEW_DATE = LocalDate.now(ZoneId.systemDefault());
+    private static final Date DEFAULT_REVIEW_DATE = new Date();
+    private static final Date UPDATED_REVIEW_DATE = new Date();
 
     private static final String DEFAULT_CONTENT = "AAAAAAAAAA";
     private static final String UPDATED_CONTENT = "BBBBBBBBBB";
@@ -195,9 +196,9 @@ public class ReviewResourceIntTest {
             .andExpect(jsonPath("$.[*].customerName").value(hasItem(DEFAULT_CUSTOMER_NAME.toString())))
             .andExpect(jsonPath("$.[*].customerID").value(hasItem(DEFAULT_CUSTOMER_ID.toString())))
             .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE.toString())))
-            .andExpect(jsonPath("$.[*].rating").value(hasItem(DEFAULT_RATING.intValue())))
+            .andExpect(jsonPath("$.[*].rating").value(hasItem(DEFAULT_RATING)))
             .andExpect(jsonPath("$.[*].fullRating").value(hasItem(DEFAULT_FULL_RATING.intValue())))
-            .andExpect(jsonPath("$.[*].helpfulVotes").value(hasItem(DEFAULT_HELPFUL_VOTES.intValue())))
+            .andExpect(jsonPath("$.[*].helpfulVotes").value(hasItem(DEFAULT_HELPFUL_VOTES)))
             .andExpect(jsonPath("$.[*].totalVotes").value(hasItem(DEFAULT_TOTAL_VOTES.intValue())))
             .andExpect(jsonPath("$.[*].verifiedPurchase").value(hasItem(DEFAULT_VERIFIED_PURCHASE.booleanValue())))
             .andExpect(jsonPath("$.[*].realName").value(hasItem(DEFAULT_REAL_NAME.toString())))
@@ -222,9 +223,9 @@ public class ReviewResourceIntTest {
             .andExpect(jsonPath("$.customerName").value(DEFAULT_CUSTOMER_NAME.toString()))
             .andExpect(jsonPath("$.customerID").value(DEFAULT_CUSTOMER_ID.toString()))
             .andExpect(jsonPath("$.title").value(DEFAULT_TITLE.toString()))
-            .andExpect(jsonPath("$.rating").value(DEFAULT_RATING.intValue()))
+            .andExpect(jsonPath("$.rating").value(DEFAULT_RATING))
             .andExpect(jsonPath("$.fullRating").value(DEFAULT_FULL_RATING.intValue()))
-            .andExpect(jsonPath("$.helpfulVotes").value(DEFAULT_HELPFUL_VOTES.intValue()))
+            .andExpect(jsonPath("$.helpfulVotes").value(DEFAULT_HELPFUL_VOTES))
             .andExpect(jsonPath("$.totalVotes").value(DEFAULT_TOTAL_VOTES.intValue()))
             .andExpect(jsonPath("$.verifiedPurchase").value(DEFAULT_VERIFIED_PURCHASE.booleanValue()))
             .andExpect(jsonPath("$.realName").value(DEFAULT_REAL_NAME.toString()))

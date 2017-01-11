@@ -42,4 +42,6 @@ public interface ReviewService {
      *  @param id the id of the entity
      */
     void delete(Long id);
+    
+    long countReviewByproduct(long productId);
 }

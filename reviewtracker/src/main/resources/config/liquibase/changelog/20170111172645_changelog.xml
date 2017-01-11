@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+   <changeSet author="mehdi (generated)" id="1484155622057-1">
+      <addUniqueConstraint columnNames="asin"
+                           constraintName="UC_PRODUCTASIN_COL"
+                           tableName="product"/>
+   </changeSet>
+   <changeSet author="mehdi (generated)" id="1484155622057-2">
+      <addUniqueConstraint columnNames="seller_order_id"
+                           constraintName="UC_PURCHASE_ORDERSELLER_ORDER_ID_COL"
+                           tableName="purchase_order"/>
+   </changeSet>
+   <changeSet author="mehdi (generated)" id="1484155622057-3">
+      <addUniqueConstraint columnNames="review_id"
+                           constraintName="UC_REVIEWREVIEW_ID_COL"
+                           tableName="review"/>
+   </changeSet>
+   <changeSet author="mehdi (generated)" id="1484155622057-4">
+      <addForeignKeyConstraint baseColumnNames="product_id"
+                               baseTableName="purchase_order_item"
+                               constraintName="FK593lt017d995ds7nuqxgo3mmm"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="product"/>
+   </changeSet>
+   <changeSet author="mehdi (generated)" id="1484155622057-5">
+      <addForeignKeyConstraint baseColumnNames="invoice_id"
+                               baseTableName="purchase_order"
+                               constraintName="FK6hn5ammwh45f75xdt26yiwwb9"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="invoice_data"/>
+   </changeSet>
+   <changeSet author="mehdi (generated)" id="1484155622057-6">
+      <addForeignKeyConstraint baseColumnNames="purchase_order_id"
+                               baseTableName="shipping_address"
+                               constraintName="FK7yr04m9px3gtw3k8h7la4x5lt"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="purchase_order"/>
+   </changeSet>
+   <changeSet author="mehdi (generated)" id="1484155622057-7">
+      <addForeignKeyConstraint baseColumnNames="product_id"
+                               baseTableName="review"
+                               constraintName="FKiyof1sindb9qiqr9o8npj8klt"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="product"/>
+   </changeSet>
+   <changeSet author="mehdi (generated)" id="1484155622057-8">
+      <addForeignKeyConstraint baseColumnNames="purchase_order_id"
+                               baseTableName="purchase_order_item"
+                               constraintName="FKmj122necubadvuquvjoq967y7"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="purchase_order"/>
+   </changeSet>
+   <changeSet author="mehdi (generated)" id="1484155622057-9">
+      <addForeignKeyConstraint baseColumnNames="purchase_order_item_id"
+                               baseTableName="promotions"
+                               constraintName="FKqd46cp1d04ngvn9wkof48hd9q"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="purchase_order_item"/>
+   </changeSet>
+   <changeSet author="mehdi (generated)" id="1484155622057-10">
+      <addForeignKeyConstraint baseColumnNames="purchase_order_id"
+                               baseTableName="payment_execution"
+                               constraintName="FKqvgf66lhr1dlh0r78585q767u"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="purchase_order"/>
+   </changeSet>
+   <changeSet author="mehdi (generated)" id="1484155622057-11">
+      <dropForeignKeyConstraint baseTableName="batch_job_execution_context"
+                                constraintName="JOB_EXEC_CTX_FK"/>
+   </changeSet>
+   <changeSet author="mehdi (generated)" id="1484155622057-12">
+      <dropForeignKeyConstraint baseTableName="batch_job_execution_params"
+                                constraintName="JOB_EXEC_PARAMS_FK"/>
+   </changeSet>
+   <changeSet author="mehdi (generated)" id="1484155622057-13">
+      <dropForeignKeyConstraint baseTableName="batch_step_execution" constraintName="JOB_EXEC_STEP_FK"/>
+   </changeSet>
+   <changeSet author="mehdi (generated)" id="1484155622057-14">
+      <dropForeignKeyConstraint baseTableName="batch_job_execution" constraintName="JOB_INST_EXEC_FK"/>
+   </changeSet>
+   <changeSet author="mehdi (generated)" id="1484155622057-15">
+      <dropForeignKeyConstraint baseTableName="batch_step_execution_context"
+                                constraintName="STEP_EXEC_CTX_FK"/>
+   </changeSet>
+   <changeSet author="mehdi (generated)" id="1484155622057-16">
+      <dropUniqueConstraint constraintName="JOB_INST_UN" tableName="batch_job_instance"/>
+   </changeSet>
+   <changeSet author="mehdi (generated)" id="1484155622057-17">
+      <dropUniqueConstraint constraintName="UNIQUE_KEY_UN" tableName="batch_job_execution_seq"/>
+   </changeSet>
+   <changeSet author="mehdi (generated)" id="1484155622057-18">
+      <dropUniqueConstraint constraintName="UNIQUE_KEY_UN" tableName="batch_job_seq"/>
+   </changeSet>
+   <changeSet author="mehdi (generated)" id="1484155622057-19">
+      <dropUniqueConstraint constraintName="UNIQUE_KEY_UN" tableName="batch_step_execution_seq"/>
+   </changeSet>
+   <changeSet author="mehdi (generated)" id="1484155622057-20">
+      <dropUniqueConstraint constraintName="user_id" tableName="jhi_social_user_connection"/>
+   </changeSet>
+   <changeSet author="mehdi (generated)" id="1484155622057-21">
+      <dropUniqueConstraint constraintName="user_id_2" tableName="jhi_social_user_connection"/>
+   </changeSet>
+   <changeSet author="mehdi (generated)" id="1484155622057-22">
+      <dropTable tableName="batch_job_execution"/>
+   </changeSet>
+   <changeSet author="mehdi (generated)" id="1484155622057-23">
+      <dropTable tableName="batch_job_execution_context"/>
+   </changeSet>
+   <changeSet author="mehdi (generated)" id="1484155622057-24">
+      <dropTable tableName="batch_job_execution_params"/>
+   </changeSet>
+   <changeSet author="mehdi (generated)" id="1484155622057-25">
+      <dropTable tableName="batch_job_execution_seq"/>
+   </changeSet>
+   <changeSet author="mehdi (generated)" id="1484155622057-26">
+      <dropTable tableName="batch_job_instance"/>
+   </changeSet>
+   <changeSet author="mehdi (generated)" id="1484155622057-27">
+      <dropTable tableName="batch_job_seq"/>
+   </changeSet>
+   <changeSet author="mehdi (generated)" id="1484155622057-28">
+      <dropTable tableName="batch_step_execution"/>
+   </changeSet>
+   <changeSet author="mehdi (generated)" id="1484155622057-29">
+      <dropTable tableName="batch_step_execution_context"/>
+   </changeSet>
+   <changeSet author="mehdi (generated)" id="1484155622057-30">
+      <dropTable tableName="batch_step_execution_seq"/>
+   </changeSet>
+   <changeSet author="mehdi (generated)" id="1484155622057-31">
+      <addNotNullConstraint columnDataType="varchar(255)"
+                            columnName="seller_order_id"
+                            tableName="purchase_order"/>
+   </changeSet>
+</databaseChangeLog>

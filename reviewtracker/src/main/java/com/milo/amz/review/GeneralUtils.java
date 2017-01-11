@@ -1,7 +1,11 @@
 package com.milo.amz.review;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.openqa.selenium.WebDriver;
 
 public class GeneralUtils {
 	public static String getParameterByName (String name,String urlWithQueryString) 
@@ -12,8 +16,13 @@ public class GeneralUtils {
 			return m.group().split("=")[1];
 		return "";
 	}
-	/*public static void main(String[] args){
-		System.out.println(getParameterByName("buyerID", "/gp/help/contact/contact.html?orderID=115-3168835-7461859&buyerID=A28GOCQOKN0WW6&marketplaceID=ATVPDKIKX0DER"));
-	}*/
+	public static List<Integer> extractNumbersfromText(String text){
+		List<Integer> numbersFound=new ArrayList<>();
+		Pattern p = Pattern.compile("-?\\d+");
+		Matcher m = p.matcher(text);
+		while (m.find()) 
+			numbersFound.add(Integer.valueOf(m.group().replace("-", "")));
+		return numbersFound;
+	}
 	
 }

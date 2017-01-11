@@ -6,6 +6,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -25,7 +26,7 @@ public class Review implements Serializable {
     @Column(name = "item_id")
     private String itemID;
 
-    @Column(name = "review_id")
+    @Column(name = "review_id",unique=true)
     private String reviewID;
 
     @Column(name = "customer_name")
@@ -38,13 +39,13 @@ public class Review implements Serializable {
     private String title;
 
     @Column(name = "rating")
-    private Long rating;
+    private int rating;
 
     @Column(name = "full_rating")
     private Long fullRating;
 
     @Column(name = "helpful_votes")
-    private Long helpfulVotes;
+    private int helpfulVotes;
 
     @Column(name = "total_votes")
     private Long totalVotes;
@@ -56,9 +57,9 @@ public class Review implements Serializable {
     private String realName;
 
     @Column(name = "review_date")
-    private LocalDate reviewDate;
+    private Date reviewDate;
 
-    @Column(name = "content")
+    @Column(name = "content",length=100000)
     private String content;
 
     @Column(name = "specific_note")
@@ -140,16 +141,16 @@ public class Review implements Serializable {
         this.title = title;
     }
 
-    public Long getRating() {
+    public int getRating() {
         return rating;
     }
 
-    public Review rating(Long rating) {
+    public Review rating(int rating) {
         this.rating = rating;
         return this;
     }
 
-    public void setRating(Long rating) {
+    public void setRating(int rating) {
         this.rating = rating;
     }
 
@@ -166,16 +167,16 @@ public class Review implements Serializable {
         this.fullRating = fullRating;
     }
 
-    public Long getHelpfulVotes() {
+    public int getHelpfulVotes() {
         return helpfulVotes;
     }
 
-    public Review helpfulVotes(Long helpfulVotes) {
+    public Review helpfulVotes(int helpfulVotes) {
         this.helpfulVotes = helpfulVotes;
         return this;
     }
 
-    public void setHelpfulVotes(Long helpfulVotes) {
+    public void setHelpfulVotes(int helpfulVotes) {
         this.helpfulVotes = helpfulVotes;
     }
 
@@ -218,16 +219,16 @@ public class Review implements Serializable {
         this.realName = realName;
     }
 
-    public LocalDate getReviewDate() {
+    public Date getReviewDate() {
         return reviewDate;
     }
 
-    public Review reviewDate(LocalDate reviewDate) {
+    public Review reviewDate(Date reviewDate) {
         this.reviewDate = reviewDate;
         return this;
     }
 
-    public void setReviewDate(LocalDate reviewDate) {
+    public void setReviewDate(Date reviewDate) {
         this.reviewDate = reviewDate;
     }
 

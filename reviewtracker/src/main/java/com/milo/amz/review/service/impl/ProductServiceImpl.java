@@ -82,4 +82,9 @@ public class ProductServiceImpl implements ProductService{
         log.debug("Request to delete Product : {}", id);
         productRepository.delete(id);
     }
+
+	@Override
+	public List<ProductDTO> findAll() {
+		return productMapper.productsToProductDTOs(productRepository.findAll());
+	}
 }

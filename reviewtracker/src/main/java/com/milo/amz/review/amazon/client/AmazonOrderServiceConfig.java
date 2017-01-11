@@ -19,6 +19,8 @@ package com.milo.amz.review.amazon.client;
 
 import com.amazonservices.mws.orders._2013_09_01.MarketplaceWebServiceOrdersAsyncClient;
 import com.amazonservices.mws.orders._2013_09_01.MarketplaceWebServiceOrdersConfig;
+import com.amazonservices.mws.products.MarketplaceWebServiceProductsAsyncClient;
+import com.amazonservices.mws.products.MarketplaceWebServiceProductsConfig;
 
 
 /**
@@ -27,23 +29,37 @@ import com.amazonservices.mws.orders._2013_09_01.MarketplaceWebServiceOrdersConf
 public class AmazonOrderServiceConfig {
 
     /** The client, lazy initialized. Async client is also a sync client. */
-    private static MarketplaceWebServiceOrdersAsyncClient client = null;
+    private static MarketplaceWebServiceOrdersAsyncClient orderClient = null;
+    private static MarketplaceWebServiceProductsAsyncClient  productClient=null;
     /**
      * Get an async client connection ready to use.
      *
      * @return A ready to use client connection.
      */
+    public static synchronized MarketplaceWebServiceProductsAsyncClient getproductAsyncClient(String accessKey,
+    		String secretKey,
+    		String serviceURL,String appName,String appVersion ) {
+        if (productClient==null) {
+        	MarketplaceWebServiceProductsConfig config = new MarketplaceWebServiceProductsConfig();
+            config.setServiceURL(serviceURL);
+            // Set other client connection configurations here.
+            productClient = new MarketplaceWebServiceProductsAsyncClient(accessKey, secretKey, 
+                    appName, appVersion, config, null);
+        }
+        return productClient;
+    }
+    
     public static synchronized MarketplaceWebServiceOrdersAsyncClient getAsyncClient(String accessKey,
     		String secretKey,
     		String serviceURL,String appName,String appVersion ) {
-        if (client==null) {
+        if (orderClient==null) {
             MarketplaceWebServiceOrdersConfig config = new MarketplaceWebServiceOrdersConfig();
             config.setServiceURL(serviceURL);
             // Set other client connection configurations here.
-            client = new MarketplaceWebServiceOrdersAsyncClient(accessKey, secretKey, 
+            orderClient = new MarketplaceWebServiceOrdersAsyncClient(accessKey, secretKey, 
                     appName, appVersion, config, null);
         }
-        return client;
+        return orderClient;
     }
 
 }

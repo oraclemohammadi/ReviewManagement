@@ -11,5 +11,5 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 public interface ProductRepository extends JpaRepository<Product,Long> {
-
+  List<Product> findAll();
 }

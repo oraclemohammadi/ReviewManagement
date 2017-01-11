@@ -25,25 +25,25 @@ public class PurchaseOrderItemDTO implements Serializable {
 
     private Long quantityShipped;
 
-    private Long itemPrice;
+    private float itemPrice;
 
-    private Long shippingPrice;
+    private float shippingPrice;
 
-    private Long giftWrapPrice;
+    private float giftWrapPrice;
 
-    private Long itemTax;
+    private float itemTax;
 
-    private Long shippingTax;
+    private float shippingTax;
 
-    private Long giftWrapTax;
+    private float giftWrapTax;
 
-    private Long shippingDiscount;
+    private float shippingDiscount;
 
-    private Long promotionDiscount;
+    private float promotionDiscount;
 
-    private Long codFee;
+    private float codFee;
 
-    private Long codFeeDiscount;
+    private float codFeeDiscount;
 
     private String giftMessageText;
 
@@ -71,11 +71,11 @@ public class PurchaseOrderItemDTO implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    public String getAsin() {
+    public String getASIN() {
         return asin;
     }
 
-    public void setAsin(String asin) {
+    public void setASIN(String asin) {
         this.asin = asin;
     }
     public String getSellerSKU() {
@@ -113,72 +113,46 @@ public class PurchaseOrderItemDTO implements Serializable {
     public void setQuantityShipped(Long quantityShipped) {
         this.quantityShipped = quantityShipped;
     }
-    public Long getItemPrice() {
-        return itemPrice;
-    }
-
-    public void setItemPrice(Long itemPrice) {
-        this.itemPrice = itemPrice;
-    }
-    public Long getShippingPrice() {
-        return shippingPrice;
-    }
+   
 
     public void setShippingPrice(Long shippingPrice) {
         this.shippingPrice = shippingPrice;
     }
-    public Long getGiftWrapPrice() {
-        return giftWrapPrice;
-    }
+   
 
     public void setGiftWrapPrice(Long giftWrapPrice) {
         this.giftWrapPrice = giftWrapPrice;
     }
-    public Long getItemTax() {
-        return itemTax;
-    }
+    
 
     public void setItemTax(Long itemTax) {
         this.itemTax = itemTax;
     }
-    public Long getShippingTax() {
-        return shippingTax;
-    }
-
+    
     public void setShippingTax(Long shippingTax) {
         this.shippingTax = shippingTax;
     }
-    public Long getGiftWrapTax() {
-        return giftWrapTax;
-    }
+   
 
     public void setGiftWrapTax(Long giftWrapTax) {
         this.giftWrapTax = giftWrapTax;
     }
-    public Long getShippingDiscount() {
-        return shippingDiscount;
-    }
+    
 
     public void setShippingDiscount(Long shippingDiscount) {
         this.shippingDiscount = shippingDiscount;
     }
-    public Long getPromotionDiscount() {
-        return promotionDiscount;
-    }
+    
 
     public void setPromotionDiscount(Long promotionDiscount) {
         this.promotionDiscount = promotionDiscount;
     }
-    public Long getCodFee() {
-        return codFee;
-    }
+    
 
     public void setCodFee(Long codFee) {
         this.codFee = codFee;
     }
-    public Long getCodFeeDiscount() {
-        return codFeeDiscount;
-    }
+    
 
     public void setCodFeeDiscount(Long codFeeDiscount) {
         this.codFeeDiscount = codFeeDiscount;
@@ -249,7 +223,87 @@ public class PurchaseOrderItemDTO implements Serializable {
         this.purchaseOrderId = purchaseOrderId;
     }
 
-    @Override
+    public float getItemPrice() {
+		return itemPrice;
+	}
+
+	public void setItemPrice(float itemPrice) {
+		this.itemPrice = itemPrice;
+	}
+
+	public float getShippingPrice() {
+		return shippingPrice;
+	}
+
+	public void setShippingPrice(float shippingPrice) {
+		this.shippingPrice = shippingPrice;
+	}
+
+	public float getGiftWrapPrice() {
+		return giftWrapPrice;
+	}
+
+	public void setGiftWrapPrice(float giftWrapPrice) {
+		this.giftWrapPrice = giftWrapPrice;
+	}
+
+	public float getItemTax() {
+		return itemTax;
+	}
+
+	public void setItemTax(float itemTax) {
+		this.itemTax = itemTax;
+	}
+
+	public float getShippingTax() {
+		return shippingTax;
+	}
+
+	public void setShippingTax(float shippingTax) {
+		this.shippingTax = shippingTax;
+	}
+
+	public float getGiftWrapTax() {
+		return giftWrapTax;
+	}
+
+	public void setGiftWrapTax(float giftWrapTax) {
+		this.giftWrapTax = giftWrapTax;
+	}
+
+	public float getShippingDiscount() {
+		return shippingDiscount;
+	}
+
+	public void setShippingDiscount(float shippingDiscount) {
+		this.shippingDiscount = shippingDiscount;
+	}
+
+	public float getPromotionDiscount() {
+		return promotionDiscount;
+	}
+
+	public void setPromotionDiscount(float promotionDiscount) {
+		this.promotionDiscount = promotionDiscount;
+	}
+
+	public float getCodFee() {
+		return codFee;
+	}
+
+	public void setCodFee(float codFee) {
+		this.codFee = codFee;
+	}
+
+	public float getCodFeeDiscount() {
+		return codFeeDiscount;
+	}
+
+	public void setCodFeeDiscount(float codFeeDiscount) {
+		this.codFeeDiscount = codFeeDiscount;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

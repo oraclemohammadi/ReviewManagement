@@ -197,7 +197,7 @@ public class PurchaseOrderItemResourceIntTest {
         List<PurchaseOrderItem> purchaseOrderItems = purchaseOrderItemRepository.findAll();
         assertThat(purchaseOrderItems).hasSize(databaseSizeBeforeCreate + 1);
         PurchaseOrderItem testPurchaseOrderItem = purchaseOrderItems.get(purchaseOrderItems.size() - 1);
-        assertThat(testPurchaseOrderItem.getAsin()).isEqualTo(DEFAULT_ASIN);
+        assertThat(testPurchaseOrderItem.getASIN()).isEqualTo(DEFAULT_ASIN);
         assertThat(testPurchaseOrderItem.getSellerSKU()).isEqualTo(DEFAULT_SELLER_SKU);
         assertThat(testPurchaseOrderItem.getOrderItemId()).isEqualTo(DEFAULT_ORDER_ITEM_ID);
         assertThat(testPurchaseOrderItem.getTitle()).isEqualTo(DEFAULT_TITLE);
@@ -346,7 +346,7 @@ public class PurchaseOrderItemResourceIntTest {
         List<PurchaseOrderItem> purchaseOrderItems = purchaseOrderItemRepository.findAll();
         assertThat(purchaseOrderItems).hasSize(databaseSizeBeforeUpdate);
         PurchaseOrderItem testPurchaseOrderItem = purchaseOrderItems.get(purchaseOrderItems.size() - 1);
-        assertThat(testPurchaseOrderItem.getAsin()).isEqualTo(UPDATED_ASIN);
+        assertThat(testPurchaseOrderItem.getASIN()).isEqualTo(UPDATED_ASIN);
         assertThat(testPurchaseOrderItem.getSellerSKU()).isEqualTo(UPDATED_SELLER_SKU);
         assertThat(testPurchaseOrderItem.getOrderItemId()).isEqualTo(UPDATED_ORDER_ITEM_ID);
         assertThat(testPurchaseOrderItem.getTitle()).isEqualTo(UPDATED_TITLE);

@@ -4,12 +4,10 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import javax.batch.operations.JobOperator;
 import javax.inject.Inject;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
@@ -23,36 +21,24 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
-import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
-import org.springframework.batch.core.launch.support.SimpleJobOperator;
-import org.springframework.batch.core.scope.context.ChunkContext;
-import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.support.ListItemReader;
-import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.amazonservices.mws.orders._2013_09_01.MarketplaceWebServiceOrdersClient;
-import com.amazonservices.mws.orders._2013_09_01.model.ListOrderItemsRequest;
-import com.amazonservices.mws.orders._2013_09_01.model.ListOrderItemsResponse;
-import com.amazonservices.mws.orders._2013_09_01.model.ListOrderItemsResult;
+import com.amazonservices.mws.orders._2013_09_01.MarketplaceWebServiceOrdersAsyncClient;
 import com.amazonservices.mws.orders._2013_09_01.model.ListOrdersRequest;
 import com.amazonservices.mws.orders._2013_09_01.model.ListOrdersResponse;
 import com.amazonservices.mws.orders._2013_09_01.model.Order;
-import com.amazonservices.mws.orders._2013_09_01.model.OrderItem;
-import com.amazonservices.mws.orders._2013_09_01.model.ResponseHeaderMetadata;
-import com.amazonservices.mws.orders._2013_09_01.MarketplaceWebServiceOrdersAsyncClient;
 import com.milo.amz.review.GeneralUtils;
 import com.milo.amz.review.amazon.client.AmazonOrderServiceConfig;
 import com.milo.amz.review.batch.listener.OrderChunkListener;
@@ -61,7 +47,6 @@ import com.milo.amz.review.service.PurchaseOrderService;
 import com.milo.amz.review.service.dto.MarketPlaceDTO;
 import com.milo.amz.review.service.dto.PurchaseOrderDTO;
 import com.milo.amz.review.service.mapper.OrderMapper;
-import com.milo.amz.review.service.mapper.PurchaseOrderMapper;
 
 
 
@@ -92,7 +77,7 @@ public class OrderBatchConfiguration {
 	  
       @Bean 
       @StepScope
-      public ItemReader<Order> reader(){
+      public ItemReader<Order> orderReader(){
     	  ListOrdersResponse response=null;
     	  List<MarketPlaceDTO> marketPlaceList= marketPlaceService.findAll();
     	  for (MarketPlaceDTO marketPlace:marketPlaceList)
@@ -106,7 +91,7 @@ public class OrderBatchConfiguration {
     				marketplaceId.add(marketPlace.getMarketPlaceId());
     				request.setMarketplaceId(marketplaceId);
 
-    				String date = "20161222";
+    				String date = "20160101";
     				Date dob = null;
     				DateFormat df1 = new SimpleDateFormat("yyyyMMdd");
     				try {
@@ -154,7 +139,7 @@ public class OrderBatchConfiguration {
       
       @Bean 
       @StepScope
-      public ItemProcessor<Order ,PurchaseOrderDTO> processor(){
+      public ItemProcessor<Order ,PurchaseOrderDTO> orderProcessor(){
     	  return new ItemProcessor<Order ,PurchaseOrderDTO>() {
 
 			@Override
@@ -208,7 +193,7 @@ public class OrderBatchConfiguration {
       
       @Bean 
       @StepScope
-      public ItemWriter<PurchaseOrderDTO> writer(){
+      public ItemWriter<PurchaseOrderDTO> orderWriter(){
     	  return new ItemWriter<PurchaseOrderDTO>() {
 			
 			@Override
@@ -249,12 +234,12 @@ public class OrderBatchConfiguration {
       @Bean
 	  public Step ordrProcess() {
     	  //System.out.println("name is "+name);
-	    return stepBuilderFactory.get("step1")
+	    return stepBuilderFactory.get("orderStep")
 	        .<String,String>chunk(2).listener(new  OrderChunkListener())
 	        .faultTolerant()
-	        .reader(reader())
-	        .processor(processor())
-	        .writer(writer())
+	        .reader(orderReader())
+	        .processor(orderProcessor())
+	        .writer(orderWriter())
 	        .build();
 	  }
 	  
@@ -262,8 +247,9 @@ public class OrderBatchConfiguration {
 	  
 	  
 	  @Bean
-	  public Job reviewProcessSteps() throws Exception {
+	  public Job orderSteps() throws Exception {
 	    return jobBuilderFactory.get("amazonOrderJob")
+	    		.incrementer(new RunIdIncrementer())
 	         .start(ordrProcess())  
 	        .build();
 	  }

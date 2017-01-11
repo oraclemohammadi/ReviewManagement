@@ -2,6 +2,7 @@ package com.milo.amz.review.service.dto;
 
 import java.time.LocalDate;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
@@ -24,11 +25,11 @@ public class ReviewDTO implements Serializable {
 
     private String title;
 
-    private Long rating;
+    private int rating;
 
     private Long fullRating;
 
-    private Long helpfulVotes;
+    private int helpfulVotes;
 
     private Long totalVotes;
 
@@ -36,7 +37,7 @@ public class ReviewDTO implements Serializable {
 
     private String realName;
 
-    private LocalDate reviewDate;
+    private Date reviewDate;
 
     private String content;
 
@@ -87,11 +88,11 @@ public class ReviewDTO implements Serializable {
     public void setTitle(String title) {
         this.title = title;
     }
-    public Long getRating() {
+    public int getRating() {
         return rating;
     }
 
-    public void setRating(Long rating) {
+    public void setRating(int rating) {
         this.rating = rating;
     }
     public Long getFullRating() {
@@ -101,11 +102,11 @@ public class ReviewDTO implements Serializable {
     public void setFullRating(Long fullRating) {
         this.fullRating = fullRating;
     }
-    public Long getHelpfulVotes() {
+    public int getHelpfulVotes() {
         return helpfulVotes;
     }
 
-    public void setHelpfulVotes(Long helpfulVotes) {
+    public void setHelpfulVotes(int helpfulVotes) {
         this.helpfulVotes = helpfulVotes;
     }
     public Long getTotalVotes() {
@@ -129,11 +130,11 @@ public class ReviewDTO implements Serializable {
     public void setRealName(String realName) {
         this.realName = realName;
     }
-    public LocalDate getReviewDate() {
+    public Date getReviewDate() {
         return reviewDate;
     }
 
-    public void setReviewDate(LocalDate reviewDate) {
+    public void setReviewDate(Date reviewDate) {
         this.reviewDate = reviewDate;
     }
     public String getContent() {

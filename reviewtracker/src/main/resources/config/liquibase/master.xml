@@ -5,6 +5,7 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
     <include file="classpath:config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170111172645_changelog.xml" relativeToChangelogFile="false"/>
     
     <include file="classpath:config/liquibase/changelog/20170104133753_added_entity_Product.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170104133754_added_entity_Review.xml" relativeToChangelogFile="false"/>
@@ -22,12 +23,12 @@
 
     <include file="classpath:config/liquibase/changelog/20170104133752_added_entity_MarketPlace.xml" relativeToChangelogFile="false"/>
 
-<changeSet id="00000000000003" author="jhipster">
+<!-- <changeSet id="00000000000003" author="jhipster">
   <loadData encoding="UTF-8"
                   file="config/liquibase/market_place.csv"
                   separator=","
                   tableName="market_place"/>
-</changeSet>
+</changeSet> -->
 
 
 

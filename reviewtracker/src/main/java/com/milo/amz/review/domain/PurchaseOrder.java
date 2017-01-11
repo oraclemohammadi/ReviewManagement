@@ -27,7 +27,7 @@ public class PurchaseOrder implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "seller_order_id")
+    @Column(name = "seller_order_id",nullable=false,unique=true)
     private String sellerOrderId;
 
     @Column(name = "purchase_date")

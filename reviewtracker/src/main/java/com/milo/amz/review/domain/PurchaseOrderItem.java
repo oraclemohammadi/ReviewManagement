@@ -112,7 +112,7 @@ public class PurchaseOrderItem implements Serializable {
         this.id = id;
     }
 
-    public String getAsin() {
+    public String getASIN() {
         return asin;
     }
 
@@ -121,7 +121,7 @@ public class PurchaseOrderItem implements Serializable {
         return this;
     }
 
-    public void setAsin(String asin) {
+    public void setASIN(String asin) {
         this.asin = asin;
     }
 
