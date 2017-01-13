@@ -14,5 +14,5 @@ public interface PurchaseOrderRepository extends JpaRepository<PurchaseOrder,Lon
 	@Query("SELECT  purchaseOrder FROM  PurchaseOrder purchaseOrder where  purchaseOrder.numberOfItemsUnshipped+numberOfItemsShipped>(SELECT count(orderItem.id) from PurchaseOrderItem orderItem where orderItem.purchaseOrder.id=purchaseOrder.id)")
 	List<PurchaseOrder> findPurchaseOrdersWithIncompleteItems();
 
-
+	PurchaseOrder findBysellerOrderId(String sellerOrderId);
 }

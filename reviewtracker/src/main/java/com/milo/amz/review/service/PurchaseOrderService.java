@@ -44,4 +44,7 @@ public interface PurchaseOrderService {
     void delete(Long id);
     
     List<PurchaseOrderDTO> findOrdersWithIcompleteItems();
+    
+    PurchaseOrderDTO findBySellerOrderId(String sellerOrderId);
+    
 }

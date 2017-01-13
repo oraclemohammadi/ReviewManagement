@@ -82,4 +82,10 @@ public class PurchaseOrderItemServiceImpl implements PurchaseOrderItemService{
         log.debug("Request to delete PurchaseOrderItem : {}", id);
         purchaseOrderItemRepository.delete(id);
     }
+
+	@Override
+	public List<String> findProductsForRequestItem() {
+		// TODO Auto-generated method stub
+		return purchaseOrderItemRepository.findProductAsinForRequestItems();
+	}
 }

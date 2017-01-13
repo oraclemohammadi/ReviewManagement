@@ -85,11 +85,11 @@ public class ReviewBatchConfiguration {
 				totalReviews=numberFound.size()-1;
 				if (reviewService.countReviewByproduct(product.getId())<totalReviews)
 				{
-				pageSize=numberFound.get(numberFound.size()-1)/10;
-				for (int pageNo=1;pageNo<pageSize;pageNo++)
-				{
-					reviewList=collectReviewForPage(product,pageNo,driver);
-				}
+					pageSize=numberFound.get(numberFound.size()-1)/10;
+					for (int pageNo=1;pageNo<pageSize;pageNo++)
+					{
+						reviewList=collectReviewForPage(product,pageNo,driver);
+					}
 				}
 			}
 		return new ListItemReader<>(reviewList);

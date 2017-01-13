@@ -11,5 +11,6 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 public interface PurchaseOrderItemRepository extends JpaRepository<PurchaseOrderItem,Long> {
-
+	  @Query("select (purchaseOrderItem.asin) from PurchaseOrderItem purchaseOrderItem GROUP BY asin")
+	  List<String> findProductAsinForRequestItems();
 }

@@ -33,6 +33,7 @@ import com.milo.amz.review.amazon.client.AmazonOrderServiceConfig;
 import com.milo.amz.review.batch.listener.OrderChunkListener;
 import com.milo.amz.review.service.MarketPlaceService;
 import com.milo.amz.review.service.ProductService;
+import com.milo.amz.review.service.PurchaseOrderItemService;
 import com.milo.amz.review.service.dto.MarketPlaceDTO;
 import com.milo.amz.review.service.dto.ProductDTO;
 import com.milo.amz.review.service.mapper.OrderMapper;
@@ -59,6 +60,9 @@ public class ProductBatchConfiguration {
 
 	@Inject
 	private ProductService productService;
+	
+	  @Inject
+	  private PurchaseOrderItemService purchaseOrderItemService;
 
 	@Bean
 	@StepScope
@@ -75,8 +79,9 @@ public class ProductBatchConfiguration {
 				request.setSellerId(marketPlace.getSellerId() );
 				request.setMarketplaceId(marketPlace.getMarketPlaceId());
 				List<String> getAsinList=new ArrayList();
-				getAsinList.add("B00ZYCSQKA");
-				getAsinList.add("B00GS55KHE");
+				for (String asin:purchaseOrderItemService.findProductsForRequestItem() )
+					getAsinList.add(asin);
+				
 				request.setASINList(new ASINListType(getAsinList));
 				GetMatchingProductResponse matchingProductResponse = client.getMatchingProduct(request);
 				for (GetMatchingProductResult product : matchingProductResponse.getGetMatchingProductResult()) {
@@ -126,7 +131,13 @@ public class ProductBatchConfiguration {
 			public void write(List<? extends ProductDTO> items) throws Exception {
 
 				for (ProductDTO item : items) {
+					try{
 					productService.save(item);
+					}
+					catch(Exception e)
+					{
+						e.printStackTrace();
+					}
 
 				}
 
@@ -154,7 +165,7 @@ public class ProductBatchConfiguration {
 		return stepBuilderFactory.get("productStep").<String, String>chunk(2).listener(new OrderChunkListener())
 				.faultTolerant().reader(productItemReader())
 				// .processor(processor())
-				.writer(productItemWriter()).build();
+				.writer(productItemWriter()). build();
 	}
 
 	@Bean

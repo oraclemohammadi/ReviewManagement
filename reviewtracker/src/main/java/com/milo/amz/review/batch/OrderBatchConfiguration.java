@@ -43,6 +43,7 @@ import com.milo.amz.review.GeneralUtils;
 import com.milo.amz.review.amazon.client.AmazonOrderServiceConfig;
 import com.milo.amz.review.batch.listener.OrderChunkListener;
 import com.milo.amz.review.service.MarketPlaceService;
+import com.milo.amz.review.service.PurchaseOrderItemService;
 import com.milo.amz.review.service.PurchaseOrderService;
 import com.milo.amz.review.service.dto.MarketPlaceDTO;
 import com.milo.amz.review.service.dto.PurchaseOrderDTO;
@@ -73,7 +74,7 @@ public class OrderBatchConfiguration {
 	  @Inject
 	  private PurchaseOrderService purchaseOrderService;
 	  
-	  
+	
 	  
       @Bean 
       @StepScope
@@ -91,7 +92,7 @@ public class OrderBatchConfiguration {
     				marketplaceId.add(marketPlace.getMarketPlaceId());
     				request.setMarketplaceId(marketplaceId);
 
-    				String date = "20160101";
+    				String date = "20160120";
     				Date dob = null;
     				DateFormat df1 = new SimpleDateFormat("yyyyMMdd");
     				try {
@@ -111,8 +112,7 @@ public class OrderBatchConfiguration {
     				}
 
     				XMLGregorianCalendar createdAfter = xmlDate;
-
-    				request.setCreatedAfter(xmlDate);
+     				request.setCreatedAfter(xmlDate);
     			    response =client.listOrders(request);
     		  }
     	  }
@@ -144,18 +144,26 @@ public class OrderBatchConfiguration {
 
 			@Override
 			public PurchaseOrderDTO process(Order item) throws Exception {
+					if (purchaseOrderService.findBySellerOrderId(item.getAmazonOrderId())==null)
+					{
 					String contactBuyer="";
 					driver.get("https://sellercentral.amazon.com/gp/orders-v2/list/ref=ag_myo_dnav_xx_");
 				    WebElement myDynamicElement = new WebDriverWait(driver, 20).until(
 							ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[@name='searchType']")));
-					myDynamicElement.sendKeys("Order ID");
+					myDynamicElement.sendKeys("Buyer Email");
 					myDynamicElement = new WebDriverWait(driver, 20).until(
 							ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[@id='searchKeyword']")));
-					myDynamicElement.sendKeys(item.getAmazonOrderId());
+					myDynamicElement.sendKeys(item.getBuyerEmail());
+					
+					myDynamicElement = driver.findElement(By.xpath(".//*[@id='_myoLO_preSelectedRangeSelect']"));
+					
+					myDynamicElement.sendKeys("Last 365 days");
+					
 					driver.findElement(By.xpath(".//*[@id='SearchID']")).click();
+					
 					try{
 					myDynamicElement = new WebDriverWait(driver, 20).until(
-							ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[@id='contact_buyer_link']")));
+							ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[contains(@id,'buyerName')]")));
 					}
 					catch(TimeoutException ex)
 					{
@@ -176,12 +184,21 @@ public class OrderBatchConfiguration {
 					}
 					if (myDynamicElement!=null)
 					{
-						contactBuyer=GeneralUtils.getParameterByName("buyerID", myDynamicElement.getAttribute("href"));  
+						myDynamicElement.click();
+						
+						myDynamicElement = new WebDriverWait(driver, 20).until(
+								ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[@id='commMgrCompositionSubject']")));
+						
+						
+						contactBuyer=GeneralUtils.getParameterByName("buyerID", driver.getCurrentUrl());  
 					}
 					PurchaseOrderDTO purchaseOrderDTO= orderMapper.orderDTOTOPurchaseOrder(item);
 					purchaseOrderDTO.setBuyerId(contactBuyer);
 									
 					return purchaseOrderDTO;
+					}
+					else
+						return null;
 			}
 			
 			
@@ -201,7 +218,13 @@ public class OrderBatchConfiguration {
 				
 				for (PurchaseOrderDTO item:items)
 				{
+					try{
 					purchaseOrderService.save(item);
+					}
+					catch(Exception e)
+					{
+						
+					}
 					
 				}
 				
