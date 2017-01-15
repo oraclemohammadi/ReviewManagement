@@ -44,4 +44,6 @@ public interface ProductService {
     void delete(Long id);
     
     List<ProductDTO> findAll();
+    
+    ProductDTO findByASIN(String asin);
 }

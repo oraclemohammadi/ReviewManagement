@@ -82,7 +82,7 @@ public class OrderItemBatchConfiguration {
     		  		{
     		  		// requestItem.setNextToken(nextToken);
     		  			requestCount++;
-    		  			if (requestCount<10)
+    		  			if (requestCount<30)
 	    		  			{
 	    		  				requestItem.setAmazonOrderId(purchaseOrder.getSellerOrderId());
 		    		  			response = client.listOrderItems(requestItem);

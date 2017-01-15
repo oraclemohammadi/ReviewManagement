@@ -15,8 +15,8 @@ public class WebDriverFactory {
 		 capability = DesiredCapabilities.chrome();
        capability.setBrowserName("chrome");
        capability.setPlatform(Platform.WINDOWS);
-       //            capability.setVersion("40");
-      // capability.setCapability(FirefoxDriver.PROFILE, "default");
+       capability.setCapability("phantomjs.page.settings.userAgent",
+               "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:39.0) Gecko/20100101 Firefox/39.0");
        try {
            driver = new  PhantomJSDriver(capability);
            //driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);

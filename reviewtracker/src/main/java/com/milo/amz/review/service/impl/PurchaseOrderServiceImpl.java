@@ -92,4 +92,10 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService{
 	public PurchaseOrderDTO findBySellerOrderId(String sellerOrderId) {
 		return purchaseOrderMapper.purchaseOrderToPurchaseOrderDTO(purchaseOrderRepository.findBysellerOrderId(sellerOrderId));
 	}
+
+	@Override
+	public List<PurchaseOrderDTO> findByBuyerId(String buyerid) {
+		// TODO Auto-generated method stub
+		return purchaseOrderMapper.purchaseOrdersToPurchaseOrderDTOs(purchaseOrderRepository.findByBuyerId(buyerid));
+	}
 }

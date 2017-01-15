@@ -44,4 +44,6 @@ public interface ReviewService {
     void delete(Long id);
     
     long countReviewByproduct(long productId);
+    
+    ReviewDTO findByReviewID(String reviewid);
 }

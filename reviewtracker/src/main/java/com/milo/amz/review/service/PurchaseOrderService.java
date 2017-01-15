@@ -1,5 +1,6 @@
 package com.milo.amz.review.service;
 
+import com.milo.amz.review.domain.PurchaseOrder;
 import com.milo.amz.review.service.dto.PurchaseOrderDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -47,4 +48,5 @@ public interface PurchaseOrderService {
     
     PurchaseOrderDTO findBySellerOrderId(String sellerOrderId);
     
+    List<PurchaseOrderDTO> findByBuyerId(String buyerid);
 }

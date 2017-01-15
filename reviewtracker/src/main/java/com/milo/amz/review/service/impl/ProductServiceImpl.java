@@ -1,21 +1,21 @@
 package com.milo.amz.review.service.impl;
 
-import com.milo.amz.review.service.ProductService;
-import com.milo.amz.review.domain.Product;
-import com.milo.amz.review.repository.ProductRepository;
-import com.milo.amz.review.service.dto.ProductDTO;
-import com.milo.amz.review.service.mapper.ProductMapper;
+import java.util.List;
+
+import javax.inject.Inject;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.inject.Inject;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.stream.Collectors;
+import com.milo.amz.review.domain.Product;
+import com.milo.amz.review.repository.ProductRepository;
+import com.milo.amz.review.service.ProductService;
+import com.milo.amz.review.service.dto.ProductDTO;
+import com.milo.amz.review.service.mapper.ProductMapper;
 
 /**
  * Service Implementation for managing Product.
@@ -86,5 +86,11 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public List<ProductDTO> findAll() {
 		return productMapper.productsToProductDTOs(productRepository.findAll());
+	}
+
+	@Override
+	public ProductDTO findByASIN(String asin) {
+		
+		return productMapper.productToProductDTO(productRepository.findByAsin(asin));
 	}
 }

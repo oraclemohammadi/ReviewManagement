@@ -69,28 +69,31 @@ public class ReviewBatchConfiguration {
 	@Bean
 	@StepScope
 	public ItemReader<ReviewDTO> reviewItemReader() throws ElementNotFoundException, ParseException {
-		List<ReviewDTO> reviewList=null;
+		List<ReviewDTO> reviewList=new ArrayList();
 			List<ProductDTO> productList= productService.findAll();
 			int totalReviews=0;
 			WebDriver driver = com.milo.amz.webdriver.utils.WebDriverFactory.getPhantomeJSDriver();
 			for (ProductDTO product:productList)
 			{
-			   totalReviews=0;
-				driver.get(
-						"https://www.amazon.com/product-reviews/"+product.getAsin()+"/?showViewpoints=0&sortBy=byRankDescending&pageNumber=1");
-				WebElement myDynamicElement = new WebDriverWait(driver, 20).until(
-						ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[contains(@data-hook,'product-link')]")));
-				
-				numberFound= GeneralUtils.extractNumbersfromText(driver.findElement(By.xpath(".//div[@id='cm_cr-review_list']/div/span[contains(@class,'a-size-base')][1]")).getText());
-				totalReviews=numberFound.size()-1;
-				if (reviewService.countReviewByproduct(product.getId())<totalReviews)
-				{
-					pageSize=numberFound.get(numberFound.size()-1)/10;
-					for (int pageNo=1;pageNo<pageSize;pageNo++)
+			   if ("B01LP151LK".equals(product.getAsin()))
+			   {
+					totalReviews=0;
+					driver.get(
+							"https://www.amazon.com/product-reviews/"+product.getAsin()+"/?showViewpoints=0&sortBy=byRankDescending&pageNumber=1");
+					WebElement myDynamicElement = new WebDriverWait(driver, 20).until(
+							ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[contains(@data-hook,'product-link')]")));
+					
+					numberFound= GeneralUtils.extractNumbersfromText(driver.findElement(By.xpath(".//div[@id='cm_cr-review_list']/div/span[contains(@class,'a-size-base')][1]")).getText());
+					totalReviews=numberFound.get(numberFound.size()-1);
+					if (reviewService.countReviewByproduct(product.getId())<totalReviews)
 					{
-						reviewList=collectReviewForPage(product,pageNo,driver);
+						pageSize=numberFound.get(numberFound.size()-1)/10+((numberFound.get(numberFound.size()-1)%10>0)?1:0);
+						for (int pageNo=1;pageNo<=pageSize;pageNo++)
+						{
+							reviewList.addAll(collectReviewForPage(product,pageNo,driver));
+						}
 					}
-				}
+			   }
 			}
 		return new ListItemReader<>(reviewList);
 
@@ -134,12 +137,17 @@ public class ReviewBatchConfiguration {
 				//customerName = customer.text();
 			}
 			
-			
+			try{
 			tempElement=webElement.findElement(By.xpath("//span[contains(@class,'review-votes')]"));
+			}
+			catch(Exception e)
+			{
+				
+			}
 			if (tempElement != null )
 			{
 				numberFound=GeneralUtils.extractNumbersfromText(tempElement.getText());
-				if (numberFound!=null)
+				if (numberFound.size()>0)
 				reviewDTO.setHelpfulVotes(numberFound.get(0));
 			}
 				
@@ -160,8 +168,10 @@ public class ReviewBatchConfiguration {
 			reviewDTO.setContent(webElement.findElement(By.xpath(".//span[contains(@data-hook,'review-body')]")).getText());
 			try{
 				reviewDTO.setProductId(product.getId());
-				reviewService.save(reviewDTO);
 				reviewList.add(reviewDTO);
+				if (reviewService.findByReviewID(reviewDTO.getReviewID())==null)
+					reviewService.save(reviewDTO);
+				
 			}
 			catch(Exception e){
 				e.printStackTrace();

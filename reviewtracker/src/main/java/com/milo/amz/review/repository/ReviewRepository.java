@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import com.milo.amz.review.domain.Product;
+import java.lang.String;
 
 /**
  * Spring Data JPA repository for the Review entity.
@@ -15,4 +16,6 @@ import com.milo.amz.review.domain.Product;
 public interface ReviewRepository extends JpaRepository<Review,Long> {
   @Query("select count(review) from Review review where review.product.id=?1")
   long countReviewByproduct(@Param("productId") long productId);
+  
+  Review findByReviewID(String reviewid);
 }

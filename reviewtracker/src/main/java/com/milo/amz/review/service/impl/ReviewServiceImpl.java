@@ -88,6 +88,12 @@ public class ReviewServiceImpl implements ReviewService{
 		// TODO Auto-generated method stub
 		return reviewRepository.countReviewByproduct(productId);
 	}
+
+	@Override
+	public ReviewDTO findByReviewID(String reviewid) {
+		// TODO Auto-generated method stub
+		return  reviewMapper.reviewToReviewDTO(reviewRepository.findByReviewID(reviewid));
+	}
     
    
 }
