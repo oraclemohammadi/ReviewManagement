@@ -1,0 +1,55 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Attach to Chrome, with sourcemaps",
+            "type": "chrome",
+            "request": "attach",
+            "port": 9222,
+            "userDataDir": "${workspaceRoot}\\chromeDummyDir",
+            "sourceMaps": true,
+            "sourceMapPathOverrides": {
+                "webpack:///*":"/*"
+            },
+            "webRoot": "${workspaceRoot}"
+        },
+        {
+            "name": "Launch Chrome against localhost, with sourcemaps",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:4200",
+            "runtimeArgs": [
+                "--disable-session-crashed-bubble",
+                "--disable-infobars",
+                "--disable-application-cache",
+                "--media-cache-size=1",
+                "--disk-cache-size=1"
+            ],
+            "userDataDir": "${workspaceRoot}\\chromeDummyDir",
+            "sourceMaps": true,
+            "sourceMapPathOverrides": {
+                "webpack:///D:/Bashir2/Projects/Business_Tracker_New/Angular2_CLI_Starter/*":"${webRoot}/*"
+            },
+            "webRoot": "${workspaceRoot}"
+        },
+        {
+            "name": "Launch second chrome",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:4200",
+            "runtimeArgs": [
+                "--disable-session-crashed-bubble",
+                "--disable-infobars",
+                "--disable-application-cache",
+                "--media-cache-size=1",
+                "--disk-cache-size=1"
+            ],
+            "userDataDir": "${workspaceRoot}\\chromeDummyDir",
+            "sourceMaps": true,
+            "sourceMapPathOverrides": {
+                "webpack:///D:/Bashir/New_Backend_Tracker/Angular2_CLI_Starter/*":"${webRoot}/*"
+            },
+            "webRoot": "${workspaceRoot}"
+        }
+    ]
+}

@@ -1,0 +1,25 @@
+<div class="main-layout" id="main-layout">
+  <h2>Edit User </h2>
+  <paper-icon-button icon="close" (click)="close()"></paper-icon-button>
+</div>
+
+<form (ngSumbit)="onSubmit($event.value)" #userForm="ngForm" novalidate>
+  <div class="form">
+    <paper-input #merchant1 ngDefaultControl [(inputValue)]="user.user" label="user" auto-validate required error-message="username required"></paper-input>
+    <paper-input #merchant2 ngDefaultControl [(inputValue)]="user.password" label="password" auto-validate required error-message="username required"></paper-input>
+    <paper-input #merchant3 ngDefaultControl [(inputValue)]="user.fullname" label="fullname" auto-validate required error-message="fullname required"></paper-input>
+    <paper-input #merchant4 ngDefaultControl [(inputValue)]="user.email_address" label="email_address" auto-validate required error-message="email_address required"></paper-input>
+    <paper-input #merchant5 ngDefaultControl [(inputValue)]="user.staffNo" label="staffNo" auto-validate required error-message="staffNo required"></paper-input>
+    
+    <vaadin-combo-box label="Person Type" [items]="personType" item-label-path="name" item-value-path="symbol" [(value)]="user.personType" (selected-item-changed)="selectedPerson=$event.detail.value">
+    </vaadin-combo-box>
+
+    <vaadin-combo-box label="User Type" [items]="userType" item-label-path="name" item-value-path="symbol" [(value)]="user.userType" (selected-item-changed)="selectedUser=$event.detail.value">
+    </vaadin-combo-box>
+  </div>
+</form>
+<div class="buttons-layout" #btttonLayout>
+  <paper-button raised [disabled]="!userForm.valid" (click)="userForm.ngSubmit.emit(userForm)">save</paper-button>
+  <paper-button (click)="close()">Cancel</paper-button>
+  <paper-toast id="toast" #toast text="{{responseMessage}}" duration="0"></paper-toast>
+</div>

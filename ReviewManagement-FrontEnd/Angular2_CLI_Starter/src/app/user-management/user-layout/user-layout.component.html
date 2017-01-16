@@ -1,0 +1,55 @@
+<div class="animated fadein">
+  <div class="row">
+    <div class="col-lg">
+      <div id="inboxstyle">
+        <div class="fab btn-group show-on-hover dropup">
+          <div data-toggle="tooltip" data-placement="left" title="Create User" style="margin-left: 42px;">
+            <button type="button" class="btn btn-danger btn-io dropdown-toggle" data-toggle="dropdown" (click)="dialog.open();">
+              <span class="fa-stack fa-2x">
+                <i class="fa fa-circle fa-stack-2x fab-backdrop"></i>
+                <i class="fa fa-plus fa-stack-1x fa-inverse fab-primary"></i>
+                <i class="fa fa-pencil fa-stack-2x fa-inverse fab-secondary"></i>
+              </span>
+            </button>
+          </div>
+          <ul class="dropdown-menu dropdown-menu-right" role="menu">
+            <li>
+              <a data-toggle="tooltip" data-placement="top" title="Edit User" (click)="dialog.open();">
+                <i class="fa fa-user"></i>
+              </a>
+            </li>
+            <li>
+              <a data-toggle="tooltip" data-placement="top" title="Activate/Suspend">
+                <i class="fa fa-lock"></i>
+              </a>
+            </li>
+            <li>
+              <a data-toggle="tooltip" data-placement="top" title="UserActivity">
+                <i class="fa fa-spinner fa-spin"></i>
+              </a>
+            </li>
+            <li>
+              <a data-toggle="tooltip" data-placement="top" title="Settings">
+                <i class="fa fa-cog fa-fw"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-align-justify"></i> Users
+        </div>
+        <div class="card-block">
+            <user-expenses-list #list (editExpense)="editUser.user=$event;"></user-expenses-list>
+            <!--<user-list #list></user-list>-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<paper-dialog #dialog  alwaysOnTop  dynamicAlign modal>
+  <paper-dialog-scrollable>
+    <edit-user #editUser (closeEditor)="dialog.close(); list.refreshItems();"></edit-user>
+  </paper-dialog-scrollable>
+</paper-dialog>

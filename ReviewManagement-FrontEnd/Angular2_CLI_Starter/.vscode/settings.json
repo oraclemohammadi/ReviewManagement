@@ -1,0 +1,8 @@
+{
+    "typescript.tsdk": "./node_modules/typescript/lib",
+    "explorer.openEditors.visible": 0,
+    "search.exclude": {
+        "**/node_modules": false,
+        "**/bower_components": false
+    }
+}
