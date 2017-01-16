@@ -83,55 +83,31 @@ public class OrderHtmlScrappedBatchConfiguration {
 
 	@Inject
 	private ProductService productService;
-
-	@Bean
-	@StepScope
-	public ItemReader<PurchaseOrderDTO> orderReader() {
-		ListOrdersResponse response = null;
-		List<PurchaseOrderDTO> purchaseOrderList = new ArrayList();
-		int pageSize=0;
-		PurchaseOrderDTO purchaseOrderDTO = null;
+	int numberofRecords=0;
+	int pageSize = 0;
+	int recordCounter=0;
+	private void loginInSellerCentral() {
 		driver = com.milo.amz.webdriver.utils.WebDriverFactory.getChromDriver();
 		driver.get("https://sellercentral.amazon.com");
-		WebElement myDynamicElement = new WebDriverWait(driver,20)
+		WebElement myDynamicElement = new WebDriverWait(driver, 20)
 				.until(ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[@id='ap_email']")));
 
 		driver.findElement(By.xpath(".//*[@id='ap_email']")).sendKeys("michael.liu01@gmail.com");
 		driver.findElement(By.xpath(".//*[@id='ap_password']")).sendKeys("Ajkml@5896");
-		
+
 		driver.findElement(By.xpath(".//*[@id='signInSubmit']")).click();
-		//try {
-		    /*TimeUnit.NANOSECONDS.sleep(100);
-		    TimeUnit.MICROSECONDS.sleep(100);
-		    TimeUnit.MILLISECONDS.sleep(100);
-		    TimeUnit.SECONDS.sleep(20);
-		    TimeUnit.MINUTES.sleep(100);
-		    TimeUnit.HOURS.sleep(100);
-		    TimeUnit.DAYS.sleep(100);*/
-		//} catch (InterruptedException e) {
-		    //Handle exception
-		//}
-		ProductDTO product = productService.findByASIN("B01LP151LK");
-		//ProductDTO product = productList.get(0);
-		/*
-		 * for (ProductDTO product:productList) {
-		 */
-		
-		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-               try {
-				FileUtils.copyFile(scrFile, new File("test.png"), true);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-               driver.get("https://sellercentral.amazon.com/gp/orders-v2/list/ref=ag_myo_dnav_xx_");       
-		myDynamicElement = new WebDriverWait(driver,20)
-				
+	}
+
+	private int searchForOrdesInSellerCentral(String asin) {
+		WebElement myDynamicElement = null;
+		driver.get("https://sellercentral.amazon.com/gp/orders-v2/list/ref=ag_myo_dnav_xx_");
+		myDynamicElement = new WebDriverWait(driver, 20)
+
 				.until(ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[@name='searchType']")));
 		myDynamicElement.sendKeys("ASIN");
-		myDynamicElement = new WebDriverWait(driver,20)
+		myDynamicElement = new WebDriverWait(driver, 20)
 				.until(ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[@id='searchKeyword']")));
-		myDynamicElement.sendKeys("B01LP151LK");
+		myDynamicElement.sendKeys(asin);
 
 		myDynamicElement = driver.findElement(By.xpath(".//*[@id='_myoLO_preSelectedRangeSelect']"));
 
@@ -139,123 +115,132 @@ public class OrderHtmlScrappedBatchConfiguration {
 
 		driver.findElement(By.xpath(".//*[@id='SearchID']")).click();
 		try {
-			myDynamicElement = new WebDriverWait(driver,20)
+			myDynamicElement = new WebDriverWait(driver, 20)
 					.until(ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[contains(@id,'buyerName')]")));
 		} catch (TimeoutException ex) {
-			try {
-				myDynamicElement = driver.findElement(By.xpath(".//*[@id='myo-message-board-alert-info-label']"));
-				if (myDynamicElement != null && "Order Cancelled".equals(myDynamicElement.getText()))
-					return null;
-			} catch (TimeoutException ex1) {
 
-				myDynamicElement = driver
-						.findElement(By.xpath(".//*[@id='_myoV2PageTopMessagePlaceholder']/div/div/ul/li/span"));
-				if (myDynamicElement != null && "Order ID Not Found".equals(myDynamicElement.getText()))
-					return null;
+			return -1;
 
+		}
+		return 0;
+	}
+
+	private void goToPage(int pageNo) {
+		if (pageNo > 1) {
+			try{
+				WebElement pageElement = driver
+						.findElement(By.xpath("(.//*[@id='_myoSO_GoToPageForm_1']/table/tbody/tr/td[2]/input[1])[1]"));
+				pageElement.sendKeys(String.valueOf(pageNo));
+				WebElement goToPageElement = driver
+						.findElement(By.xpath("(.//*[@id='_myoSO_GoToPageForm_1']/table/tbody/tr/td[3]/input)[1]"));
+				goToPageElement.click();
+				new WebDriverWait(driver, 20);
+			}
+			catch(Exception ex)
+			{
+				
 			}
 		}
-		myDynamicElement = driver
-				.findElement(By.xpath(".//*[@id='myo-table']/table/tbody/tr[1]/td/table/tbody/tr/td[1]/strong[2]"));
-		int numberofRecords = Integer.parseInt(myDynamicElement.getText());
-		pageSize = numberofRecords / 15+((numberofRecords % 15>0)?1:0);
-		
-		for (int pageNo = 1; pageNo <=pageSize; pageNo++) {
-					System.out.println("******** page size : "+pageNo);
-					if (pageNo > 1) {
-						try{
-						WebElement pageElement = driver
-								.findElement(By.xpath("(.//*[@id='_myoSO_GoToPageForm_1']/table/tbody/tr/td[2]/input[1])[1]"));
-						pageElement.sendKeys(String.valueOf(pageNo));
-						WebElement goToPageElement = driver
-								.findElement(By.xpath("(.//*[@id='_myoSO_GoToPageForm_1']/table/tbody/tr/td[3]/input)[1]"));
-						goToPageElement.click();
-						new WebDriverWait(driver,20);
-						}
-						catch(Exception e)
-						{
-							
-						}
-					}
-					
-					//List<WebElement> myDynamicElements = driver.findElements(By.xpath(".//*[contains(@id,'buyerName')]"));
-					for (int index=1;index<15;index++) {
-						try{
-										myDynamicElement= driver.findElement(By.xpath("(.//*[contains(@href,'orderID')])["+index+"]"));
-										String orderId=myDynamicElement.getText();
-										if (purchaseOrderService.findBySellerOrderId(orderId)==null)
-										{
-										
-													
-											       WebElement buyerElement=driver.findElement(By.xpath("(.//*[contains(@id,'buyerName')])["+index+"]"));
-													buyerElement.click();
-									
-													buyerElement = new WebDriverWait(driver,20).until(
-															ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[@id='commMgrCompositionSubject']")));
-									
-													purchaseOrderDTO = new PurchaseOrderDTO();
-													purchaseOrderDTO.setBuyerId(GeneralUtils.getParameterByName("buyerID", driver.getCurrentUrl()));
-													
-													
-													purchaseOrderDTO.setSellerOrderId(orderId);
-													purchaseOrderList.add(purchaseOrderDTO);
-													try {
-														purchaseOrderService.save(purchaseOrderDTO);
-													} catch (Exception e) {
-															e.printStackTrace();
-													}
-									
-													driver.navigate().back();
-													try {
-														myDynamicElement = new WebDriverWait(driver,20)
-																.until(ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[contains(@id,'buyerName')]")));
-													} catch (TimeoutException ex) {
-														try {
-															myDynamicElement = driver.findElement(By.xpath(".//*[@id='myo-message-board-alert-info-label']"));
-															if (myDynamicElement != null && "Order Cancelled".equals(myDynamicElement.getText()))
-																return null;
-														} catch (TimeoutException ex1) {
-									
-															myDynamicElement = driver
-																	.findElement(By.xpath(".//*[@id='_myoV2PageTopMessagePlaceholder']/div/div/ul/li/span"));
-															if (myDynamicElement != null && "Order ID Not Found".equals(myDynamicElement.getText()))
-																return null;
-									
-														}
-										}
-										}
-						}
-										catch(Exception ex)
-										{
-											ex.printStackTrace();
-										}
-						
-					}
-		
+	}
 
-		 }
+	private PurchaseOrderDTO getPurchaseOrderInfo(int index) {
+		PurchaseOrderDTO purchaseOrderDTO = null;
+		try {
+			WebElement myDynamicElement = driver
+					.findElement(By.xpath("(.//*[contains(@href,'orderID')])[" + index + "]"));
+			String orderId = myDynamicElement.getText();
+			if (purchaseOrderService.findBySellerOrderId(orderId) == null) {
 
+				WebElement buyerElement = driver
+						.findElement(By.xpath("(.//*[contains(@id,'buyerName')])[" + index + "]"));
+				buyerElement.click();
+
+				buyerElement = new WebDriverWait(driver, 20).until(
+						ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[@id='commMgrCompositionSubject']")));
+
+				purchaseOrderDTO = new PurchaseOrderDTO();
+				purchaseOrderDTO.setBuyerId(GeneralUtils.getParameterByName("buyerID", driver.getCurrentUrl()));
+
+				purchaseOrderDTO.setSellerOrderId(orderId);
+				// purchaseOrderList.add(purchaseOrderDTO);
+				try {
+					purchaseOrderService.save(purchaseOrderDTO);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+				driver.navigate().back();
+				new WebDriverWait(driver, 20);
+			}
+		} catch (Exception e) {
+			return null;
+		}
+		return purchaseOrderDTO;
+	}
+
+	@Bean
+	@StepScope
+	public ItemReader<PurchaseOrderDTO> orderReader() {
+		WebElement myDynamicElement = null;
+		ListOrdersResponse response = null;
+		List<PurchaseOrderDTO> purchaseOrderList = new ArrayList();
+		PurchaseOrderDTO purchaseOrderDTO = null;
+		loginInSellerCentral();
+
+		ProductDTO product = productService.findByASIN("B01LP151LK");
+		// ProductDTO product = productList.get(0);
+		/*
+		 * for (ProductDTO product:productList) {
+		 */
+
+		/*
+		 * File scrFile = ((TakesScreenshot)
+		 * driver).getScreenshotAs(OutputType.FILE); try {
+		 * FileUtils.copyFile(scrFile, new File("test.png"), true); } catch
+		 * (IOException e) { // TODO Auto-generated catch block
+		 * e.printStackTrace(); }
+		 */
+
+		if (searchForOrdesInSellerCentral("B01LP151LK") == 0)
+
+			myDynamicElement = driver
+					.findElement(By.xpath(".//*[@id='myo-table']/table/tbody/tr[1]/td/table/tbody/tr/td[1]/strong[2]"));
+		numberofRecords = Integer.parseInt(myDynamicElement.getText());
+		pageSize = (numberofRecords / 15) + ((numberofRecords % 15 > 0) ? 1 : 0);
+
+		for (int pageNo = 1; pageNo <= pageSize; pageNo++) {
+			goToPage(pageNo);
+			for (int index = 1; index <=15; index++) {
+				purchaseOrderDTO = getPurchaseOrderInfo(index);
+				recordCounter++;
+				
+				if (purchaseOrderDTO != null)
+					purchaseOrderList.add(purchaseOrderDTO);
+			}
+			if (recordCounter>numberofRecords) break;
+		}
 
 		return new ListItemReader<>(purchaseOrderList);
 
 		// return new ListItemReader<>(Arrays.asList("one","three","foure"));
 
 	}
-/*
-	@Bean
-	@StepScope
-	public ItemProcessor<PurchaseOrderDTO, PurchaseOrderDTO> orderProcessor() {
-		return new ItemProcessor<PurchaseOrderDTO, PurchaseOrderDTO>() {
-
-			@Override
-			public PurchaseOrderDTO process(PurchaseOrderDTO purchaseOrderDTO) throws Exception {
-				return purchaseOrderDTO;
-
-			}
-
-		};
-
-	}*/
+	/*
+	 * @Bean
+	 * 
+	 * @StepScope public ItemProcessor<PurchaseOrderDTO, PurchaseOrderDTO>
+	 * orderProcessor() { return new ItemProcessor<PurchaseOrderDTO,
+	 * PurchaseOrderDTO>() {
+	 * 
+	 * @Override public PurchaseOrderDTO process(PurchaseOrderDTO
+	 * purchaseOrderDTO) throws Exception { return purchaseOrderDTO;
+	 * 
+	 * }
+	 * 
+	 * };
+	 * 
+	 * }
+	 */
 
 	@Bean
 	@StepScope
@@ -265,14 +250,13 @@ public class OrderHtmlScrappedBatchConfiguration {
 			@Override
 			public void write(List<? extends PurchaseOrderDTO> items) throws Exception {
 
-				/*for (PurchaseOrderDTO item : items) {
-					try {
-						purchaseOrderService.save(item);
-					} catch (Exception e) {
-							e.printStackTrace();
-					}
-
-				}*/
+				/*
+				 * for (PurchaseOrderDTO item : items) { try {
+				 * purchaseOrderService.save(item); } catch (Exception e) {
+				 * e.printStackTrace(); }
+				 * 
+				 * }
+				 */
 
 			}
 		};
@@ -283,7 +267,8 @@ public class OrderHtmlScrappedBatchConfiguration {
 	public Step ordrProcess() {
 		// System.out.println("name is "+name);
 		return stepBuilderFactory.get("orderHtmlStep").<String, String>chunk(2).listener(new OrderChunkListener())
-				.faultTolerant().skip(TimeoutException.class).skip(StaleElementReferenceException.class).reader(orderReader()).writer(orderWriter()).build();
+				.faultTolerant().skip(TimeoutException.class).skip(StaleElementReferenceException.class)
+				.reader(orderReader()).writer(orderWriter()).build();
 	}
 
 	@Bean
