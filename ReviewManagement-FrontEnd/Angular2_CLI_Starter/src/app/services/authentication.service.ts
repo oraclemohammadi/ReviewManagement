@@ -52,10 +52,10 @@ export class AuthenticationService extends BaseService {
 
   public logout(): Observable<boolean> {
     let promise = new Promise((resolve, reject) => {
-      this.HttpService.post(this.Urls.logoutUrl, '', this.Options)
-        .map((res:any) => res.json())
+      this.HttpService.get(this.Urls.logoutUrl)
+        .map((res:any) => res.status)
         .subscribe(data => {
-          if (data.messageCode === '200') {
+          if (data.status === 200) {
             sessionStorage.removeItem('isAuth');
             sessionStorage.removeItem('currentUser');
             sessionStorage.removeItem('token');

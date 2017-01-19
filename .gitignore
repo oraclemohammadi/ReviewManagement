@@ -217,3 +217,5 @@ pip-log.txt
 
 node_modules/
 bower_components/
+#prevent tracking bower dependencies
+src/assets/bower_components

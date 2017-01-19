@@ -7,6 +7,8 @@ import { FullLayoutComponent }      from './layouts/full-layout.component';
 import { SimpleLayoutComponent } from './layouts/simple-layout.component';
 
 import { AutoGuardService } from './guards/auto-guard.service';
+import { OrderComponent }            from './components/order/order.component';
+import {LogoutComponent}                from './components/logout.component';
 
 export const routes: Routes = [
     {
@@ -27,6 +29,11 @@ export const routes: Routes = [
                 path: 'dashboard',
                 loadChildren: 'app/dashboard/dashboard.module#DashboardModule'
             },
+            {
+                path: 'logout',
+                component: LogoutComponent,
+                pathMatch: 'full'
+            },
         ]
     },
     {
@@ -39,7 +46,8 @@ export const routes: Routes = [
             {
                 path: '',
                 loadChildren: 'app/pages/pages.module#PagesModule'
-            }
+            },
+             
         ]
     },
     {
@@ -52,7 +60,14 @@ export const routes: Routes = [
             {
                 path: '',
                 loadChildren: 'app/components/components.module#ComponentsModule'
-            }
+            },
+            {
+                        path: 'orders',
+                        component: OrderComponent,
+                        data: {
+                            title: 'Orders'
+                        }
+                    },
         ]
     },
     {

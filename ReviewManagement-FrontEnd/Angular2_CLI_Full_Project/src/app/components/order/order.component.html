@@ -1,0 +1,140 @@
+<div class="animated fadeIn">
+    <!--/row-->
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="inboxstyle">
+                <div class="fab btn-group show-on-hover dropup">
+                    <div data-toggle="tooltip" data-placement="left" title="Create User" style="margin-left: 42px;">
+                        <button type="button" class="btn btn-danger btn-io dropdown-toggle" data-toggle="dropdown" (click)="dialog.open();">
+                                <span class="fa-stack fa-2x">
+                                    <i class="fa fa-circle fa-stack-2x fab-backdrop"></i>
+                                    <i class="fa fa-plus fa-stack-1x fa-inverse fab-primary"></i>
+                                    <i class="fa fa-pencil fa-stack-1x fa-inverse fab-secondary"></i>
+                                </span>
+                                </button>
+                    </div>
+                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                        <li>
+                            <a data-toggle="tooltip" data-placement="top" title="Show Order" (click)="dialog.open();">
+                                <i class="fa fa-user"></i></a>
+                        </li>
+                        <li>
+                            <a data-toggle="tooltip" data-placement="top" title="Activate/Suspend">
+                                <i class="fa fa-lock"></i></a>
+                        </li>
+                        <li>
+                            <a data-toggle="tooltip" data-placement="top" title="UserActivity">
+                                <i class="fa fa-spinner fa-spin"></i></a>
+                        </li>
+                        <li>
+                            <a data-toggle="tooltip" data-placement="top" title="Settings">
+                                <i class="fa fa-cog fa-fw"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                     <strong>Orders</strong>
+                     <small> Product ASIN : {{_asin}} / {{_title}}</small>
+                </div>
+
+                <div class="card-block">
+                    <vaadin-grid #gridOrder [items]="_orders" (selected-items-changed)="selected(gridOrder)">
+                        <table class="table table-bordered table-striped table-condensed">
+                            <colgroup>
+                                <col name="amazonOrderId">
+                                <col name="salesChannel">
+                                <col name="buyerName">
+                                <col name="lastUpdateDate">
+                            </colgroup>
+                        </table>
+                    </vaadin-grid>
+                </div>
+                <div>
+
+                    <paper-dialog #dialog>
+                        <!--<edit-user #editUser  (closeEditor)="dialog.close();  "></edit-user>-->
+                        <div class="card">
+                            <div class="card-header">
+                                <strong>Purchase Order {{_selectedOrder?.amazonOrderId}}</strong>
+                                <small></small>
+                            </div>
+                            <div class="card-block">
+                                <div class="form-group">
+                                    <label for="company">Company</label>
+                                    <input type="text" class="form-control" id="company" placeholder="{{_selectedOrder?.buyerName}}">
+                                </div>
+                                 <div class="row">
+                                    <div class="form-group col-sm-4">
+                                        <label for="vat">Purchase Date</label>
+                                        <input type="text" class="form-control" id="vat" placeholder="{{_selectedOrder?.earliestShipDate}}">
+                                    </div>  
+                                    <div class="form-group col-sm-4"> 
+                                        <label for="street">Eearliest Shipment Date</label>
+                                        <input type="text" class="form-control" id="street" placeholder="{{_selectedOrder?.purchaseDate}}">
+                                    </div>
+                                    <div class="form-group col-sm-4">     
+                                        <label for="city">Latest Update Date</label>
+                                        <input type="text" class="form-control" id="city" placeholder="{{_selectedOrder?.LastUpdateDate}}">
+                                    </div>
+                                 </div>
+                                <div class="row">
+                                     <div class="form-group col-sm-4">
+                                        <label for="postal-code">Number of Items Shipped</label>
+                                        <input type="text" class="form-control" id="postal-code" placeholder="{{_selectedOrder?.NumberOfItemsShipped}}">
+                                      </div>  
+                                      <div class="form-group col-sm-4">
+                                        <label for="country">Number of Items UnShipped</label>
+                                        <input type="text" class="form-control" id="country" placeholder="{{_selectedOrder?.NumberOfItemsUnshipped}}">
+                                      </div> 
+                                    
+                                </div>
+                                <!--/row-->
+                                <div class="row">
+                                    <vaadin-grid #gridOrderItem [items]="_orderItems" >
+                                            <table class="table table-bordered table-striped table-condensed">
+                                                <colgroup>
+                                                    <col name="sellerSKU">
+                                                    <col name="title">
+                                                    <col name="itemPrice">
+                                                    <col name="shippingPrice">
+                                                    
+                                                </colgroup>
+                                            </table>
+                                    </vaadin-grid>
+                                    
+                                </div>
+
+                            </div>
+                        </div>
+                    </paper-dialog>
+                </div>
+            </div>
+        </div>
+        <!--/col-->
+    </div>
+    <!--/row-->
+    <div class="row">
+        <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-align-justify"></i> Reviews
+
+            </div>
+            <div class="card-block">
+                <vaadin-grid #gridReview [items]="_reviews">
+                    <table class="table table-bordered table-striped table-condensed">
+                        <colgroup>
+                            <col name="title">
+                            <col name="customerName">
+                            <col name="rating">
+                            <col name="reviewDate">
+                        </colgroup>
+                    </table>
+                </vaadin-grid>
+            </div>
+
+        </div>
+        </div>
+    </div>

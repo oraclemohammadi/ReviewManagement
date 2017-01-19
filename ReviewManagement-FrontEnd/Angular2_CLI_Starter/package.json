@@ -31,7 +31,7 @@
     "chart.js": "2.3.0",
     "core-js": "^2.4.1",
     "moment": "2.15.2",
-    "ng2-bootstrap": "1.1.16",
+    "ng2-bootstrap": "^1.2.5",
     "ng2-charts": "1.4.1",
     "primeng": "^1.1.0",
     "reflect-metadata": "^0.1.8",

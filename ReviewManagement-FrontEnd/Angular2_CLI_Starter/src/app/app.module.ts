@@ -32,6 +32,8 @@ import { ToasterModule, ToasterService } from 'angular2-toaster';
 import { AutoGuardService } from './guards/auto-guard.service';
 import { AuthenticationService } from './services/authentication.service';
 // import { UserLayoutComponent } from './layouts/user-layout/user-layout.component';
+import { OrderComponent }                from './components/order/order.component';
+import {LogoutComponent}                from './components/logout.component';
 
 @NgModule({
     imports: [
@@ -52,6 +54,8 @@ import { AuthenticationService } from './services/authentication.service';
         BreadcrumbsComponent,
         SIDEBAR_TOGGLE_DIRECTIVES,
         AsideToggleDirective,
+        OrderComponent,
+        LogoutComponent
         // Add to corresponing modules        
     ],
     providers: [{

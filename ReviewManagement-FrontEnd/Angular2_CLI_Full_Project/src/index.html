@@ -11,26 +11,52 @@
     <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,AngularJS,Angular,Angular2,jQuery,CSS,HTML,RWD,Dashboard">
     <link rel="shortcut icon" href="assets/img/favicon.png">
 
-    <title>CoreUI - Open Source Bootstrap Admin Template</title>
+    <title>MILO Business Tracking Portal</title>
 
     <!-- Icons -->
     <link href="assets/css/font-awesome.min.css" rel="stylesheet">
     <link href="assets/css/simple-line-icons.css" rel="stylesheet">
-
+	<script src="assets/bower_components/es6-shim/es6-shim.min.js"></script>
+    <!--<script src="https://npmcdn.com/angular2/es6/dev/src/testing/shims_for_IE.js"></script>-->
+    <!--Vaadin Grid-->
+    <script src="assets/bower_components/webcomponentsjs/webcomponents.min.js"></script>
+    <script>
+        window.Polymer = window.Polymer || {
+        dom: 'shadow'
+        };
+    </script>
+    <link rel="import" href="assets/bower_components/paper-input/paper-input.html">
+    <link rel="import" href="assets/bower_components/paper-dialog/paper-dialog.html">
+    <link rel="import" href="assets/bower_components/paper-checkbox/paper-checkbox.html">
+    <link rel="import" href="assets/bower_components/paper-input/paper-textarea.html">
+    <link rel="import" href="assets/bower_components/paper-icon-button/paper-icon-button.html">
+    <link rel="import" href="assets/bower_components/paper-toast/paper-toast.html">
+    <link rel="import" href="assets/bower_components/vaadin-grid/vaadin-grid.html">
+    <link rel="import" href="assets/bower_components/paper-button/paper-button.html">
 </head>
 
 <!-- BODY options, add following classes to body to change options
-    1. 'compact-nav'     	  - Switch sidebar to minified version (width 50px)
-    2. 'sidebar-nav'		  - Navigation on the left
-        2.1. 'sidebar-off-canvas'	- Off-Canvas
-            2.1.1 'sidebar-off-canvas-push'	- Off-Canvas which move content
-            2.1.2 'sidebar-off-canvas-with-shadow'	- Add shadow to body elements
-    3. 'fixed-nav'			  - Fixed navigation
-    4. 'navbar-fixed'		  - Fixed navbar
-    5. 'footer-fixed'		  - Fixed navbar
+
+// Header options
+1. '.header-fixed'					- Fixed Header
+
+// Sidebar options
+1. '.sidebar-fixed'					- Fixed Sidebar
+2. '.sidebar-hidden'				- Hidden Sidebar
+3. '.sidebar-off-canvas'		- Off Canvas Sidebar
+4. '.sidebar-compact'				- Compact Sidebar Navigation (Only icons)
+
+// Aside options
+1. '.aside-menu-fixed'			- Fixed Aside Menu
+2. '.aside-menu-hidden'			- Hidden Aside Menu
+3. '.aside-menu-off-canvas'	- Off Canvas Aside Menu
+
+// Footer options
+1. 'footer-fixed'						- Fixed footer
+
 -->
 
-<body class="navbar-fixed sidebar-nav fixed-nav">
+<body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
     <!-- App Loading... -->
 </body>
 
