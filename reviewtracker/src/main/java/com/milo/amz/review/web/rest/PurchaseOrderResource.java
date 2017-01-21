@@ -110,6 +110,23 @@ public class PurchaseOrderResource {
                 HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+    
+    /**
+     * GET  /purchase-orders/:purchaseId : get the "purchaseId" purchaseOrder.
+     *
+     * @param id the id of the purchaseOrderDTO to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the purchaseOrderDTO, or with status 404 (Not Found)
+     * @throws URISyntaxException 
+     */
+    @GetMapping("/purchase-orders/buyerId={buyerId}")
+    @Timed
+    public ResponseEntity<List<PurchaseOrderDTO>> getPurchaseOrder(@PathVariable(name="buyerId") String buyerId,Pageable pageable) throws URISyntaxException {
+        log.debug("REST request to get PurchaseOrder : {}", buyerId);
+        Page<PurchaseOrderDTO> page = purchaseOrderService.findByBuyerId(buyerId,pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/purchase-orders");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+    
 
     /**
      * DELETE  /purchase-orders/:id : delete the "id" purchaseOrder.

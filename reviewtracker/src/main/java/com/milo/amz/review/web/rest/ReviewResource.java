@@ -99,9 +99,9 @@ public class ReviewResource {
      * @param id the id of the reviewDTO to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the reviewDTO, or with status 404 (Not Found)
      */
-    @GetMapping("/reviews/{id}")
+    @GetMapping("/reviews/id={id}")
     @Timed
-    public ResponseEntity<ReviewDTO> getReview(@PathVariable Long id) {
+    public ResponseEntity<ReviewDTO> getReview(@PathVariable(name="id") Long id) {
         log.debug("REST request to get Review : {}", id);
         ReviewDTO reviewDTO = reviewService.findOne(id);
         return Optional.ofNullable(reviewDTO)
@@ -110,6 +110,23 @@ public class ReviewResource {
                 HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+    
+    /**
+     * GET  /reviews/:id : get the "id" review.
+     *
+     * @param id the id of the reviewDTO to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the reviewDTO, or with status 404 (Not Found)
+     * @throws URISyntaxException 
+     */
+    @GetMapping("/reviews/asin={asin}")
+    @Timed
+    public ResponseEntity<List<ReviewDTO>> getReview(@PathVariable(name="asin") String asin,Pageable pageable) throws URISyntaxException {
+        log.debug("REST request to get Review : {}", asin);
+        Page<ReviewDTO> page = reviewService.findByAsin(asin,pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/reviews");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+    
 
     /**
      * DELETE  /reviews/:id : delete the "id" review.

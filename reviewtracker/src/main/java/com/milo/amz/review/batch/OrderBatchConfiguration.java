@@ -14,6 +14,7 @@ import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -92,7 +93,7 @@ public class OrderBatchConfiguration {
     				marketplaceId.add(marketPlace.getMarketPlaceId());
     				request.setMarketplaceId(marketplaceId);
 
-    				String date = "20160120";
+    				String date = "20160123";
     				Date dob = null;
     				DateFormat df1 = new SimpleDateFormat("yyyyMMdd");
     				try {
@@ -144,68 +145,66 @@ public class OrderBatchConfiguration {
 
 			@Override
 			public PurchaseOrderDTO process(Order item) throws Exception {
-					if (purchaseOrderService.findBySellerOrderId(item.getAmazonOrderId())==null)
+				long id=-1;
+				PurchaseOrderDTO purchaseOrderDTO=purchaseOrderService.findBySellerOrderId(item.getAmazonOrderId());
+					if ((purchaseOrderDTO!=null && purchaseOrderDTO.getBuyerId()==null )||purchaseOrderDTO==null&&!"Canceled".equals(item.getOrderStatus()))
 					{
-					String contactBuyer="";
-					driver.get("https://sellercentral.amazon.com/gp/orders-v2/list/ref=ag_myo_dnav_xx_");
-				    WebElement myDynamicElement = new WebDriverWait(driver, 20).until(
-							ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[@name='searchType']")));
-					myDynamicElement.sendKeys("Buyer Email");
-					myDynamicElement = new WebDriverWait(driver, 20).until(
-							ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[@id='searchKeyword']")));
-					myDynamicElement.sendKeys(item.getBuyerEmail());
-					
-					myDynamicElement = driver.findElement(By.xpath(".//*[@id='_myoLO_preSelectedRangeSelect']"));
-					
-					myDynamicElement.sendKeys("Last 365 days");
-					
-					driver.findElement(By.xpath(".//*[@id='SearchID']")).click();
-					
-					try{
-					myDynamicElement = new WebDriverWait(driver, 20).until(
-							ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[contains(@id,'buyerName')]")));
-					}
-					catch(TimeoutException ex)
-					{
-						try{
-						myDynamicElement = driver.findElement(By.xpath(".//*[@id='myo-message-board-alert-info-label']"));
-						if (myDynamicElement!=null && "Order Cancelled".equals(myDynamicElement.getText())) 
-							return null;
-						}
-						catch(TimeoutException ex1)
-						{
-							
-							
-								myDynamicElement = driver.findElement(By.xpath(".//*[@id='_myoV2PageTopMessagePlaceholder']/div/div/ul/li/span"));
-								if (myDynamicElement!=null && "Order ID Not Found".equals(myDynamicElement.getText())) 
-									return null;
-							
-						}
-					}
-					if (myDynamicElement!=null)
-					{
-						myDynamicElement.click();
-						
+						if (purchaseOrderDTO!=null)  id=purchaseOrderDTO.getId();
+						purchaseOrderDTO=orderMapper.orderDTOTOPurchaseOrder(item);
+						if (id!=-1) purchaseOrderDTO.setId(id);
+						String contactBuyer="";
+						driver.get("https://sellercentral.amazon.com/gp/orders-v2/list/ref=ag_myo_dnav_xx_");
+					    WebElement myDynamicElement = new WebDriverWait(driver, 20).until(
+								ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[@name='searchType']")));
+						myDynamicElement.sendKeys("Buyer Email");
 						myDynamicElement = new WebDriverWait(driver, 20).until(
-								ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[@id='commMgrCompositionSubject']")));
+								ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[@id='searchKeyword']")));
+						myDynamicElement.sendKeys(item.getBuyerEmail());
+						
+						myDynamicElement = driver.findElement(By.xpath(".//*[@id='_myoLO_preSelectedRangeSelect']"));
+						
+						myDynamicElement.sendKeys("Last 365 days");
+						
+						driver.findElement(By.xpath(".//*[@id='SearchID']")).click();
+						
+					   try{
+						WebElement notFoundElement = new WebDriverWait(driver, 7).until(
+									ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[@id='_myoV2PageTopMessagePlaceholder']/div/div/ul/li/span")));
+					   }
+					   catch(Exception e)
+					   {
+						   WebElement buyerElement = driver
+			  						.findElement(By.xpath("(.//*[contains(@id,'buyerName')])[1]"));
+			  				String parentWindowHandle=driver.getWindowHandle();
+			  				buyerElement.click();
+		
+			  				buyerElement = new WebDriverWait(driver, 20).until(
+			  						ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[@id='commMgrCompositionSubject']")));
+		
+			  				
+			  				purchaseOrderDTO.setBuyerId(GeneralUtils.getParameterByName("buyerID", driver.getCurrentUrl()));
+			  				driver.navigate().back();
+					   }
 						
 						
-						contactBuyer=GeneralUtils.getParameterByName("buyerID", driver.getCurrentUrl());  
+						
+	
+		  				
+		  				
+		  				/*try {
+		  					purchaseOrderService.save(purchaseOrderDTO);
+		  				} catch (Exception e) {
+		  					e.printStackTrace();
+		  				}*/
+	
+		  				
+
 					}
-					PurchaseOrderDTO purchaseOrderDTO= orderMapper.orderDTOTOPurchaseOrder(item);
-					purchaseOrderDTO.setBuyerId(contactBuyer);
-									
-					return purchaseOrderDTO;
-					}
-					else
-						return null;
+					return purchaseOrderDTO;	
 			}
 			
-			
-				
-			
 		};
-    	
+	  
       }
       
       @Bean 
@@ -259,7 +258,7 @@ public class OrderBatchConfiguration {
     	  //System.out.println("name is "+name);
 	    return stepBuilderFactory.get("orderStep")
 	        .<String,String>chunk(2).listener(new  OrderChunkListener())
-	        .faultTolerant()
+	        .faultTolerant().skip(TimeoutException.class).skip(StaleElementReferenceException.class)
 	        .reader(orderReader())
 	        .processor(orderProcessor())
 	        .writer(orderWriter())

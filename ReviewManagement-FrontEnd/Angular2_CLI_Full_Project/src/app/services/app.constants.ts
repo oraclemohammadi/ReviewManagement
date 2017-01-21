@@ -23,7 +23,7 @@ const API = {
     userList: '/usercar/details=true',
     loginService: '/api/user/login',
     appSettingMetaData:'/api/metaData/SettingMetaDataList',
-    customerReviewURL:'/api/review/list',
+    customerReviewURL:'api/reviews',
     productURL:'/api/product/listProduct',
     orderListURL:'/api/purchase-orders'
 }

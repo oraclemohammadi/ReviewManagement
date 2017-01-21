@@ -48,5 +48,5 @@ public interface PurchaseOrderService {
     
     PurchaseOrderDTO findBySellerOrderId(String sellerOrderId);
     
-    List<PurchaseOrderDTO> findByBuyerId(String buyerid);
+    Page<PurchaseOrderDTO> findByBuyerId(String buyerId,Pageable pageable);
 }

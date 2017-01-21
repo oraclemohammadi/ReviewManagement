@@ -128,6 +128,7 @@ public class OrderHtmlScrappedBatchConfiguration {
 	private void goToPage(int pageNo) {
 		if (pageNo > 1) {
 			try{
+				System.out.println("*********** Page *************"+pageNo);
 				WebElement pageElement = driver
 						.findElement(By.xpath("(.//*[@id='_myoSO_GoToPageForm_1']/table/tbody/tr/td[2]/input[1])[1]"));
 				pageElement.sendKeys(String.valueOf(pageNo));
@@ -138,7 +139,7 @@ public class OrderHtmlScrappedBatchConfiguration {
 			}
 			catch(Exception ex)
 			{
-				
+				ex.printStackTrace();
 			}
 		}
 	}
@@ -148,11 +149,16 @@ public class OrderHtmlScrappedBatchConfiguration {
 		try {
 			WebElement myDynamicElement = driver
 					.findElement(By.xpath("(.//*[contains(@href,'orderID')])[" + index + "]"));
-			String orderId = myDynamicElement.getText();
-			if (purchaseOrderService.findBySellerOrderId(orderId) == null) {
-
+			String orderId = GeneralUtils.getParameterByName("orderID",myDynamicElement.getAttribute("href"));
+			
+			purchaseOrderDTO=purchaseOrderService.findBySellerOrderId(orderId);
+			if (purchaseOrderDTO==null)
+				purchaseOrderDTO = new PurchaseOrderDTO();
+            if (purchaseOrderDTO.getBuyerId()==null)
+            {
 				WebElement buyerElement = driver
 						.findElement(By.xpath("(.//*[contains(@id,'buyerName')])[" + index + "]"));
+				String parentWindowHandle=driver.getWindowHandle();
 				buyerElement.click();
 
 				buyerElement = new WebDriverWait(driver, 20).until(
@@ -162,16 +168,16 @@ public class OrderHtmlScrappedBatchConfiguration {
 				purchaseOrderDTO.setBuyerId(GeneralUtils.getParameterByName("buyerID", driver.getCurrentUrl()));
 
 				purchaseOrderDTO.setSellerOrderId(orderId);
-				// purchaseOrderList.add(purchaseOrderDTO);
-				try {
+				
+				/*try {
 					purchaseOrderService.save(purchaseOrderDTO);
 				} catch (Exception e) {
 					e.printStackTrace();
-				}
+				}*/
 
 				driver.navigate().back();
 				new WebDriverWait(driver, 20);
-			}
+            }
 		} catch (Exception e) {
 			return null;
 		}
@@ -180,7 +186,7 @@ public class OrderHtmlScrappedBatchConfiguration {
 
 	@Bean
 	@StepScope
-	public ItemReader<PurchaseOrderDTO> orderReader() {
+	public ItemReader<PurchaseOrderDTO> orderhtmlReader() {
 		WebElement myDynamicElement = null;
 		ListOrdersResponse response = null;
 		List<PurchaseOrderDTO> purchaseOrderList = new ArrayList();
@@ -212,6 +218,8 @@ public class OrderHtmlScrappedBatchConfiguration {
 			goToPage(pageNo);
 			for (int index = 1; index <=15; index++) {
 				purchaseOrderDTO = getPurchaseOrderInfo(index);
+				if (purchaseOrderDTO!=null)
+				 purchaseOrderList.add(purchaseOrderDTO);
 				recordCounter++;
 				
 				if (purchaseOrderDTO != null)
@@ -244,19 +252,18 @@ public class OrderHtmlScrappedBatchConfiguration {
 
 	@Bean
 	@StepScope
-	public ItemWriter<PurchaseOrderDTO> orderWriter() {
+	public ItemWriter<PurchaseOrderDTO> orderhtmlWriter() {
 		return new ItemWriter<PurchaseOrderDTO>() {
 
 			@Override
 			public void write(List<? extends PurchaseOrderDTO> items) throws Exception {
 
-				/*
-				 * for (PurchaseOrderDTO item : items) { try {
-				 * purchaseOrderService.save(item); } catch (Exception e) {
-				 * e.printStackTrace(); }
-				 * 
-				 * }
-				 */
+				 for (PurchaseOrderDTO item : items) { try {
+				  purchaseOrderService.save(item); } catch (Exception e) {
+				  e.printStackTrace(); }
+				  
+				  }
+				 
 
 			}
 		};
@@ -264,16 +271,16 @@ public class OrderHtmlScrappedBatchConfiguration {
 	}
 
 	@Bean
-	public Step ordrProcess() {
+	public Step ordrhtmlProcess() {
 		// System.out.println("name is "+name);
 		return stepBuilderFactory.get("orderHtmlStep").<String, String>chunk(2).listener(new OrderChunkListener())
 				.faultTolerant().skip(TimeoutException.class).skip(StaleElementReferenceException.class)
-				.reader(orderReader()).writer(orderWriter()).build();
+				.reader(orderhtmlReader()). writer(orderhtmlWriter()).build();
 	}
 
 	@Bean
-	public Job orderSteps() throws Exception {
+	public Job orderhtmlSteps() throws Exception {
 		return jobBuilderFactory.get("amazonOrderHtmlScrappedJob").incrementer(new RunIdIncrementer())
-				.start(ordrProcess()).build();
+				.start(ordrhtmlProcess()).build();
 	}
 }

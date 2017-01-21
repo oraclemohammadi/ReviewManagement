@@ -35,6 +35,14 @@ public interface ReviewService {
      *  @return the entity
      */
     ReviewDTO findOne(Long id);
+    
+    /**
+     *  Get the "asin" review.
+     *
+     *  @param id the id of the entity
+     *  @return the entity
+     */
+    Page<ReviewDTO> findByAsin(String asin,Pageable pageable);
 
     /**
      *  Delete the "id" review.

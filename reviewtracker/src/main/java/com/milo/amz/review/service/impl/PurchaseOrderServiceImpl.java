@@ -94,8 +94,9 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService{
 	}
 
 	@Override
-	public List<PurchaseOrderDTO> findByBuyerId(String buyerid) {
-		// TODO Auto-generated method stub
-		return purchaseOrderMapper.purchaseOrdersToPurchaseOrderDTOs(purchaseOrderRepository.findByBuyerId(buyerid));
+	public Page<PurchaseOrderDTO> findByBuyerId(String buyerId,Pageable pageable) {
+		  log.debug("Request to get all PurchaseOrders");
+	      Page<PurchaseOrder> result = purchaseOrderRepository.findByBuyerId(buyerId,pageable);
+	      return result.map(purchaseOrder -> purchaseOrderMapper.purchaseOrderToPurchaseOrderDTO(purchaseOrder));
 	}
 }

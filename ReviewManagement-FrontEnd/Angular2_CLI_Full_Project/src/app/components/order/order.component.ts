@@ -4,7 +4,8 @@ import { Observable } from 'rxjs/observable';
 import { OrderService } from '../../services/order/order.service';
 import { AppConstants } from '../../services/app.constants';
 import { ActivatedRoute } from '@angular/router';
-//import { CustomerReviewService } from '../../services/customer-review/customer-review.service';
+import { CustomerReviewService } from '../../services/customer-review/customer-review.service';
+import {PaginatorModule} from 'primeng/primeng';
 class Order{
   amazonOrderId :String;
   salesChannel:String;
@@ -13,7 +14,7 @@ class Order{
 }
 @Component({
   templateUrl: 'order.component.html',
-  providers: [OrderService, AppConstants],
+  providers: [OrderService, AppConstants,CustomerReviewService],
   styles: [`
      :host {
       display: flex;
@@ -190,21 +191,18 @@ export class OrderComponent implements OnInit, OnDestroy, AfterViewInit {
   _asin: any;
   _title: String;
   _sub: any;
+  _paginationUrls:String[];
   _reviews: any[];
   _selectedOrder:any;
   _orderItems:any[]=[];
+  _reviewfilters:Object;
+  _total_count;
    @ViewChild('grid') grid: any;
-  constructor(private _orderService: OrderService, private _route: ActivatedRoute) { }
+  constructor(private _orderService: OrderService, private _route: ActivatedRoute,private _customerReviewService:CustomerReviewService) { }
   ngOnInit() {
-    this._sub = this._route.params.subscribe(params => {
-      this._asin = params['asin']; // (+) converts string 'id' to a number
-      this._title = params['title'];
-      this.getOrderList(this._asin);
-    });
+   
 
-   /* this._customerReviewService.getCustomerReviewList(this._asin).subscribe(res => {
-      this._reviews = res;
-    });*/
+   
 
 
   }
@@ -214,7 +212,7 @@ export class OrderComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnDestroy() {
-    this._sub.unsubscribe();
+   // this._sub.unsubscribe();
   }
   getOrderList(asin: String) {
     this._orderService.getOrderList(asin).subscribe(res => {
@@ -232,10 +230,60 @@ export class OrderComponent implements OnInit, OnDestroy, AfterViewInit {
       grid.selection.clear();
       grid.getItem(selection[0], (err: any, item: any) => {
         this._selectedOrder= item;
+        console.log('selected '+ this._selectedOrder.customerID);
         this._orderItems=item.orderItems;
+       
+     this._sub = this._route.params.subscribe(params => {
+      this._asin = params['asin']; // (+) converts string 'id' to a number
+      this._title = params['title'];
+      this.getOrderList(this._selectedOrder.customerID);
+    });
+
       });
     }
   }
+
+  private getReviews(asin:String,pagination:String,page:number,size:number){
+    this._customerReviewService.getCustomerReviewList(asin,pagination,page,size).subscribe(res => {
+      this._reviews = res.data;
+      console.log(res.headers.get('Link'));
+      this._total_count=res.headers.get('x-total-count');
+      console.log(this._total_count);
+      this._paginationUrls =res.headers.get('Link').split(',');
+    });
+  }
+   private onFiltersChanged(grid: any) {
+    /*if (Polymer && Polymer.isInstance(grid)) {
+      grid.scrollToStart(0);
+      grid.refreshItems();
+    }*/
+   
+     const filters: any = this._reviewfilters || {};
+    console.log('grid understood'+filters.asin);
+
+   this.getReviews(filters.asin,'',1,10);
+  }
+
+  onGridReady(grid: any) {
+    grid.columns[0].renderer = cell =>
+        cell.element.textContent = cell.row.index;
+
+    grid.items = (params: any, callback: Function) =>
+     /* this._getJSON(`https://demo.vaadin.com/demo-data/1.0/people?index=${params.index}&count=${params.count}`)
+        .subscribe(json => callback(json.result, json.size));*/
+        console.log('params '+params);
+
+  }
+
+ paginate(event) {
+        //event.first = Index of the first record
+        console.log(event);
+        const filters: any = this._reviewfilters || {};
+        this.getReviews(filters.asin,'next',event.page,event.rows)
+        //event.rows = Number of rows to display in new page
+        //event.page = Index of the new page
+        //event.pageCount = Total number of pages
+    }
 
 }
 

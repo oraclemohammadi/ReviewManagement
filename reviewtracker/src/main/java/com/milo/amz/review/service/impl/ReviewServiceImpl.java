@@ -72,6 +72,21 @@ public class ReviewServiceImpl implements ReviewService{
         ReviewDTO reviewDTO = reviewMapper.reviewToReviewDTO(review);
         return reviewDTO;
     }
+    
+    
+    /**
+     *  Get one review by id.
+     *
+     *  @param id the id of the entity
+     *  @return the entity
+     */
+    @Override
+	public Page<ReviewDTO> findByAsin(String asin,Pageable pageable) {
+    	 log.debug("Request to get Review : {}", asin);
+         Page<Review> result = reviewRepository.findByProductAsin(asin,pageable);
+         return result.map(review -> reviewMapper.reviewToReviewDTO(review)) ;
+	}
+    
 
     /**
      *  Delete the  review by id.
@@ -94,6 +109,8 @@ public class ReviewServiceImpl implements ReviewService{
 		// TODO Auto-generated method stub
 		return  reviewMapper.reviewToReviewDTO(reviewRepository.findByReviewID(reviewid));
 	}
+
+	
     
    
 }

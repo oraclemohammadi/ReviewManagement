@@ -15,7 +15,7 @@ import { ModalsComponent }          from './modals.component';
 import { TabsModule }               from 'ng2-bootstrap/tabs';
 import { TabsComponent }            from './tabs.component';
 
-// Components Routing
+// add project custom components here
 import { ComponentsRoutingModule }  from './components-routing.module';
 import { OrderComponent } from './order/order.component';
 import { PolymerElement } from '@vaadin/angular2-polymer';
@@ -26,6 +26,8 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common'; //this one added for ngIf in control-messeage component
 import { LoginComponent } from './login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';  //for login page and all pages that are using forms
+import { ReviewSearchFilters } from './order/review-search-filter';
+import {PaginatorModule} from 'primeng/primeng';
 
 
 @NgModule({
@@ -35,8 +37,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';  //for login 
         TabsModule,
         CommonModule,
         FormsModule,
-        ReactiveFormsModule
-        
+        ReactiveFormsModule,
+        PaginatorModule
         
     ],
     exports:[OrderComponent,ControlMessagesComponent,LoginComponent],
@@ -54,7 +56,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';  //for login 
         PolymerElement('vaadin-grid'),
         PolymerElement('paper-dialog'),
         ControlMessagesComponent,
-        LoginComponent
+        LoginComponent,
+        ReviewSearchFilters
 
     ],
     providers:[ValidationService],

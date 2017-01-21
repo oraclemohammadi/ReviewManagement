@@ -12,14 +12,14 @@ export class OrderService{
 constructor(private _http:Http, private appConstants:AppConstants){
 
 }
-getOrderList(asin:String){
-    let body = '{"asin":"'+asin+'"}';
+getOrderList(buyerId:String){
+   // let body = '{"asin":"'+asin+'"}';
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('Access-Control-Allow-Origin', '*');
     headers.append('Authorization','Bearer'+' '+sessionStorage.getItem('token'));
     let options = new RequestOptions({ headers: headers });
-    return this._http.get(this.appConstants.OrderListURL,options).map(res=>res.json()).catch(this.handleError);
+    return this._http.get(this.appConstants.OrderListURL+"/buyerId="+buyerId,options).map(res=>res.json()).catch(this.handleError);
   }
   private handleError (error: Response) {
         console.error(error);

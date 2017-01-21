@@ -2,6 +2,8 @@ package com.milo.amz.review.repository;
 
 import com.milo.amz.review.domain.PurchaseOrder;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.*;
 
 import java.util.List;
@@ -17,6 +19,8 @@ public interface PurchaseOrderRepository extends JpaRepository<PurchaseOrder,Lon
 
 	PurchaseOrder findBysellerOrderId(String sellerOrderId);
 	
-	List<PurchaseOrder> findByBuyerId(String buyerid);
+	Page<PurchaseOrder> findByBuyerId(String buyerid,Pageable pageable);
+	
+
 	
 }
