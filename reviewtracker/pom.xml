@@ -22,6 +22,7 @@
     <properties>
         <amazon.order.client>1.0</amazon.order.client>
         <amazon.product.client>1.0</amazon.product.client>
+        <lombok.version>1.16.6</lombok.version>
         <argLine>-Djava.security.egd=file:/dev/./urandom -Xmx256m</argLine>
         <assertj-core.version>3.5.2</assertj-core.version>
         <awaitility.version>1.7.0</awaitility.version>
@@ -78,6 +79,7 @@
         <spring-social-security.version>1.1.2.RELEASE</spring-social-security.version>
         <spring-social-twitter.version>1.1.2.RELEASE</spring-social-twitter.version>
         <springfox.version>2.6.1</springfox.version>
+        
     </properties>
 
     <dependencies>
@@ -464,6 +466,12 @@
             <artifactId>amazon-mws-product</artifactId>
             <version>${amazon.product.client}</version>
         </dependency>
+        
+        <dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>${lombok.version}</version>
+			</dependency>
 
     </dependencies>
     <build>

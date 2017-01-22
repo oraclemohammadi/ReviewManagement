@@ -7,6 +7,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/frompromise';
 import { BaseService } from './base-service';
 import {Headers,URLSearchParams } from '@angular/http';
+import { AuthenticationDto } from '../dto/Authentication.DTO';
 
 @Injectable()
 export class AuthenticationService extends BaseService {
@@ -16,10 +17,11 @@ export class AuthenticationService extends BaseService {
     super(http);
   }
 
-  public login(obj: JsonBaseClass): Observable<boolean> {
+  public login(obj: AuthenticationDto): Observable<boolean> {
     let body = new URLSearchParams();
-  body.append('username', 'user');
-  body.append('password', 'user');
+    console.log(obj);
+  body.append('username', obj.userName);
+  body.append('password', obj.password);
    body.append('grant_type', 'password');
     body.append('client_secret', 'my-secret-token-to-change-in-production');
      body.append('client_id', 'reviewtrackerapp');
@@ -30,7 +32,7 @@ export class AuthenticationService extends BaseService {
                 'scope': 'write',
                 'Accept': 'application/json',
                 'Content-Type': 'application/form',
-                'Authorization':"Basic " + btoa('user' + ":" + 'user')
+                'Authorization':"Basic " + btoa( obj.userName + ":" + obj.password)
             })
         };
     let promise = new Promise((resolve, reject) => {

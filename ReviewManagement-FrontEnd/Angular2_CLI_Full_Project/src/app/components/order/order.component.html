@@ -14,15 +14,15 @@
                 </div>
                 <ul class="dropdown-menu dropdown-menu-right" role="menu">
                     <li>
-                        <a data-toggle="tooltip" data-placement="top" title="Show Order" (click)="dialog.open();">
+                        <a data-toggle="tooltip" data-placement="top" title="Send email" (click)="sendMailDialog.open();">
                             <i class="fa fa-user"></i></a>
                     </li>
                     <li>
-                        <a data-toggle="tooltip" data-placement="top" title="Activate/Suspend">
+                        <a data-toggle="tooltip" data-placement="top" title="">
                             <i class="fa fa-lock"></i></a>
                     </li>
                     <li>
-                        <a data-toggle="tooltip" data-placement="top" title="UserActivity">
+                        <a data-toggle="tooltip" data-placement="top" title="">
                             <i class="fa fa-spinner fa-spin"></i></a>
                     </li>
                     <li>
@@ -55,7 +55,22 @@
             <div class="card-footer">
                 <p-paginator rows="10" totalRecords="{{_total_count}}" [rowsPerPageOptions]="[10,20,30]" (onPageChange)="paginate($event)"></p-paginator>
             </div>
-
+            <paper-dialog #sendMailDialog>
+                    <!--<edit-user #editUser  (closeEditor)="dialog.close();  "></edit-user>-->
+                    <div class="card">
+                        <div class="card-header">
+                            <strong>Send email for reviewer :</strong>
+                            <small>Customer Name : {{_selectedOrder?.customerName}}</small>
+                        </div>
+                        <div class="card-block">
+                            <form (ngSubmit)="onSubmit($event.value)" #emailForm="ngForm" novalidate>
+                                <paper-textarea label="Message " #message ngDefaultControl  height="30" [(value)]="_revierwerEmailMessage" auto-validate></paper-textarea>
+                               
+                            </form>
+                            <paper-button raised (click)="emailForm.ngSubmit.emit(emailForm)"><iron-icon icon="file-download" ></iron-icon>send</paper-button>
+                        </div>
+                    </div>
+            </paper-dialog>
         </div>
 
 <!--/row-->

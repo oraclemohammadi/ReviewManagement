@@ -55,6 +55,7 @@ import {PaginatorModule} from 'primeng/primeng';
         OrderComponent,
         PolymerElement('vaadin-grid'),
         PolymerElement('paper-dialog'),
+        PolymerElement('paper-input'),
         ControlMessagesComponent,
         LoginComponent,
         ReviewSearchFilters

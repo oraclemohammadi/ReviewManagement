@@ -6,6 +6,7 @@ import { AppConstants } from '../../services/app.constants';
 import { ActivatedRoute } from '@angular/router';
 import { CustomerReviewService } from '../../services/customer-review/customer-review.service';
 import {PaginatorModule} from 'primeng/primeng';
+import {ReviewerContactService} from '../../services/customer-review/reviewer-contact.service';
 class Order{
   amazonOrderId :String;
   salesChannel:String;
@@ -14,7 +15,7 @@ class Order{
 }
 @Component({
   templateUrl: 'order.component.html',
-  providers: [OrderService, AppConstants,CustomerReviewService],
+  providers: [OrderService, AppConstants,CustomerReviewService,ReviewerContactService],
   styles: [`
      :host {
       display: flex;
@@ -187,18 +188,22 @@ box-shadow: 0px 3px 7px 0px rgba(203, 203, 203, 0.72);
 })
 
 export class OrderComponent implements OnInit, OnDestroy, AfterViewInit {
-  _orders: Order[]=[];
+  _orders: any[]=[];
   _asin: any;
   _title: String;
   _sub: any;
   _paginationUrls:String[];
   _reviews: any[];
   _selectedOrder:any;
-  _orderItems:any[]=[];
+  _orderItems:any=[];
   _reviewfilters:Object;
   _total_count;
+  _revierwerEmailMessage:String;
    @ViewChild('grid') grid: any;
-  constructor(private _orderService: OrderService, private _route: ActivatedRoute,private _customerReviewService:CustomerReviewService) { }
+    @Output() eventEmitter = new EventEmitter();
+  constructor(private _orderService: OrderService, private _route: ActivatedRoute,private _customerReviewService:CustomerReviewService,
+  private _reviewerContactService:ReviewerContactService)
+   { }
   ngOnInit() {
    
 
@@ -252,6 +257,14 @@ export class OrderComponent implements OnInit, OnDestroy, AfterViewInit {
       this._paginationUrls =res.headers.get('Link').split(',');
     });
   }
+
+  private sendEmail(orderId:String,marketPlaceId:String,buyerId:String,message:String){
+    this._reviewerContactService.sendEmailToReviewer(orderId,marketPlaceId,buyerId,message).subscribe(res => {
+      this._reviews = res
+     
+    });
+  }
+
    private onFiltersChanged(grid: any) {
     /*if (Polymer && Polymer.isInstance(grid)) {
       grid.scrollToStart(0);
@@ -284,6 +297,18 @@ export class OrderComponent implements OnInit, OnDestroy, AfterViewInit {
         //event.page = Index of the new page
         //event.pageCount = Total number of pages
     }
+
+  private onSubmit(updated:any) {
+    // Should save changes to some backend API probably
+    // but we'll just update the object in this demo instead
+     //console.log(this._revierwerEmailMessage);
+
+   this.sendEmail(this._orders[0].sellerOrderId,this._orders[0].marketplaceId,this._orders[0].buyerId,updated);
+
+    //close();
+  }
+
+
 
 }
 

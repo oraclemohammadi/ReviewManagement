@@ -18,12 +18,16 @@ export class AppConstants{
     get OrderListURL() {
         return `${this.API_END_POINT}${API.orderListURL}`
     }
+    get contactReviewerURL() {
+        return `${this.API_END_POINT}${API.contactReviewerURL}`
+    }
 }
 const API = {
     userList: '/usercar/details=true',
     loginService: '/api/user/login',
     appSettingMetaData:'/api/metaData/SettingMetaDataList',
     customerReviewURL:'api/reviews',
+    contactReviewerURL:'api/contactReviewer',
     productURL:'/api/product/listProduct',
     orderListURL:'/api/purchase-orders'
 }
