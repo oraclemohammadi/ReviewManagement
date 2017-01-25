@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.inject.Inject;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -118,11 +120,12 @@ public class ReviewResource {
      * @return the ResponseEntity with status 200 (OK) and with body the reviewDTO, or with status 404 (Not Found)
      * @throws URISyntaxException 
      */
-    @GetMapping("/reviews/asin={asin}")
+    @GetMapping("/reviews/asin={asin}/ratingList={ratingList}/enableToContactCustomer={enableToContactCustomer}")
     @Timed
-    public ResponseEntity<List<ReviewDTO>> getReview(@PathVariable(name="asin") String asin,Pageable pageable) throws URISyntaxException {
+    public ResponseEntity<List<ReviewDTO>> getReview(@PathVariable(name="asin") String asin,boolean enableToContactCustomer,@PathVariable(name="ratingList") int[] ratingList,Pageable pageable) throws URISyntaxException {
         log.debug("REST request to get Review : {}", asin);
-        Page<ReviewDTO> page = reviewService.findByAsin(asin,pageable);
+        //if ("".equals(ratingList)) ratingList="1, 2,3,4,5";
+        Page<ReviewDTO> page = reviewService.findByAsin(asin,ratingList,enableToContactCustomer,pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/reviews");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

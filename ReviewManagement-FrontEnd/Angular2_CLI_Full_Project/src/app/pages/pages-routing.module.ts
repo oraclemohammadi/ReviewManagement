@@ -7,6 +7,7 @@ import { p500Component } from './500.component';
 import { RegisterComponent } from './register.component';
 //add project's custom compoenents here
 import { LogoutComponent } from '../components/logout.component';
+import { LoginComponent } from '../components/login.component';
 
 const routes: Routes = [
   {
@@ -29,13 +30,13 @@ const routes: Routes = [
           title: 'Page 500'
         }
       },
-     /* {
+      {
         path: 'login',
         component: LoginComponent,
         data: {
           title: 'Login Page'
         }
-      },*/
+      },
       {
         path: 'register',
         component: RegisterComponent,

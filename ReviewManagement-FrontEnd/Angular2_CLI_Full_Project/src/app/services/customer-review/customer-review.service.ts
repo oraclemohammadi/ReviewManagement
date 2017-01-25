@@ -13,7 +13,7 @@ export class CustomerReviewService{
 constructor(private _http:Http, private appConstants:AppConstants){
 
 }
-getCustomerReviewList(asin:String,pagination:String,page:number,pageSize:number){
+getCustomerReviewList(filters:any,pagination:String,page:number,pageSize:number){
    console.log('review called');
     //let body = '{"asin":"'+asin+'"}';
     let headers = new Headers();
@@ -21,7 +21,8 @@ getCustomerReviewList(asin:String,pagination:String,page:number,pageSize:number)
     headers.append('Access-Control-Allow-Origin', '*');
     headers.append('Authorization','Bearer'+' '+sessionStorage.getItem('token'));
     let options = new RequestOptions({ headers: headers });
-    return this._http.get(this.appConstants.customerReviewURL+'/asin='+asin+'?page='+page+'&size='+pageSize,options).map(this.mapResponse)
+    var productIds = [1, 2, 3, 4,5];
+    return this._http.get(this.appConstants.customerReviewURL+'/asin='+filters.asin+'/ratingList='+filters.rating+'/enableToContactCustomer=true'+'?page='+page+'&size='+pageSize,options).map(this.mapResponse)
     .catch(this.handleError);
     
     

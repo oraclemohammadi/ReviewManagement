@@ -93,7 +93,7 @@ public class OrderBatchConfiguration {
     				marketplaceId.add(marketPlace.getMarketPlaceId());
     				request.setMarketplaceId(marketplaceId);
 
-    				String date = "20160123";
+    				String date = "20160125";
     				Date dob = null;
     				DateFormat df1 = new SimpleDateFormat("yyyyMMdd");
     				try {

@@ -18,7 +18,7 @@
                             <i class="fa fa-user"></i></a>
                     </li>
                     <li>
-                        <a data-toggle="tooltip" data-placement="top" title="">
+                        <a data-toggle="tooltip" data-placement="top" title="" (click)="reviewDetailDialog.open();" >
                             <i class="fa fa-lock"></i></a>
                     </li>
                     <li>
@@ -40,20 +40,20 @@
             </div>
             <div class="card-block">
                 <search-filters [merchants]="merchants" (filtersChange)="_reviewfilters=$event;onFiltersChanged(gridReview);"></search-filters>
-                <vaadin-grid #gridReview [items]="_reviews" (selected-items-changed)="selected(gridReview)">
-                    <table class="table table-bordered table-striped table-condensed">
+                <vaadin-grid #gridReview [items]="_reviews" (selected-items-changed)="selected(gridReview)" selection-mode="multi">
+                    <table class="table table-bordered table-striped table-condensed"  >
                         <colgroup>
-                            <col name="customerID">
-                            <col name="title">
+                            <col name="customerID" hidable>
+                            <col name="title"  >
                             <col name="customerName">
-                            <col name="rating">
-                            <col name="customerId">
+                            <col name="rating" sortable >
+                            <col name="reviewDate" sortable >
                         </colgroup>
                     </table>
                 </vaadin-grid>
             </div>
             <div class="card-footer">
-                <p-paginator rows="10" totalRecords="{{_total_count}}" [rowsPerPageOptions]="[10,20,30]" (onPageChange)="paginate($event)"></p-paginator>
+                <p-paginator rows="10" totalRecords="{{_total_count}}" [rowsPerPageOptions]="[10,20,30]" (onPageChange)="paginate($event)">{{_total_count}}</p-paginator>
             </div>
             <paper-dialog #sendMailDialog>
                     <!--<edit-user #editUser  (closeEditor)="dialog.close();  "></edit-user>-->
@@ -64,13 +64,54 @@
                         </div>
                         <div class="card-block">
                             <form (ngSubmit)="onSubmit($event.value)" #emailForm="ngForm" novalidate>
-                                <paper-textarea label="Message " #message ngDefaultControl  height="30" [(value)]="_revierwerEmailMessage" auto-validate></paper-textarea>
+                                <paper-textarea label="Message " #message ngDefaultControl  rows="10" [(value)]="_revierwerEmailMessage" auto-validate></paper-textarea>
                                
                             </form>
                             <paper-button raised (click)="emailForm.ngSubmit.emit(emailForm)"><iron-icon icon="file-download" ></iron-icon>send</paper-button>
                         </div>
                     </div>
             </paper-dialog>
+            <paper-dialog #reviewDetailDialog>
+                    <!--<edit-user #editUser  (closeEditor)="dialog.close();  "></edit-user>-->
+                    <div class="card">
+                        <div class="card-header">
+                            <strong>Review Detail</strong>
+                            <small></small>
+                        </div>
+                        <div class="card-block">
+                            <div class="form-group">
+                                <label for="company">customerName</label>
+                                <input type="text" class="form-control" id="customerName" placeholder="{{_selectedReview?.customerName}}">
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    <label for="vat">title</label>
+                                    <input type="text" class="form-control" id="title" placeholder="{{_selectedReview?.title}}">
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label for="street">rating</label>
+                                    <input type="text" class="form-control" id="rating" placeholder="{{_selectedReview?.rating}}">
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label for="city">fullRating</label>
+                                    <input type="text" class="form-control" id="fullRating" placeholder="{{_selectedReview?.fullRating}}">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    <label for="postal-code">content</label>
+                                     <paper-textarea label="content " #message ngDefaultControl  *ngIf="_selectedReview"  rows="10" [(value)]="_selectedReview.content" auto-validate></paper-textarea>
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label for="country">specificNote</label>
+                                    <input type="text" class="form-control" id="specificNote" placeholder="{{_selectedReview?.specificNote}}">
+                                </div>
+
+                            </div>
+                           
+                        </div>
+                    </div>
+                </paper-dialog>
         </div>
 
 <!--/row-->

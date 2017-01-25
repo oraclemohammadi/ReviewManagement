@@ -17,11 +17,19 @@ class Order{
   templateUrl: 'order.component.html',
   providers: [OrderService, AppConstants,CustomerReviewService,ReviewerContactService],
   styles: [`
+   :root {
+        --paper-input-container: {
+            min-width: 324px;
+            width: 324px;
+            margin-right: 24px;
+        };
+    }
      :host {
       display: flex;
       flex-direction: column;
       height: 100%;
     }
+    
     .content {
       display: flex;
       flex: 1;
@@ -194,7 +202,7 @@ export class OrderComponent implements OnInit, OnDestroy, AfterViewInit {
   _sub: any;
   _paginationUrls:String[];
   _reviews: any[];
-  _selectedOrder:any;
+  _selectedReview:any;
   _orderItems:any=[];
   _reviewfilters:Object;
   _total_count;
@@ -232,24 +240,24 @@ export class OrderComponent implements OnInit, OnDestroy, AfterViewInit {
   private selected(grid: any) {
    var selection = grid.selection.selected();
    if (selection.length === 1) {
-      grid.selection.clear();
+      //grid.selection.clear();
       grid.getItem(selection[0], (err: any, item: any) => {
-        this._selectedOrder= item;
-        console.log('selected '+ this._selectedOrder.customerID);
+        this._selectedReview= item;
+        console.log('selected '+ this._selectedReview.customerID);
         this._orderItems=item.orderItems;
        
      this._sub = this._route.params.subscribe(params => {
       this._asin = params['asin']; // (+) converts string 'id' to a number
       this._title = params['title'];
-      this.getOrderList(this._selectedOrder.customerID);
+      this.getOrderList(this._selectedReview.customerID);
     });
 
       });
     }
   }
 
-  private getReviews(asin:String,pagination:String,page:number,size:number){
-    this._customerReviewService.getCustomerReviewList(asin,pagination,page,size).subscribe(res => {
+  private getReviews(filters:any,pagination:String,page:number,size:number){
+    this._customerReviewService.getCustomerReviewList(filters,pagination,page,size).subscribe(res => {
       this._reviews = res.data;
       console.log(res.headers.get('Link'));
       this._total_count=res.headers.get('x-total-count');
@@ -265,6 +273,7 @@ export class OrderComponent implements OnInit, OnDestroy, AfterViewInit {
     });
   }
 
+
    private onFiltersChanged(grid: any) {
     /*if (Polymer && Polymer.isInstance(grid)) {
       grid.scrollToStart(0);
@@ -272,9 +281,9 @@ export class OrderComponent implements OnInit, OnDestroy, AfterViewInit {
     }*/
    
      const filters: any = this._reviewfilters || {};
-    console.log('grid understood'+filters.asin);
+    console.log('grid has got new filters asin='+filters.asin+' rating'+filters.rating);
 
-   this.getReviews(filters.asin,'',1,10);
+   this.getReviews(filters,'',1,10);
   }
 
   onGridReady(grid: any) {
@@ -292,18 +301,19 @@ export class OrderComponent implements OnInit, OnDestroy, AfterViewInit {
         //event.first = Index of the first record
         console.log(event);
         const filters: any = this._reviewfilters || {};
-        this.getReviews(filters.asin,'next',event.page,event.rows)
+        this.getReviews(filters,'next',event.page,event.rows)
         //event.rows = Number of rows to display in new page
         //event.page = Index of the new page
         //event.pageCount = Total number of pages
     }
 
+ //on submit for sending email
   private onSubmit(updated:any) {
     // Should save changes to some backend API probably
     // but we'll just update the object in this demo instead
-     //console.log(this._revierwerEmailMessage);
 
-   this.sendEmail(this._orders[0].sellerOrderId,this._orders[0].marketplaceId,this._orders[0].buyerId,updated);
+
+   this.sendEmail(this._orders[0].sellerOrderId,this._orders[0].marketplaceId,this._orders[0].buyerId,this._revierwerEmailMessage);
 
     //close();
   }

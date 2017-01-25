@@ -21,6 +21,6 @@ public interface ReviewRepository extends JpaRepository<Review,Long> {
   
   Review findByReviewID(String reviewid);
   
-  @Query("select review from Review review where review.product.asin=?1")
-  Page<Review> findByProductAsin(String asin,Pageable pageable);
+  @Query("select review from Review review where review.product.asin=?1 and rating in ?2 or (?3=true and  review.customerID in (SELECT  p.buyerId FROM PurchaseOrder p) )"  )
+  Page<Review> findByProductAsin(String asin,int[] ratingList,boolean enableToContactCustomer, Pageable pageable);
 }

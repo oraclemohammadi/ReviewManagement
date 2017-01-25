@@ -8,6 +8,7 @@ import { PagesRoutingModule } from './pages-routing.module';
 //add project custom
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';  //for login page and all pages that are using forms
 import { LogoutComponent } from '../components/logout.component';
+import { LoginComponent } from '../components/login.component';
 
 
 @NgModule({
@@ -15,13 +16,15 @@ import { LogoutComponent } from '../components/logout.component';
         //add project custom     
         FormsModule,
         ReactiveFormsModule ],
-  exports:[LogoutComponent],
+  exports:[LogoutComponent,LoginComponent],
   declarations: [
     p404Component,
     p500Component,
     RegisterComponent,
     //add project cusstom here
-    LogoutComponent
+    LogoutComponent,
+    LoginComponent
+    
 
   ]
 })

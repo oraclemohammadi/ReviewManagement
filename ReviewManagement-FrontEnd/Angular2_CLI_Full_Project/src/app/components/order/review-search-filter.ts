@@ -15,26 +15,24 @@ export class ReviewSearchFilters{
   activeFilterCount = 0;
 
   private updateStatus(e: any) {
-    const status = e.target.name;
+    const rating = e.target.name;
     const toggle = e.target.checked;
 
-    if (!this.filters.statuses) {
-      this.filters.statuses = [];
+    if (!this.filters.rating) {
+      this.filters.rating = [];
     }
-
     if (toggle) {
-      this.filters.statuses.push(status)
+      this.filters.rating.push(rating)
     } else {
-      this.filters.statuses.splice(this.filters.statuses.indexOf(status), 1);
+      this.filters.rating.splice(this.filters.rating.indexOf(rating), 1);
     }
+    console.log(this.filters.rating);
   }
 
   private filtersChanged() {
-      console.log('filter changed');
       this.filtersChange.emit(this.filters);  //inform reviewgrid that filter changed
-
     // Count active filters.
-    this.activeFilterCount = ['after', 'before', 'merchant', 'asin', 'max', 'statuses'].filter((field) => {
+    this.activeFilterCount = ['after', 'before', 'merchant', 'asin', 'max', 'rating'].filter((field) => {
       return this.filters[field] && this.filters[field].length > 0;
     }).length;
     console.log('active filed count'+this.activeFilterCount);

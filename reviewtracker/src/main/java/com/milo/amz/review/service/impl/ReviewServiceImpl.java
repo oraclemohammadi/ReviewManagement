@@ -13,6 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -81,9 +83,9 @@ public class ReviewServiceImpl implements ReviewService{
      *  @return the entity
      */
     @Override
-	public Page<ReviewDTO> findByAsin(String asin,Pageable pageable) {
+	public Page<ReviewDTO> findByAsin(String asin,int[] ratingList,boolean enableToContactCustomer, Pageable pageable) {
     	 log.debug("Request to get Review : {}", asin);
-         Page<Review> result = reviewRepository.findByProductAsin(asin,pageable);
+         Page<Review> result = reviewRepository.findByProductAsin(asin,ratingList,enableToContactCustomer,pageable);
          return result.map(review -> reviewMapper.reviewToReviewDTO(review)) ;
 	}
     

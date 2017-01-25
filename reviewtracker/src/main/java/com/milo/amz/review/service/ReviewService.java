@@ -42,7 +42,7 @@ public interface ReviewService {
      *  @param id the id of the entity
      *  @return the entity
      */
-    Page<ReviewDTO> findByAsin(String asin,Pageable pageable);
+    Page<ReviewDTO> findByAsin(String asin,int[] ratingList,boolean enableToContactCustomer, Pageable pageable);
 
     /**
      *  Delete the "id" review.

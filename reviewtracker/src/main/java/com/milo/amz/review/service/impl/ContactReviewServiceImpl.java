@@ -28,8 +28,9 @@ public class ContactReviewServiceImpl implements ContactReviewerService {
 	public void sendEmail(String orderId, String buyerId, String marketPlaceId,String message) {
 		loginInSellerCentral();
 		driver.get("https://sellercentral.amazon.com/gp/help/contact/contact.html?orderID="+orderId+"&marketplaceID="+marketPlaceId+"&buyerID="+buyerId);
-		WebElement buyerElement = new WebDriverWait(driver, 20).until(
+		WebElement compositionSubjectElement = new WebDriverWait(driver, 20).until(
 					ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[@id='commMgrCompositionSubject']")));
+		compositionSubjectElement.sendKeys("Feedback Request");
 		driver.findElement(By.xpath(".//*[@id='commMgrCompositionMessage']")).sendKeys(message);
 		
 		//driver.findElement(By.xpath(".//*[@id='sendemail']")).click();

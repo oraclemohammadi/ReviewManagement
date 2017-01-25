@@ -12,7 +12,7 @@ import { TabsComponent } from './tabs.component';
 
 //add project customs here
 import { OrderComponent } from './order/order.component';
-import { LoginComponent } from './login.component';
+//import { LoginComponent } from './login.component';
 
 const routes: Routes = [
   {
@@ -86,13 +86,14 @@ const routes: Routes = [
       }
     ],
     
-  },{
+  },
+  /*{
      path: 'login',
       component: LoginComponent,
     data: {
       title: 'Components'
     },
-  }
+  }*/
 ];
 
 @NgModule({
