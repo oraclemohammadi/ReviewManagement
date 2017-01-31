@@ -4,13 +4,14 @@ import {AuthenticationService } from '../services/authentication.service';
 
 @Component({
     templateUrl: 'login.component.html',
-    providers : [AuthenticationService]
+    providers : [AuthenticationService],
 })
 export class LogoutComponent {
     constructor(private _authenticateService: AuthenticationService, private _router: Router) {
        this._authenticateService.logout().subscribe(res => {
            console.log(res);
-           this._router.navigateByUrl('/login');
+           console.log('Navigating to login');
+           this._router.navigateByUrl('');
            //this._router.navigate(['/login']);
         });
     }

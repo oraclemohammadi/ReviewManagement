@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 import { AuthenticationDto } from '../dto/authentication.DTO';
 //import { ToasterContainerComponent, ToasterConfig, ToasterService, Toast } from 'angular2-toaster/angular2-toaster';
 
@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   private signinForm: FormGroup;
   private _isLoading: boolean;
   private _errorMessage: string;
+  private sub: any; 
   //private _toast: Toast;
 
  /* public toastConfig: ToasterConfig = new ToasterConfig({
@@ -26,7 +27,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private _authService: AuthenticationService,
     private formBuilder: FormBuilder,
-    private _router: Router
+    private _router: Router,
+    public route: ActivatedRoute
     
     ) {
       this.signinForm = new FormGroup({
@@ -36,7 +38,14 @@ export class LoginComponent implements OnInit {
      }
 
   ngOnInit() {
-    
+    // get URL parameters
+    this.sub = this.route
+        .params
+        .subscribe(params => {
+            // Récupération des valeurs de l'URL
+             console.log('recived param : '+params['logout']); // --> Name must match wanted paramter
+             this.logout();
+    });
   }
 
   logForm(value: any): void {
@@ -60,6 +69,12 @@ export class LoginComponent implements OnInit {
         }, // in case of failure show this message
         () => console.log('Job Done Post!'));
     }
-  //}
-
+   logout(): void {
+    this._authService.logout().subscribe(res => {
+           console.log(res);
+           console.log('Navigating to login');
+           //this._router.navigateByUrl('');
+           //this._router.navigate(['/login']);
+        });
+   }
 }

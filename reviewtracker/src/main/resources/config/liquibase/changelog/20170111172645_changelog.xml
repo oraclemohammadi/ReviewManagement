@@ -81,7 +81,7 @@
                                referencedColumnNames="id"
                                referencedTableName="purchase_order"/>
    </changeSet>
-   <changeSet author="mehdi (generated)" id="1484155622057-11">
+   <!--  <changeSet author="mehdi (generated)" id="1484155622057-11">
       <dropForeignKeyConstraint baseTableName="batch_job_execution_context"
                                 constraintName="JOB_EXEC_CTX_FK"/>
    </changeSet>
@@ -110,14 +110,14 @@
    </changeSet>
    <changeSet author="mehdi (generated)" id="1484155622057-19">
       <dropUniqueConstraint constraintName="UNIQUE_KEY_UN" tableName="batch_step_execution_seq"/>
-   </changeSet>
-   <changeSet author="mehdi (generated)" id="1484155622057-20">
+   </changeSet>-->
+   <!-- <changeSet author="mehdi (generated)" id="1484155622057-20">
       <dropUniqueConstraint constraintName="user_id" tableName="jhi_social_user_connection"/>
    </changeSet>
    <changeSet author="mehdi (generated)" id="1484155622057-21">
       <dropUniqueConstraint constraintName="user_id_2" tableName="jhi_social_user_connection"/>
-   </changeSet>
-   <changeSet author="mehdi (generated)" id="1484155622057-22">
+   </changeSet> -->
+   <!-- <changeSet author="mehdi (generated)" id="1484155622057-22">
       <dropTable tableName="batch_job_execution"/>
    </changeSet>
    <changeSet author="mehdi (generated)" id="1484155622057-23">
@@ -143,7 +143,7 @@
    </changeSet>
    <changeSet author="mehdi (generated)" id="1484155622057-30">
       <dropTable tableName="batch_step_execution_seq"/>
-   </changeSet>
+   </changeSet> -->
    <changeSet author="mehdi (generated)" id="1484155622057-31">
       <addNotNullConstraint columnDataType="varchar(255)"
                             columnName="seller_order_id"

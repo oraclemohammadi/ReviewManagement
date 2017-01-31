@@ -14,7 +14,7 @@ export class AutoGuardService implements CanActivate {
     }
     console.log('logged in denied by autoguard');
     // not logged in so redirect to login page
-    this.router.navigateByUrl('/login');
+    this.router.navigate(['/login']);
     return false;
   }
 }

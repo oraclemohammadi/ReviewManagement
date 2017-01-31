@@ -49,7 +49,7 @@
                 <constraints nullable="true" />
             </column>
             
-            <column name="order_total" type="bigint">
+            <column name="order_total" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             

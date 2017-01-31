@@ -60,7 +60,9 @@ import { FormControl } from '@angular/forms';  //for login page and all pages th
   providers: [{
     provide: LocationStrategy,
     useClass: HashLocationStrategy
-  },AutoGuardService,AuthenticationService],
+  },AutoGuardService
+  ,AuthenticationService,
+  ],
   bootstrap: [ AppComponent ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]  //necessary for using non-standard and custome properties  eg vaadin-polymer
 })

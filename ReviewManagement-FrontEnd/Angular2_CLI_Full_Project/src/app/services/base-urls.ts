@@ -1,5 +1,7 @@
+
 export class BaseUrls {
-    private static readonly _backendpoint: string = 'http://localhost:8080/';
+    //private static readonly _backendpoint: string = window.location.protocol+"//"+window.location.host+'/reviewtracker-0.0.1-SNAPSHOT/';
+    private static readonly _backendpoint: string ="http://localhost:8080/";
     public static loginUrl: string = BaseUrls._backendpoint + 'oauth/token';
     public static logoutUrl:  string = BaseUrls._backendpoint + 'api/logout';
     public static userListUrl:  string = BaseUrls._backendpoint + 'api/user/users';

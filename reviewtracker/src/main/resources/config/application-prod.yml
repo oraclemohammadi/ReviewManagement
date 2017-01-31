@@ -50,7 +50,9 @@ spring:
         password:
     thymeleaf:
         cache: true
-
+    batch:
+         job : 
+         enabled : false  
 liquibase:
     contexts: prod
 

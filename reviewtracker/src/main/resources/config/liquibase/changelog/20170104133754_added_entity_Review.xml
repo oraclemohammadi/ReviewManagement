@@ -41,7 +41,7 @@
                 <constraints nullable="true" />
             </column>
             
-            <column name="rating" type="bigint">
+            <column name="rating" type="int">
                 <constraints nullable="true" />
             </column>
             
@@ -49,7 +49,7 @@
                 <constraints nullable="true" />
             </column>
             
-            <column name="helpful_votes" type="bigint">
+            <column name="helpful_votes" type="int">
                 <constraints nullable="true" />
             </column>
             
@@ -65,7 +65,7 @@
                 <constraints nullable="true" />
             </column>
             
-            <column name="review_date" type="date">
+            <column name="review_date" type="timestamp">
                 <constraints nullable="true" />
             </column>
             

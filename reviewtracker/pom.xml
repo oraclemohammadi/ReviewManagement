@@ -471,6 +471,7 @@
 				<groupId>org.projectlombok</groupId>
 				<artifactId>lombok</artifactId>
 				<version>${lombok.version}</version>
+				<scope>provided</scope>
 			</dependency>
 
     </dependencies>
@@ -581,6 +582,7 @@
                     <simulationClass>*</simulationClass>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -592,6 +594,11 @@
                             <artifactId>mapstruct-processor</artifactId>
                             <version>${mapstruct.version}</version>
                         </path>
+                        <path>
+                        <groupId>org.projectlombok</groupId>
+                        <artifactId>lombok</artifactId>
+                        <version>1.16.12</version>
+                    </path>    
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
@@ -744,8 +751,8 @@
 
                 </dependencies>
                 <configuration>
-                    <changeLogFile>src/main/resources/config/liquibase/master.xml</changeLogFile>
-                    <diffChangeLogFile>src/main/resources/config/liquibase/changelog/${maven.build.timestamp}_changelog.xml</diffChangeLogFile>
+                    <changeLogFile>config/liquibase/master.xml</changeLogFile>
+                    <diffChangeLogFile>config/liquibase/changelog/${maven.build.timestamp}_changelog.xml</diffChangeLogFile>
                     <driver>com.mysql.jdbc.Driver</driver>
                     <url>jdbc:mysql://localhost:3306/reviewtracker</url>
                     <defaultSchemaName>reviewtracker</defaultSchemaName>
@@ -837,7 +844,8 @@
             <id>prod</id>
             <build>
                 <plugins>
-                    <plugin>
+                   <!-- 
+                   <plugin>
                         <groupId>com.github.eirslett</groupId>
                         <artifactId>frontend-maven-plugin</artifactId>
                         <version>${frontend-maven-plugin.version}</version>
@@ -876,7 +884,7 @@
                                     <goal>bower</goal>
                                 </goals>
                                 <configuration>
-                                    <arguments>install --no-color</arguments>
+                                   
                                 </configuration>
                             </execution>
                             <execution>
@@ -885,7 +893,7 @@
                                     <goal>gulp</goal>
                                 </goals>
                                 <configuration>
-                                    <arguments>build --no-notification</arguments>
+                                    
                                 </configuration>
                             </execution>
                             <execution>
@@ -895,11 +903,12 @@
                                     <goal>gulp</goal>
                                 </goals>
                                 <configuration>
-                                    <arguments>test --no-notification</arguments>
+                                    
                                 </configuration>
                             </execution>
                         </executions>
                     </plugin>
+                    --> 
                     <plugin>
                         <artifactId>maven-clean-plugin</artifactId>
                         <version>2.5</version>

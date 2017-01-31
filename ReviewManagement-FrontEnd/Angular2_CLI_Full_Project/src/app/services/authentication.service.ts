@@ -55,8 +55,9 @@ export class AuthenticationService extends BaseService {
   public logout(): Observable<boolean> {
     let promise = new Promise((resolve, reject) => {
       this.HttpService.get(this.Urls.logoutUrl)
-        .map((res:any) => res.status)
+        .map(this.mapLogin)
         .subscribe(data => {
+          console.log('data'+data);
           if (data.status === 200) {
             console.log('logged out');
             sessionStorage.removeItem('isAuth');
@@ -64,7 +65,7 @@ export class AuthenticationService extends BaseService {
             sessionStorage.removeItem('token');
             resolve(true);
           } else {
-            reject({ messageCode: data.messageCode });
+            reject({ messageCode: data });
           }
         }, error => {
           reject(this.errorPromise(error));

@@ -1,8 +1,12 @@
 import { Injectable } from '@angular/core';
+
 @Injectable()
 export class AppConstants{
-
-    readonly API_END_POINT="http://localhost:8080/";
+    constructor(){
+      console.log('path'+window.location.protocol+"//"+window.location.host);
+    }
+    //readonly API_END_POINT=window.location.protocol+"//"+window.location.host+'/reviewtracker-0.0.1-SNAPSHOT';
+    readonly API_END_POINT="http://localhost:8080";
     get loginServiceURL() {
         return `${this.API_END_POINT}${API.loginService}`
     }
@@ -26,8 +30,8 @@ const API = {
     userList: '/usercar/details=true',
     loginService: '/api/user/login',
     appSettingMetaData:'/api/metaData/SettingMetaDataList',
-    customerReviewURL:'api/reviews',
-    contactReviewerURL:'api/contactReviewer',
+    customerReviewURL:'/api/reviews',
+    contactReviewerURL:'/api/contactReviewer',
     productURL:'/api/product/listProduct',
     orderListURL:'/api/purchase-orders'
 }
